@@ -39,6 +39,45 @@ export const theme = createTheme({
         },
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+            width: 0,
+            height: 0,
+          },
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+            width: 0,
+            height: 0,
+          },
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+            width: 0,
+            height: 0,
+          },
+        },
+      },
+    },
   },
 });
 

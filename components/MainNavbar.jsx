@@ -28,7 +28,7 @@ import {
 import NavLink from "@/components/common/NavLink";
 import NavDropdown from "@/components/common/NavDropdown";
 import CTAButton from "@/components/common/CTAButton";
-import logoImg from "@/assets/finvibes-logo.jpg";
+import logoImg from "@/assets/finvibes-logo-text.png";
 import {
   colors,
   typography,
@@ -41,6 +41,7 @@ import {
 export default function MainNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsCollapse, setProductsCollapse] = useState(false);
+  const [openSubMenus, setOpenSubMenus] = useState({});
   const [toolsCollapse, setToolsCollapse] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -51,6 +52,13 @@ export default function MainNavbar() {
     setProductsCollapse((prev) => !prev);
   };
 
+  const handleSubMenuToggle = (label) => {
+    setOpenSubMenus((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
+
   const handleToolsToggle = () => {
     setToolsCollapse((prev) => !prev);
   };
@@ -58,6 +66,7 @@ export default function MainNavbar() {
   const handleDrawerClose = () => {
     setMobileOpen(false);
     setProductsCollapse(false);
+    setOpenSubMenus({});
     setToolsCollapse(false);
   };
 
@@ -94,9 +103,9 @@ export default function MainNavbar() {
           >
             <Image
               src={logoImg}
-              alt="Finvibes - Money matters"
+              alt="Finvibes"
               height={44}
-              width={Math.round(44 * (1374 / 317))}
+              width={Math.round(44 * (699 / 187))}
               style={{
                 objectFit: "contain",
                 width: "auto",
@@ -123,9 +132,17 @@ export default function MainNavbar() {
               <NavLink key={link.href} href={link.href} label={link.label} />
             ))}
 
-            <NavDropdown label="Products" items={PRODUCT_ITEMS} />
+            <NavDropdown
+              label="Products"
+              items={PRODUCT_ITEMS}
+              triggerType="click"
+            />
 
-            <NavDropdown label="Smart Tools" items={SMART_TOOLS_ITEMS} />
+            <NavDropdown
+              label="Smart Tools"
+              items={SMART_TOOLS_ITEMS}
+              triggerType="click"
+            />
 
             {NAV_LINKS.slice(1).map((link) => (
               <NavLink key={link.href} href={link.href} label={link.label} />
@@ -133,7 +150,7 @@ export default function MainNavbar() {
           </Box>
 
           {/* Right — Desktop CTA Button */}
-          <Box
+          {/* <Box
             sx={{
               display: { xs: "none", sm: "block" },
               flexShrink: 0,
@@ -141,10 +158,10 @@ export default function MainNavbar() {
           >
             <CTAButton
               label="Get Started"
-              href="/demo"
+              href="/contact"
               icon={<NorthEast sx={{ fontSize: "16px" }} />}
             />
-          </Box>
+          </Box> */}
 
           {/* Mobile — Hamburger Menu Icon */}
           <IconButton
@@ -194,7 +211,7 @@ export default function MainNavbar() {
               src={logoImg}
               alt="Finvibes"
               height={36}
-              width={Math.round(36 * (1374 / 317))}
+              width={Math.round(36 * (699 / 187))}
               style={{
                 objectFit: "contain",
                 width: "auto",
@@ -273,37 +290,130 @@ export default function MainNavbar() {
 
               <Collapse in={productsCollapse} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding sx={{ pl: 1 }}>
-                  {PRODUCT_ITEMS.map((item) => (
-                    <ListItemButton
-                      key={item.href}
-                      component={NextLink}
-                      href={item.href}
-                      onClick={handleDrawerClose}
-                      sx={{
-                        borderRadius: "6px",
-                        padding: "9px 10px",
-                        "&:hover": {
-                          backgroundColor: colors.surface.hoverLight,
-                          color: "primary.main",
-                        },
-                      }}
-                    >
-                      <ListItemText
-                        primary={
-                          <Typography
+                  {PRODUCT_ITEMS.map((item) => {
+                    const hasSubItems = Boolean(
+                      item.subItems && item.subItems.length > 0,
+                    );
+                    const isSubOpen = Boolean(openSubMenus[item.label]);
+
+                    if (hasSubItems) {
+                      return (
+                        <Box key={item.label}>
+                          <ListItemButton
+                            onClick={() => handleSubMenuToggle(item.label)}
                             sx={{
-                              fontFamily: "inherit",
-                              fontSize: typography.fontSizes.sm,
-                              fontWeight: typography.fontWeights.medium,
-                              color: colors.text.primary,
+                              borderRadius: "6px",
+                              padding: "9px 10px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              "&:hover": {
+                                backgroundColor: colors.surface.hoverLight,
+                                color: "primary.main",
+                              },
                             }}
                           >
-                            {item.label}
-                          </Typography>
-                        }
-                      />
-                    </ListItemButton>
-                  ))}
+                            <ListItemText
+                              primary={
+                                <Typography
+                                  sx={{
+                                    fontFamily: "inherit",
+                                    fontSize: typography.fontSizes.sm,
+                                    fontWeight: typography.fontWeights.medium,
+                                    color: colors.text.primary,
+                                  }}
+                                >
+                                  {item.label}
+                                </Typography>
+                              }
+                            />
+                            {isSubOpen ? (
+                              <ExpandLess
+                                sx={{ fontSize: 18, color: "primary.main" }}
+                              />
+                            ) : (
+                              <ExpandMore
+                                sx={{
+                                  fontSize: 18,
+                                  color: colors.text.secondary,
+                                }}
+                              />
+                            )}
+                          </ListItemButton>
+
+                          <Collapse in={isSubOpen} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding sx={{ pl: 2 }}>
+                              {item.subItems.map((sub) => (
+                                <ListItemButton
+                                  key={sub.href}
+                                  component={NextLink}
+                                  href={sub.href}
+                                  onClick={handleDrawerClose}
+                                  sx={{
+                                    borderRadius: "6px",
+                                    padding: "7px 10px",
+                                    "&:hover": {
+                                      backgroundColor:
+                                        colors.surface.hoverLight,
+                                      color: "primary.main",
+                                    },
+                                  }}
+                                >
+                                  <ListItemText
+                                    primary={
+                                      <Typography
+                                        sx={{
+                                          fontFamily: "inherit",
+                                          fontSize: "13px",
+                                          fontWeight:
+                                            typography.fontWeights.regular,
+                                          color: colors.text.secondary,
+                                          "&:hover": { color: "primary.main" },
+                                        }}
+                                      >
+                                        • {sub.label}
+                                      </Typography>
+                                    }
+                                  />
+                                </ListItemButton>
+                              ))}
+                            </List>
+                          </Collapse>
+                        </Box>
+                      );
+                    }
+
+                    return (
+                      <ListItemButton
+                        key={item.href}
+                        component={NextLink}
+                        href={item.href}
+                        onClick={handleDrawerClose}
+                        sx={{
+                          borderRadius: "6px",
+                          padding: "9px 10px",
+                          "&:hover": {
+                            backgroundColor: colors.surface.hoverLight,
+                            color: "primary.main",
+                          },
+                        }}
+                      >
+                        <ListItemText
+                          primary={
+                            <Typography
+                              sx={{
+                                fontFamily: "inherit",
+                                fontSize: typography.fontSizes.sm,
+                                fontWeight: typography.fontWeights.medium,
+                                color: colors.text.primary,
+                              }}
+                            >
+                              {item.label}
+                            </Typography>
+                          }
+                        />
+                      </ListItemButton>
+                    );
+                  })}
                 </List>
               </Collapse>
             </ListItem>
@@ -411,7 +521,7 @@ export default function MainNavbar() {
           {/* Full-width CTA Button inside Drawer */}
           <CTAButton
             label="Get Started"
-            href="/demo"
+            href="/contact"
             icon={<NorthEast sx={{ fontSize: "16px" }} />}
             sx={{ width: "100%", justifyContent: "center", py: 1.2 }}
           />

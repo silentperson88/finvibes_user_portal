@@ -1,0 +1,225 @@
+{
+  "homePageFAQs": {
+    "category": "Home Page",
+    "title": "Frequently Asked Questions",
+    "description": "Clear answers to how Finvibes loan comparison, credit assessment, and partner sanction works.",
+    "items": [
+      {
+        "q": "Will checking loan offers on Finvibes impact my CIBIL credit score?",
+        "a": "No. When you explore loan eligibility or compare bank offers on Finvibes, only a soft inquiry is conducted. Soft inquiries have 0% negative impact on your official CIBIL or credit score."
+      },
+      {
+        "q": "Does Finvibes charge any service or consultation fee from borrowers?",
+        "a": "Finvibes is 100% free for consumers. We do not levy any platform, consultation, advisory, or hidden charges for comparing, checking eligibility, or applying for loan products."
+      },
+      {
+        "q": "How fast can I receive an in-principle loan sanction letter?",
+        "a": "In-principle approvals are typically generated within 48 to 72 hours once your digital KYC and income documentation are submitted through our encrypted gateway."
+      },
+      {
+        "q": "Can I transfer my existing high-interest loan to a new lender?",
+        "a": "Yes. Our Loan Balance Transfer desk helps you refinance existing home, personal, or business loans to partner banks offering lower interest rates, reducing your monthly EMI and overall interest burden."
+      },
+      {
+        "q": "What documents are required to initiate a digital loan application?",
+        "a": "The standard digital KYC requires your PAN card, Aadhaar number (for paperless e-KYC), last 3–6 months' bank statements, and recent salary slips (for salaried) or ITR returns (for self-employed)."
+      }
+    ]
+  },
+  "productPageFAQs": {
+    "home-loan": {
+      "title": "Frequently Asked Questions About Home Loans",
+      "description": "Clear answers to interest rates, tax benefits, co-applicants, and home loan sanction processes.",
+      "items": [
+        {
+          "q": "What is the lowest home loan interest rate available on Finvibes?",
+          "a": "Partner bank home loan rates currently start from 8.35% p.a. for borrowers with a CIBIL score of 750 or above. Actual interest rates depend on your credit profile, employment type, loan amount, and the partner lender selected."
+        },
+        {
+          "q": "Can I add a co-applicant to increase my home loan eligibility?",
+          "a": "Yes. Adding an earning family member (spouse, parent, or working child) as a co-applicant pools your household income, significantly increasing your maximum sanctioned loan amount and eligibility."
+        },
+        {
+          "q": "What is the difference between fixed and floating home loan interest rates?",
+          "a": "A floating rate fluctuates with the RBI Repo Linked Lending Rate (RLLR), allowing you to benefit from rate cuts without prepayment penalties. A fixed rate remains locked for a predetermined period, providing predictable EMIs regardless of market rate hikes."
+        },
+        {
+          "q": "Can I transfer my existing home loan to a new lender offering lower interest?",
+          "a": "Yes. Through our Home Loan Balance Transfer facility, you can shift your outstanding loan balance to a partner bank offering a lower interest rate, reducing your monthly EMI and total interest outgo."
+        },
+        {
+          "q": "What tax benefits can I claim on my home loan repayments?",
+          "a": "Borrowers can claim income tax deductions up to ₹1.5 Lakhs on principal repayment under Section 80C, and up to ₹2 Lakhs on interest payment under Section 24(b) of the Income Tax Act for a self-occupied property."
+        }
+      ]
+    },
+    "personal-loan": {
+      "title": "Frequently Asked Questions About Personal Loans",
+      "description": "Everything you need to know about collateral-free personal loans, instant disbursal, and flexible tenure.",
+      "items": [
+        {
+          "q": "Is any collateral, guarantor, or security required for a personal loan?",
+          "a": "No. Personal loans on Finvibes are 100% unsecured and collateral-free. Sanctions are based entirely on your monthly income, employment stability, and CIBIL credit score."
+        },
+        {
+          "q": "How fast is the loan amount credited to my bank account?",
+          "a": "Once your digital e-KYC and income verification are completed online, partner banks typically disburse funds directly to your savings account in as little as 10 minutes to 24 hours."
+        },
+        {
+          "q": "Does checking my personal loan eligibility impact my credit score?",
+          "a": "No. Checking eligibility or comparing partner bank quotes on Finvibes conducts only a soft credit check, which has zero negative impact on your official CIBIL credit score."
+        },
+        {
+          "q": "Can I prepay or foreclose my personal loan before the tenure ends?",
+          "a": "Yes. Most partner banks allow part-prepayment or full foreclosure after a lock-in period of 6 to 12 monthly EMIs, allowing you to save substantial interest outgo."
+        },
+        {
+          "q": "What is the minimum monthly income required to apply for a personal loan?",
+          "a": "The minimum net monthly salary required by premier partner banks typically starts from ₹20,000 for salaried employees and an annual gross turnover of ₹3 Lakhs for self-employed professionals."
+        }
+      ]
+    },
+    "business-loan": {
+      "title": "Frequently Asked Questions About Business Loans",
+      "description": "Essential information regarding unsecured business finance, working capital limits, and documentation.",
+      "items": [
+        {
+          "q": "What are the eligibility criteria for an unsecured business loan?",
+          "a": "Your business should typically have an operational vintage of at least 1 to 2 years, an active GST registration, clean banking turnover, and a minimum annual revenue of ₹10 Lakhs."
+        },
+        {
+          "q": "What documents are required to apply for a digital business loan?",
+          "a": "Key documents include business PAN card, Aadhaar card of the proprietor/directors, last 6 to 12 months' business bank statements, latest 2 years' ITR returns with computation of income, and GST returns."
+        },
+        {
+          "q": "Can startups or small MSMEs apply for collateral-free business loans?",
+          "a": "Yes. We partner with specialized NBFCs and digital fintech lenders that extend unsecured working capital loans and machinery finance to small enterprises and emerging MSMEs based on cash-flow analysis."
+        },
+        {
+          "q": "How can funds from a business loan be utilized?",
+          "a": "Business loan funds can be flexibly deployed for inventory purchase, working capital requirements, vendor payments, technology upgrades, plant expansion, or hiring talent."
+        }
+      ]
+    },
+    "car-loan": {
+      "title": "Frequently Asked Questions About Car Loans",
+      "description": "Understand new and used auto loan interest rates, on-road funding, and flexible repayment tenures.",
+      "items": [
+        {
+          "q": "Can I get 100% on-road financing for my new car purchase?",
+          "a": "Yes. Several premier partner banks offer up to 90% to 100% on-road funding for selected new car models to qualified salaried and professional applicants with strong credit profiles."
+        },
+        {
+          "q": "What is the interest rate difference between new car and used car loans?",
+          "a": "New car loan interest rates generally start lower (around 8.75% to 9.25% p.a.), while pre-owned car loans typically range between 11% to 14% p.a. due to vehicle depreciation and valuation factors."
+        },
+        {
+          "q": "What is the maximum repayment tenure available for car loans?",
+          "a": "For brand new vehicles, partner banks provide flexible repayment terms up to 7 to 8 years (84–96 months). Used car loan tenures typically cap at 5 years depending on vehicle age."
+        },
+        {
+          "q": "Can self-employed professionals and business owners get a car loan?",
+          "a": "Yes. Self-employed applicants can easily secure auto financing by providing business registration proof, the last 2 years' ITR with computation of income, and 6 months' primary current/savings account statements."
+        }
+      ]
+    },
+    "education-loan": {
+      "title": "Frequently Asked Questions About Education Loans",
+      "description": "Guidance on student loan interest rates, overseas funding, moratorium periods, and collateral guidelines.",
+      "items": [
+        {
+          "q": "Does an education loan cover living expenses, books, and airfare for studies abroad?",
+          "a": "Yes. Comprehensive overseas student loans cover 100% of university tuition fees, campus accommodation, living food allowances, health insurance, textbooks, and international travel airfare."
+        },
+        {
+          "q": "Is collateral or security mandatory for overseas education loans?",
+          "a": "Partner banks offer non-collateral (unsecured) education loans up to ₹40–50 Lakhs for premier universities in the US, UK, Canada, Germany, and Australia based on student GRE/GMAT scores and co-applicant income. Loans exceeding ₹50 Lakhs may require residential or commercial property as collateral."
+        },
+        {
+          "q": "What is a moratorium period and how does it work?",
+          "a": "A moratorium period is a repayment holiday extending throughout the course duration plus an additional 6 to 12 months after graduation or getting a job. Regular principal and EMI repayments only commence after the moratorium ends."
+        },
+        {
+          "q": "Can I claim income tax deductions on education loan interest repayment?",
+          "a": "Yes. Under Section 80E of the Income Tax Act, the entire interest paid on an education loan can be deducted from your taxable income with no upper limit for up to 8 consecutive assessment years."
+        }
+      ]
+    },
+    "credit-cards": {
+      "title": "Frequently Asked Questions About Credit Cards",
+      "description": "Get clarity on lifetime-free cards, lounge access criteria, reward point redemption, and soft eligibility checks.",
+      "items": [
+        {
+          "q": "How can I obtain a lifetime-free (LTF) credit card with zero annual fees?",
+          "a": "Several partner banks offer lifetime-free credit cards with ₹0 joining and ₹0 annual maintenance fees forever. Other cards provide annual fee waivers upon meeting annual milestone spends (e.g. spending ₹1 Lakh in a year)."
+        },
+        {
+          "q": "Will checking pre-approved credit cards on Finvibes reduce my CIBIL score?",
+          "a": "No. Exploring matched cards on Finvibes uses a soft-inquiry mechanism that never affects your CIBIL score. A hard credit inquiry is only placed when you formally submit an application with the card issuer."
+        },
+        {
+          "q": "How do complimentary airport lounge access privileges work?",
+          "a": "Cards with travel perks offer between 2 to 8 complimentary domestic and international airport lounge entries per calendar quarter. Simply present your qualifying physical or virtual credit card at participating airport lounge entry desks."
+        },
+        {
+          "q": "What is fuel surcharge waiver and how is it applied?",
+          "a": "Fuel surcharge waiver reimburses the standard 1% surcharge fee charged by petrol pumps across India for transactions typically between ₹400 and ₹5,000, saving substantial amounts for daily commuters."
+        },
+        {
+          "q": "How can I redeem accelerated reward points and cashback?",
+          "a": "Cashback is directly credited to your card statement reducing your next bill, while reward points can be redeemed instantly for flight/hotel vouchers, gift cards from Amazon/Flipkart, or merchandise through your bank app."
+        }
+      ]
+    },
+    "savings-account": {
+      "eyebrow": "DIGITAL SAVINGS ACCOUNT FAQS",
+      "title": "Frequently Asked Questions About Digital Accounts",
+      "description": "Everything you need to know about zero-balance digital accounts, interest rates, and paperless Video KYC.",
+      "items": [
+        {
+          "q": "Is there any minimum balance requirement or penalty for zero-balance digital accounts?",
+          "a": "No. Zero-balance digital savings accounts require ₹0 minimum monthly average balance (MAB), with absolutely zero maintenance charges or non-maintenance penalty fees."
+        },
+        {
+          "q": "How does Video KYC onboarding work?",
+          "a": "Video KYC is completed in under 5 minutes from your smartphone or laptop. An authorized bank officer connects on a brief encrypted video call to verify your original PAN card, Aadhaar biometric verification, and signature on blank paper."
+        },
+        {
+          "q": "What interest rate can I earn on my digital savings account balance?",
+          "a": "Selected digital partner banks (such as Equitas, IDFC FIRST, and Kotak) offer attractive savings interest rates starting from 3.5% up to 7.5% p.a. calculated on your daily end-of-day balance."
+        },
+        {
+          "q": "When and how do I receive my debit card?",
+          "a": "An instant virtual debit card is activated in your bank mobile app immediately upon Video KYC completion for online shopping and UPI. A personalized physical chip debit card is dispatched and delivered to your communication address within 5 to 7 working days."
+        }
+      ]
+    },
+    "general": {
+      "eyebrow": "FREQUENTLY ASKED QUESTIONS",
+      "title": "Frequently Asked Questions",
+      "description": "Everything you need to know about finding, comparing, and applying for institutional financial products on Finvibes.",
+      "items": [
+        {
+          "q": "Will checking loan offers on Finvibes impact my CIBIL credit score?",
+          "a": "No. When you explore loan eligibility or compare bank offers on Finvibes, only a soft inquiry is conducted. Soft inquiries have 0% negative impact on your official CIBIL or credit score."
+        },
+        {
+          "q": "Does Finvibes charge any service or consultation fee from borrowers?",
+          "a": "Finvibes is 100% free for consumers. We do not levy any platform, consultation, advisory, or hidden charges for comparing, checking eligibility, or applying for loan products."
+        },
+        {
+          "q": "How fast can I receive an in-principle loan sanction letter?",
+          "a": "In-principle approvals are typically generated within 48 to 72 hours once your digital KYC and income documentation are submitted through our encrypted gateway."
+        },
+        {
+          "q": "Can I transfer my existing high-interest loan to a new lender?",
+          "a": "Yes. Our Loan Balance Transfer desk helps you refinance existing home, personal, or business loans to partner banks offering lower interest rates, reducing your monthly EMI and overall interest burden."
+        },
+        {
+          "q": "What documents are required to initiate a digital loan application?",
+          "a": "The standard digital KYC requires your PAN card, Aadhaar number (for paperless e-KYC), last 3–6 months' bank statements, and recent salary slips (for salaried) or ITR returns (for self-employed)."
+        }
+      ]
+    }
+  }
+}

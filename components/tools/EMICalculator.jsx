@@ -1,18 +1,22 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, ButtonBase, Container, Grid, Slider, Typography } from "@mui/material";
 import {
   CreditCard,
   Percent,
   CalendarToday,
-  RestartAlt,
-  Calculate,
+  AutoGraphOutlined,
+  DirectionsCar,
 } from "@mui/icons-material";
-import { colors, typography } from "@/constants";
-import CTAButton from "@/components/common/CTAButton";
+import {
+  colors,
+  typography,
+  PRODUCT_CALCULATOR_CONFIG,
+  CAR_LOAN_TYPE_TABS,
+} from "@/constants";
 import CalculatorInputCard from "./CalculatorInputCard";
 import CalculatorTextField from "./CalculatorTextField";
 import { emiCalculatorSchema } from "@/validations/emiSchema";
@@ -24,28 +28,58 @@ const formatINR = (val) => {
   return new Intl.NumberFormat("en-IN").format(Math.round(num));
 };
 
-export default function EMICalculator() {
+// Format values into Lakhs/Crore label (e.g. ₹50 lakh, ₹46.7 lakh)
+const formatLakhOrCrore = (val) => {
+  const num = Number(val);
+  if (isNaN(num) ? true : num <= 0) return "₹0";
+  if (num >= 10000000) {
+    const cr = (num / 10000000).toFixed(2).replace(/\.00$/, "").replace(/(\.[1-9])0$/, "$1");
+    return `₹${cr} Cr`;
+  }
+  const lk = (num / 100000).toFixed(1).replace(/\.0$/, "");
+  return `₹${lk} lakh`;
+};
+
+export default function EMICalculator({ mode = "default", loanType = "home" }) {
+  const isSliderMode = mode === "slider";
+  const config = PRODUCT_CALCULATOR_CONFIG[loanType]
+    ? PRODUCT_CALCULATOR_CONFIG[loanType]
+    : PRODUCT_CALCULATOR_CONFIG.home;
+
+  // Car loan specific sub-tab state ("new" vs "used")
+  const [carType, setCarType] = useState("new");
+
+  const defaultSliderValues = {
+    amount: config.amount,
+    rate: config.rate,
+    years: config.years,
+    months: 0,
+  };
+
   const {
     watch,
     setValue,
-    reset,
-    trigger,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(emiCalculatorSchema),
+    resolver: isSliderMode ? undefined : zodResolver(emiCalculatorSchema),
     mode: "onChange",
-    defaultValues: {
-      amount: "",
-      rate: "",
-      years: "",
-      months: "",
-    },
+    defaultValues: isSliderMode
+      ? defaultSliderValues
+      : { amount: "", rate: "", years: "", months: "" },
   });
 
   const amount = watch("amount");
   const rate = watch("rate");
   const years = watch("years");
   const months = watch("months");
+
+  // Handle Car Loan Tab change based on CAR_LOAN_TYPE_TABS
+  const handleCarTypeChange = (type) => {
+    setCarType(type);
+    const matchedTab = CAR_LOAN_TYPE_TABS.find((t) => t.id === type);
+    const newRate = matchedTab ? matchedTab.rate : 8.5;
+    setValue("rate", newRate);
+  };
 
   // EMI Calculation Formula
   const calculation = useMemo(() => {
@@ -88,21 +122,6 @@ export default function EMICalculator() {
     };
   }, [amount, rate, years, months]);
 
-  // Reset Handler: Clears all fields to empty string to reveal placeholders
-  const handleReset = () => {
-    reset({
-      amount: "",
-      rate: "",
-      years: "",
-      months: "",
-    });
-  };
-
-  // Calculate Handler: Triggers validation on form fields
-  const handleCalculate = async () => {
-    await trigger();
-  };
-
   // Input Change Handlers
   const handleAmountChange = (e) => {
     setValue("amount", e.target.value, { shouldValidate: true });
@@ -123,111 +142,420 @@ export default function EMICalculator() {
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
       <Grid container spacing={{ xs: 3, md: 4 }}>
-        {/* Left Column: 3 Input Cards & Action Buttons */}
+        {/* Left Column: Calculator Card (either Slider mode card or 3 textfield input cards) */}
         <Grid size={{ xs: 12, md: 7.2 }}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-            {/* Input Card 1: Loan Amount */}
-            <CalculatorInputCard
-              icon={<CreditCard sx={{ fontSize: 19 }} />}
-              title="Loan Amount"
-              subtitle="Enter the total loan amount"
+          {isSliderMode ? (
+            <Box
+              sx={{
+                backgroundColor: colors.surface.white,
+                borderRadius: "20px",
+                p: { xs: 2.5, sm: 3.5 },
+                border: "1px solid #eef2f6",
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.04)",
+              }}
             >
-              <CalculatorTextField
-                type="number"
-                placeholder="Loan Amount"
-                value={amount}
-                onChange={handleAmountChange}
-                startAdornment="₹"
-                error={Boolean(errors.amount)}
-                helperText={errors.amount ? errors.amount.message : ""}
-              />
-            </CalculatorInputCard>
-
-            {/* Input Card 2: Interest Rate */}
-            <CalculatorInputCard
-              icon={<Percent sx={{ fontSize: 18 }} />}
-              title="Interest Rate (p.a.)"
-              subtitle="Enter annual interest rate"
-            >
-              <CalculatorTextField
-                type="number"
-                placeholder="Interest Rate"
-                value={rate}
-                onChange={handleRateChange}
-                endAdornment="%"
-                error={Boolean(errors.rate)}
-                helperText={errors.rate ? errors.rate.message : ""}
-              />
-            </CalculatorInputCard>
-
-            {/* Input Card 3: Loan Tenure */}
-            <CalculatorInputCard
-              icon={<CalendarToday sx={{ fontSize: 18 }} />}
-              title="Loan Tenure"
-              subtitle="Choose loan tenure"
-            >
-              <Grid container spacing={2}>
-                <Grid size={{ xs: 6 }}>
-                  <CalculatorTextField
-                    type="number"
-                    placeholder="Years"
-                    value={years}
-                    onChange={handleYearsChange}
-                    endAdornment="YEAR/S"
-                  />
-                </Grid>
-                <Grid size={{ xs: 6 }}>
-                  <CalculatorTextField
-                    type="number"
-                    placeholder="Months"
-                    value={months}
-                    onChange={handleMonthsChange}
-                    endAdornment="MONTH/S"
-                    error={Boolean(errors.months)}
-                    helperText={errors.months ? errors.months.message : ""}
-                  />
-                </Grid>
-              </Grid>
-            </CalculatorInputCard>
-
-            {/* Bottom Actions: Reset & Calculate EMI */}
-            <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-              <CTAButton
-                variant="outlined"
-                onClick={handleReset}
-                startIcon={<RestartAlt sx={{ fontSize: 18 }} />}
-                label="Reset"
-                borderRadius="8px"
+              {/* Header inside Card */}
+              <Box
                 sx={{
-                  minWidth: { xs: "130px", sm: "160px" },
-                  fontSize: "14px",
-                  py: 1.1,
-                  px: 3.5,
-                  color: colors.text.primary,
-                  borderColor: "#cbd5e1",
-                  backgroundColor: colors.surface.white,
-                  "&:hover": {
-                    backgroundColor: "#f8fafc",
-                    borderColor: colors.text.secondary,
-                  },
+                  display: "flex",
+                  alignItems: { xs: "flex-start", sm: "center" },
+                  justifyContent: "space-between",
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: 1.5,
+                  mb: 3,
+                  pb: 2.5,
+                  borderBottom: "1px solid #eef2f6",
                 }}
-              />
+              >
+                <Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 0.8, mb: 0.5 }}>
+                    <AutoGraphOutlined sx={{ fontSize: 16, color: colors.brand.primary }} />
+                    <Typography
+                      sx={{
+                        fontSize: "11px",
+                        fontWeight: 700,
+                        letterSpacing: "1px",
+                        color: colors.brand.primary,
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      INTERACTIVE ESTIMATOR
+                    </Typography>
+                  </Box>
+                  <Typography
+                    sx={{
+                      fontFamily: typography.fontFamily,
+                      fontSize: { xs: "20px", sm: "24px" },
+                      fontWeight: 800,
+                      color: colors.text.primary,
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {config.title}
+                  </Typography>
+                </Box>
 
-              <CTAButton
-                variant="contained"
-                onClick={handleCalculate}
-                startIcon={<Calculate sx={{ fontSize: 20 }} />}
-                label="Calculate EMI"
-                borderRadius="8px"
+                <Box
+                  sx={{
+                    px: 1.8,
+                    py: 0.5,
+                    borderRadius: "50px",
+                    backgroundColor: "#f0fdf4",
+                    border: "1px solid #bbf7d0",
+                    whiteSpace: "nowrap",
+                    alignSelf: { xs: "flex-start", sm: "center" },
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: "11.5px",
+                      fontWeight: 600,
+                      color: "#15803d",
+                    }}
+                  >
+                    Live Real-Time Simulation
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* Optional Car Loan Tabs: configured from CAR_LOAN_TYPE_TABS in constants.js */}
+              {config.hasCarTabs && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    backgroundColor: "#f1f5f9",
+                    p: 0.6,
+                    borderRadius: "12px",
+                    mb: 3,
+                    gap: 1,
+                  }}
+                >
+                  {CAR_LOAN_TYPE_TABS.map((tab) => {
+                    const isActive = carType === tab.id;
+                    return (
+                      <ButtonBase
+                        key={tab.id}
+                        onClick={() => handleCarTypeChange(tab.id)}
+                        sx={{
+                          flex: 1,
+                          py: 1,
+                          px: 2,
+                          borderRadius: "8px",
+                          backgroundColor: isActive ? colors.surface.white : "transparent",
+                          color: isActive ? colors.brand.primary : colors.text.secondary,
+                          fontWeight: isActive ? 700 : 500,
+                          fontSize: "13.5px",
+                          boxShadow: isActive ? "0 2px 8px rgba(0,0,0,0.06)" : "none",
+                          transition: "all 0.15s ease",
+                          display: "flex",
+                          gap: 0.8,
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <DirectionsCar sx={{ fontSize: 17 }} />
+                        {tab.label} ({tab.rateLabel})
+                      </ButtonBase>
+                    );
+                  })}
+                </Box>
+              )}
+
+              {/* Top Preview Card */}
+              <Box
                 sx={{
-                  flexGrow: 1,
-                  fontSize: "14.5px",
-                  py: 1.1,
-                  fontWeight: 700,
+                  backgroundColor: "#f4f8fd",
+                  borderRadius: "14px",
+                  p: { xs: 2, sm: 2.5 },
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 3.5,
+                  border: "1px solid rgba(11, 99, 229, 0.08)",
                 }}
-              />
+              >
+                <Box>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      color: colors.text.secondary,
+                      fontWeight: 500,
+                      mb: 0.5,
+                    }}
+                  >
+                    Estimated Monthly EMI
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: typography.fontFamily,
+                      fontSize: { xs: "24px", sm: "28px" },
+                      fontWeight: 800,
+                      color: colors.brand.primary,
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.5px",
+                    }}
+                  >
+                    ₹{formatINR(calculation.emi)}
+                  </Typography>
+                </Box>
+
+                <Box sx={{ textAlign: "right" }}>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      color: colors.text.secondary,
+                      fontWeight: 500,
+                      mb: 0.5,
+                    }}
+                  >
+                    Total Interest
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: typography.fontFamily,
+                      fontSize: { xs: "16px", sm: "18px" },
+                      fontWeight: 800,
+                      color: colors.text.primary,
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {formatLakhOrCrore(calculation.totalInterest)}
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* Section 1: Loan Amount */}
+              <Box sx={{ mb: 3 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mb: 1.5,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: colors.text.primary,
+                    }}
+                  >
+                    Loan Amount
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "15px",
+                      fontWeight: 700,
+                      color: colors.brand.primary,
+                    }}
+                  >
+                    {formatLakhOrCrore(amount)}
+                  </Typography>
+                </Box>
+
+                <Slider
+                  value={Number(amount)}
+                  min={config.minAmount}
+                  max={config.maxAmount}
+                  step={loanType === "car" ? 10000 : 50000}
+                  onChange={(_, val) => setValue("amount", val)}
+                  sx={{
+                    color: colors.brand.primary,
+                    height: 6,
+                    "& .MuiSlider-track": {
+                      border: "none",
+                      backgroundColor: colors.brand.primary,
+                    },
+                    "& .MuiSlider-rail": {
+                      backgroundColor: "#e2e8f0",
+                      opacity: 1,
+                    },
+                    "& .MuiSlider-thumb": {
+                      width: 22,
+                      height: 22,
+                      backgroundColor: colors.brand.primary,
+                      boxShadow: `0 2px 8px ${colors.brand.primary}40`,
+                      "&:hover, &.Mui-active": {
+                        boxShadow: `0 0 0 8px ${colors.brand.primary}20`,
+                      },
+                    },
+                  }}
+                />
+              </Box>
+
+              {/* Section 2: Interest Rate */}
+              <Box sx={{ mb: 3 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mb: 1.5,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: colors.text.primary,
+                    }}
+                  >
+                    Interest Rate (% p.a.)
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "15px",
+                      fontWeight: 700,
+                      color: colors.brand.primary,
+                    }}
+                  >
+                    {Number(rate).toFixed(2)}%
+                  </Typography>
+                </Box>
+
+                <Slider
+                  value={Number(rate)}
+                  min={config.minRate}
+                  max={config.maxRate}
+                  step={0.05}
+                  onChange={(_, val) => setValue("rate", val)}
+                  sx={{
+                    color: colors.brand.primary,
+                    height: 6,
+                    "& .MuiSlider-track": {
+                      border: "none",
+                      backgroundColor: colors.brand.primary,
+                    },
+                    "& .MuiSlider-rail": {
+                      backgroundColor: "#e2e8f0",
+                      opacity: 1,
+                    },
+                    "& .MuiSlider-thumb": {
+                      width: 22,
+                      height: 22,
+                      backgroundColor: colors.brand.primary,
+                      boxShadow: `0 2px 8px ${colors.brand.primary}40`,
+                      "&:hover, &.Mui-active": {
+                        boxShadow: `0 0 0 8px ${colors.brand.primary}20`,
+                      },
+                    },
+                  }}
+                />
+              </Box>
+
+              {/* Section 3: Tenure (Years) */}
+              <Box sx={{ mb: 1 }}>
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: colors.text.primary,
+                    mb: 1.8,
+                  }}
+                >
+                  Tenure (Years)
+                </Typography>
+
+                <Grid container spacing={1.5}>
+                  {config.tenureOptions.map((yr) => {
+                    const isActive = Number(years) === yr;
+                    return (
+                      <Grid size={{ xs: 4, sm: 2.4 }} key={yr}>
+                        <ButtonBase
+                          onClick={() => setValue("years", yr)}
+                          sx={{
+                            width: "100%",
+                            py: 1.1,
+                            px: 1,
+                            borderRadius: "10px",
+                            border: `1px solid ${isActive ? colors.brand.primary : "#d6dbe1"}`,
+                            backgroundColor: isActive ? colors.brand.primary : colors.surface.white,
+                            color: isActive ? "#ffffff" : colors.text.primary,
+                            fontWeight: isActive ? 700 : 500,
+                            fontSize: "13px",
+                            transition: "all 0.15s ease",
+                            "&:hover": {
+                              borderColor: colors.brand.primary,
+                              backgroundColor: isActive ? colors.brand.primary : `${colors.brand.primary}0a`,
+                            },
+                          }}
+                        >
+                          {yr} Yrs
+                        </ButtonBase>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              </Box>
             </Box>
-          </Box>
+          ) : (
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              {/* Input Card 1: Loan Amount */}
+              <CalculatorInputCard
+                icon={<CreditCard sx={{ fontSize: 19 }} />}
+                title="Loan Amount"
+                subtitle="Enter the total loan amount"
+              >
+                <CalculatorTextField
+                  type="number"
+                  placeholder="Loan Amount"
+                  value={amount}
+                  onChange={handleAmountChange}
+                  startAdornment="₹"
+                  error={Boolean(errors.amount)}
+                  helperText={errors.amount ? errors.amount.message : ""}
+                />
+              </CalculatorInputCard>
+
+              {/* Input Card 2: Interest Rate */}
+              <CalculatorInputCard
+                icon={<Percent sx={{ fontSize: 18 }} />}
+                title="Interest Rate (p.a.)"
+                subtitle="Enter annual interest rate"
+              >
+                <CalculatorTextField
+                  type="number"
+                  placeholder="Interest Rate"
+                  value={rate}
+                  onChange={handleRateChange}
+                  endAdornment="%"
+                  error={Boolean(errors.rate)}
+                  helperText={errors.rate ? errors.rate.message : ""}
+                />
+              </CalculatorInputCard>
+
+              {/* Input Card 3: Loan Tenure */}
+              <CalculatorInputCard
+                icon={<CalendarToday sx={{ fontSize: 18 }} />}
+                title="Loan Tenure"
+                subtitle="Choose loan tenure"
+              >
+                <Grid container spacing={2}>
+                  <Grid size={{ xs: 6 }}>
+                    <CalculatorTextField
+                      type="number"
+                      placeholder="Years"
+                      value={years}
+                      onChange={handleYearsChange}
+                      endAdornment="YEAR/S"
+                    />
+                  </Grid>
+                  <Grid size={{ xs: 6 }}>
+                    <CalculatorTextField
+                      type="number"
+                      placeholder="Months"
+                      value={months}
+                      onChange={handleMonthsChange}
+                      endAdornment="MONTH/S"
+                      error={Boolean(errors.months)}
+                      helperText={errors.months ? errors.months.message : ""}
+                    />
+                  </Grid>
+                </Grid>
+              </CalculatorInputCard>
+            </Box>
+          )}
         </Grid>
 
         {/* Right Column: Estimated Monthly Instalment (EMI) Summary Card */}

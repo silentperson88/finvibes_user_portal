@@ -1,15 +1,19 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Box } from "@mui/material";
 import TopInfoBar from "@/components/TopInfoBar";
 import MainNavbar from "@/components/MainNavbar";
 import { colors } from "@/constants";
 
 export default function Header() {
+  const pathname = usePathname();
+  if (pathname === "/404") return null;
+
   return (
     <>
       {/* Top info strip (scrolls away naturally) */}
-      <TopInfoBar />
+      {/* <TopInfoBar /> */}
 
       {/* Sticky Main Navigation Bar (sticks to top of viewport on scroll) */}
       <Box

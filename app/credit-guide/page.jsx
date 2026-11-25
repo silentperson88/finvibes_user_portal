@@ -1,6 +1,6 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import CreditScoreGuide from "@/components/tools/credit-score/CreditScoreGuide";
-import { colors, typography, CREDIT_PAGE_HEADER } from "@/constants";
+import CommonPageBanner from "@/components/common/CommonPageBanner";
 
 export const metadata = {
   title: "Credit Score Spectrum & Factors - Check Free Credit Score | Finvibes",
@@ -10,47 +10,25 @@ export const metadata = {
 
 export default function CreditGuidePage() {
   return (
-    <Box
-      component="main"
-      sx={{
-        backgroundColor: "#ffffff",
-        minHeight: "85vh",
-        pt: { xs: 4, md: 5.5 },
-        pb: { xs: 7, md: 9 },
-      }}
-    >
-      <Container maxWidth="lg">
-        {/* Page Title & Subtitle */}
-        <Box sx={{ mb: { xs: 3, md: 4 } }}>
-          <Typography
-            component="h1"
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: { xs: "28px", sm: "34px", md: "40px" },
-              fontWeight: 800,
-              color: colors.text.primary,
-              letterSpacing: "-0.5px",
-              mb: 1.2,
-            }}
-          >
-            {CREDIT_PAGE_HEADER.title}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: { xs: "14px", md: "15.5px" },
-              color: colors.text.secondary,
-              maxWidth: 720,
-              lineHeight: 1.5,
-            }}
-          >
-            {CREDIT_PAGE_HEADER.subtitle}
-          </Typography>
-        </Box>
-      </Container>
+    <Box component="main" sx={{ backgroundColor: "#ffffff", minHeight: "85vh", pb: { xs: 7, md: 9 } }}>
+      {/* ── Executive Common Page Banner ──────────────────────────── */}
+      <CommonPageBanner
+        eyebrow="CREDIT HEALTH DESK • BUREAU SPECTRUM"
+        title="Credit Score"
+        highlight="Spectrum & Factors"
+        description="See where you stand and what moves the needle according to RBI-licensed credit bureaus. Learn the key levers that optimize your CIBIL score to qualify for prime lending interest rates."
+        activeTabHref="/credit-guide"
+        showModuleTabs={false}
+        kpis={[
+          { value: "300 - 900", label: "Credit Score Range" },
+          { value: "100% Free", label: "No Bureau Charge" },
+        ]}
+      />
 
-      {/* Main Credit Score Spectrum & Lead Form */}
-      <CreditScoreGuide />
+      {/* Main Credit Score Guide / Analyzer */}
+      <Box sx={{ pt: { xs: 3, md: 5 } }}>
+        <CreditScoreGuide />
+      </Box>
     </Box>
   );
 }

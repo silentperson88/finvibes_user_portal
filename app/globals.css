@@ -17,3 +17,33 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body.not-found-page header,
+body.not-found-page footer {
+  display: none !important;
+}
+
+/* ── Global Hidden Scrollbar for all Dialogs, Modals, Popups, and Drawers ── */
+.MuiDialogContent-root,
+.MuiDialog-paper,
+.MuiDrawer-paper,
+.MuiModal-root,
+.MuiPopover-paper,
+.hide-scrollbar,
+.no-scrollbar {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and legacy Edge */
+}
+
+.MuiDialogContent-root::-webkit-scrollbar,
+.MuiDialog-paper::-webkit-scrollbar,
+.MuiDrawer-paper::-webkit-scrollbar,
+.MuiModal-root::-webkit-scrollbar,
+.MuiPopover-paper::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Edge, Opera */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}

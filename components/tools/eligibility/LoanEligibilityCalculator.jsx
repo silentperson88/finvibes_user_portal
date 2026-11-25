@@ -6,11 +6,13 @@ import { LOAN_ELIGIBILITY_TYPES, DEFAULT_ELIGIBILITY_VALUES } from "@/constants"
 import LoanTypeTabs from "./LoanTypeTabs";
 import FinancialDetailsCard from "./FinancialDetailsCard";
 import EligibilityResultCard from "./EligibilityResultCard";
+import LoanApplicationModal from "@/components/common/LoanApplicationModal";
 
 export default function LoanEligibilityCalculator() {
   const [activeTabId, setActiveTabId] = useState("home");
   const [income, setIncome] = useState(DEFAULT_ELIGIBILITY_VALUES.income);
   const [existingEmi, setExistingEmi] = useState(DEFAULT_ELIGIBILITY_VALUES.existingEmi);
+  const [openModal, setOpenModal] = useState(false);
 
   // Active loan config
   const activeConfig = useMemo(() => {
@@ -120,9 +122,23 @@ export default function LoanEligibilityCalculator() {
             foirPct={activeConfig.foirPct}
             rate={rate}
             tenure={tenure}
+            onApplyClick={() => setOpenModal(true)}
           />
         </Grid>
       </Grid>
+
+      {/* Loan Application Popup Dialog Modal */}
+      <LoanApplicationModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        loanType={activeTabId}
+        loanTypeLabel={activeConfig.label}
+        defaultLoanAmount={
+          calculation.eligibility > 0
+            ? `₹ ${new Intl.NumberFormat("en-IN").format(calculation.eligibility)}`
+            : ""
+        }
+      />
     </Container>
   );
 }
