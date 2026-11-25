@@ -1,6 +1,4 @@
-import { Box } from "@mui/material";
-import CreditScoreGuide from "@/components/tools/credit-score/CreditScoreGuide";
-import CommonPageBanner from "@/components/common/CommonPageBanner";
+import CreditGuideView from "@/components/tools/credit-score/CreditGuideView";
 
 export const metadata = {
   title: "Credit Score Spectrum & Factors - Check Free Credit Score | Finvibes",
@@ -9,26 +7,5 @@ export const metadata = {
 };
 
 export default function CreditGuidePage() {
-  return (
-    <Box component="main" sx={{ backgroundColor: "#ffffff", minHeight: "85vh", pb: { xs: 7, md: 9 } }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
-      <CommonPageBanner
-        eyebrow="CREDIT HEALTH DESK • BUREAU SPECTRUM"
-        title="Credit Score"
-        highlight="Spectrum & Factors"
-        description="See where you stand and what moves the needle according to RBI-licensed credit bureaus. Learn the key levers that optimize your CIBIL score to qualify for prime lending interest rates."
-        activeTabHref="/credit-guide"
-        showModuleTabs={false}
-        kpis={[
-          { value: "300 - 900", label: "Credit Score Range" },
-          { value: "100% Free", label: "No Bureau Charge" },
-        ]}
-      />
-
-      {/* Main Credit Score Guide / Analyzer */}
-      <Box sx={{ pt: { xs: 3, md: 5 } }}>
-        <CreditScoreGuide />
-      </Box>
-    </Box>
-  );
+  return <CreditGuideView />;
 }
