@@ -111,22 +111,6 @@ export default function FinancialDetailsCard({
             </Box>
           </Grid>
         </Grid>
-
-        {/* Bottom CTA Button */}
-        <Box sx={{ mt: 1 }}>
-          <CTAButton
-            onClick={onCalculate}
-            label="Check Eligibility"
-            icon={<East sx={{ fontSize: 16 }} />}
-            borderRadius="10px"
-            sx={{
-              width: "100%",
-              py: 1.3,
-              fontSize: "15px",
-              fontWeight: 700,
-            }}
-          />
-        </Box>
       </Box>
     </CalculatorInputCard>
   );

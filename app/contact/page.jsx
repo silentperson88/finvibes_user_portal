@@ -1,16 +1,33 @@
-// Contact page
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
+import CommonPageBanner from "@/components/common/CommonPageBanner";
+import ContactFormView from "@/components/contact/ContactFormView";
 
-export default function Contact() {
+export const metadata = {
+  title: "Contact Us - Finvibes Financial Services Private Limited",
+  description:
+    "Get in touch with Finvibes in Ahmedabad. Reach our financial advisors for home loans, personal loans, business credit, balance transfers, and wealth services.",
+};
+
+export default function ContactPage() {
   return (
-    <Container component="main" sx={{ py: 4 }}>
-      <Typography variant="h3" gutterBottom>
-        Contact Us
-      </Typography>
-      <Typography variant="body1">
-        Feel free to reach out via email.
-      </Typography>
-    </Container>
+    <Box
+      component="main"
+      sx={{
+        backgroundColor: "#f8fafc",
+        minHeight: "100vh",
+      }}
+    >
+      {/* ── Standard Common Page Banner ── */}
+      <CommonPageBanner
+        eyebrow="DIRECT FINANCIAL DESK"
+        title="Get in Touch with Finvibes"
+        highlight="We're Here to Help"
+        description="Compare 35+ top partner lenders with zero paperwork friction. Have questions regarding loan eligibility or rates? Connect with our dedicated team in Ahmedabad."
+        showModuleTabs={false}
+      />
+
+      {/* ── Visual Banner Card (Left) + Contact Form Card (Right) ── */}
+      <ContactFormView />
+    </Box>
   );
 }

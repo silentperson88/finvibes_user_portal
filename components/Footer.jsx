@@ -2,6 +2,7 @@
 
 import NextLink from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {
   Box,
   Container,
@@ -16,12 +17,12 @@ import {
   Phone as PhoneIcon,
   LocationOn as LocationIcon,
 } from "@mui/icons-material";
-import logoImg from "@/assets/finvibes-logo.jpg";
+import logoWhiteImg from "@/assets/finvibes-logo-white.png";
 import {
   colors,
   typography,
-  FOOTER_PRODUCT_LINKS as PRODUCT_LINKS,
-  TOOLS_LINKS,
+  FOOTER_LEARNING_SUPPORT_LINKS,
+  FOOTER_LOAN_LINKS,
   SOCIAL_LINKS,
   LEGAL_LINKS,
   CONTACT_INFO,
@@ -30,7 +31,9 @@ import {
 } from "@/constants";
 
 export default function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+  if (pathname === "/404") return null;
 
   return (
     <Box
@@ -48,29 +51,26 @@ export default function Footer() {
         <Grid container spacing={{ xs: 3, md: 3.5 }}>
           {/* Column 1: Brand Info */}
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            {/* Logo on white container for contrast */}
+            {/* White Logo directly on footer background */}
             <Box
               component={NextLink}
               href="/"
               sx={{
                 display: "inline-block",
-                backgroundColor: colors.surface.white,
-                px: 1.8,
-                py: 0.6,
-                borderRadius: "6px",
-                mb: 1.5,
+                mb: 2.2,
                 textDecoration: "none",
               }}
             >
               <Image
-                src={logoImg}
-                alt="Finvibes - Money matters"
-                height={34}
-                width={Math.round(34 * (1374 / 317))}
+                src={logoWhiteImg}
+                alt="Finvibes"
+                height={48}
+                width={Math.round(48 * (699 / 187))}
                 style={{
                   objectFit: "contain",
                   width: "auto",
-                  height: "32px",
+                  height: "46px",
+                  maxHeight: "48px",
                   display: "block",
                 }}
               />
@@ -150,11 +150,11 @@ export default function Footer() {
                 letterSpacing: "-0.2px",
               }}
             >
-              Products
+              Learning & Support
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 0.8 }}>
-              {PRODUCT_LINKS.map((item) => (
+              {FOOTER_LEARNING_SUPPORT_LINKS.map((item) => (
                 <Link
                   key={item.href}
                   component={NextLink}
@@ -188,11 +188,11 @@ export default function Footer() {
                 letterSpacing: "-0.2px",
               }}
             >
-              Smart Tools & More
+              Loan Products
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 0.8 }}>
-              {TOOLS_LINKS.map((item) => (
+              {FOOTER_LOAN_LINKS.map((item) => (
                 <Link
                   key={item.href}
                   component={NextLink}

@@ -21,6 +21,7 @@ export default function EligibilityResultCard({
   foirPct = 60,
   rate,
   tenure,
+  onApplyClick,
 }) {
   return (
     <Box
@@ -55,21 +56,6 @@ export default function EligibilityResultCard({
         >
           ESTIMATED {loanTypeLabel.toUpperCase()} ELIGIBILITY
         </Typography>
-
-        <Box
-          sx={{
-            backgroundColor: "#e8f8f0",
-            color: "#0e8a4a",
-            fontSize: "11.5px",
-            fontWeight: 700,
-            px: 1.4,
-            py: 0.35,
-            borderRadius: "50px",
-            letterSpacing: "0.2px",
-          }}
-        >
-          Pre-Qualified
-        </Box>
       </Box>
 
       {/* Big Highlighted Eligibility Amount */}
@@ -283,16 +269,18 @@ export default function EligibilityResultCard({
             lineHeight: 1.4,
           }}
         >
-          At {rate}% for {tenure} {tenure === 1 ? "year" : "years"}, your estimated new EMI capacity is{" "}
+          At {rate}% for {tenure} {tenure === 1 ? "year" : "years"}, your
+          estimated new EMI capacity is{" "}
           <strong style={{ color: colors.text.primary }}>
             ₹{formatINR(maxNewEmi)}
-          </strong>.
+          </strong>
+          .
         </Typography>
       </Box>
 
-      {/* Bottom CTA Button */}
+      {/* Bottom CTA Button: Triggers Application Popup Modal */}
       <CTAButton
-        href="/contact"
+        onClick={onApplyClick}
         label="Apply for This Loan"
         icon={<East sx={{ fontSize: 16 }} />}
         borderRadius="10px"
@@ -306,4 +294,3 @@ export default function EligibilityResultCard({
     </Box>
   );
 }
-

@@ -5,6 +5,7 @@ import { Container, Grid } from "@mui/material";
 import { DEFAULT_LOAN_TRANSFER_VALUES } from "@/constants";
 import LoanTransferInputCard from "./LoanTransferInputCard";
 import LoanTransferResultCard from "./LoanTransferResultCard";
+import LoanTransferComparisonModal from "./LoanTransferComparisonModal";
 
 export default function LoanTransferCalculator() {
   const [outstandingLoan, setOutstandingLoan] = useState(
@@ -25,6 +26,7 @@ export default function LoanTransferCalculator() {
   const [otherCharges, setOtherCharges] = useState(
     DEFAULT_LOAN_TRANSFER_VALUES.otherCharges
   );
+  const [comparisonOpen, setComparisonOpen] = useState(false);
 
   const calculations = useMemo(() => {
     const rawP = Number(outstandingLoan);
@@ -75,6 +77,12 @@ export default function LoanTransferCalculator() {
     const roundedNewEmi = Math.round(newEmi);
     const monthlyDrop = Math.max(0, roundedCurrentEmi - roundedNewEmi);
 
+    const totalCurrentPayment = roundedCurrentEmi * N;
+    const totalCurrentInterest = Math.max(0, totalCurrentPayment - P);
+
+    const totalNewPayment = roundedNewEmi * N;
+    const totalNewInterest = Math.max(0, totalNewPayment - P);
+
     // Total gross savings over loan tenure
     const grossSavings = Math.max(0, monthlyDrop * N);
     const netSavings = Math.max(0, grossSavings - totalFees);
@@ -87,6 +95,8 @@ export default function LoanTransferCalculator() {
       totalFees,
       netSavings,
       rateDifference,
+      totalCurrentInterest,
+      totalNewInterest,
     };
   }, [
     outstandingLoan,
@@ -128,11 +138,26 @@ export default function LoanTransferCalculator() {
             newEmi={calculations.newEmi}
             grossSavings={calculations.grossSavings}
             totalFees={calculations.totalFees}
-            onCalculate={() => {}}
+            onCalculate={() => setComparisonOpen(true)}
           />
         </Grid>
       </Grid>
+
+      {/* Comparison Popup Modal triggered only on "Calculate My Savings" */}
+      <LoanTransferComparisonModal
+        open={comparisonOpen}
+        onClose={() => setComparisonOpen(false)}
+        currentRate={currentRate}
+        newRate={newRate}
+        currentEmi={calculations.currentEmi}
+        newEmi={calculations.newEmi}
+        monthlyDrop={calculations.monthlyDrop}
+        totalCurrentInterest={calculations.totalCurrentInterest}
+        totalNewInterest={calculations.totalNewInterest}
+        grossSavings={calculations.grossSavings}
+        totalFees={calculations.totalFees}
+        netSavings={calculations.netSavings}
+      />
     </Container>
   );
 }
-

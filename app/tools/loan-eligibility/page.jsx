@@ -1,6 +1,6 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import LoanEligibilityCalculator from "@/components/tools/eligibility/LoanEligibilityCalculator";
-import { colors, typography, ELIGIBILITY_PAGE_HEADER } from "@/constants";
+import CommonPageBanner from "@/components/common/CommonPageBanner";
 
 export const metadata = {
   title: "Check Your Borrowing Power - Loan Eligibility Estimator | Finvibes",
@@ -10,47 +10,25 @@ export const metadata = {
 
 export default function LoanEligibilityPage() {
   return (
-    <Box
-      component="main"
-      sx={{
-        backgroundColor: "#ffffff",
-        minHeight: "85vh",
-        pt: { xs: 4, md: 5.5 },
-        pb: { xs: 7, md: 9 },
-      }}
-    >
-      <Container maxWidth="lg">
-        {/* Page Title & Subtitle */}
-        <Box sx={{ mb: { xs: 3, md: 4 } }}>
-          <Typography
-            component="h1"
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: { xs: "28px", sm: "34px", md: "40px" },
-              fontWeight: 800,
-              color: colors.text.primary,
-              letterSpacing: "-0.5px",
-              mb: 1.2,
-            }}
-          >
-            {ELIGIBILITY_PAGE_HEADER.title}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: { xs: "14px", md: "15.5px" },
-              color: colors.text.secondary,
-              maxWidth: 720,
-              lineHeight: 1.5,
-            }}
-          >
-            {ELIGIBILITY_PAGE_HEADER.subtitle}
-          </Typography>
-        </Box>
-      </Container>
+    <Box component="main" sx={{ backgroundColor: "#ffffff", minHeight: "85vh", pb: { xs: 7, md: 9 } }}>
+      {/* ── Executive Common Page Banner ──────────────────────────── */}
+      <CommonPageBanner
+        eyebrow="SMART UNDERWRITING DESK • ELIGIBILITY"
+        title="Check Your"
+        highlight="Borrowing Power"
+        description="Lenders evaluate loan eligibility using your Fixed Obligation to Income Ratio (FOIR). Input your figures to calculate estimated borrowing capacity for Home, Personal, Business, or Car Loans across leading banks."
+        activeTabHref="/tools/loan-eligibility"
+        showModuleTabs={false}
+        kpis={[
+          { value: "FOIR", label: "Bank Formula Model" },
+          { value: "30+ Lenders", label: "Eligibility Benchmarks" },
+        ]}
+      />
 
-      {/* Main Interactive Eligibility Estimator */}
-      <LoanEligibilityCalculator />
+      {/* Main Eligibility Calculator Component */}
+      <Box sx={{ pt: { xs: 3, md: 5 } }}>
+        <LoanEligibilityCalculator />
+      </Box>
     </Box>
   );
 }

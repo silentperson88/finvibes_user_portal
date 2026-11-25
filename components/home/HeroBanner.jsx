@@ -90,7 +90,7 @@ export default function HeroBanner() {
               {/* Primary: Explore Products */}
               <CTAButton
                 label="Explore Products"
-                href="/products/loans"
+                href="/#products"
                 borderRadius="11px"
                 icon={<ArrowDownward sx={{ fontSize: 16 }} />}
                 sx={{
@@ -106,10 +106,10 @@ export default function HeroBanner() {
                 }}
               />
 
-              {/* Secondary: Try Smart Tools */}
+              {/* Secondary: Smart Tools */}
               <CTAButton
-                label="Try Smart Tools"
-                href="/smart-tools"
+                label="Smart Tools"
+                href="/#smart-tools"
                 variant="outlined"
                 borderRadius="11px"
                 icon={<NorthEast sx={{ fontSize: "16px" }} />}

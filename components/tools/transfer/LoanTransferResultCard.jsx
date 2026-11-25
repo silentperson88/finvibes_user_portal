@@ -1,10 +1,7 @@
 "use client";
 
 import { Box, Typography } from "@mui/material";
-import {
-  AccountBalanceOutlined,
-  SouthEast,
-} from "@mui/icons-material";
+import { AccountBalanceOutlined, SouthEast } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 import CTAButton from "@/components/common/CTAButton";
 
@@ -185,7 +182,11 @@ export default function LoanTransferResultCard({
             Current Monthly EMI
           </Typography>
           <Typography
-            sx={{ fontWeight: 700, color: colors.text.primary, fontSize: "14px" }}
+            sx={{
+              fontWeight: 700,
+              color: colors.text.primary,
+              fontSize: "14px",
+            }}
           >
             ₹ {formatINR(currentEmi)}
           </Typography>
@@ -204,7 +205,11 @@ export default function LoanTransferResultCard({
             New Reduced Monthly EMI
           </Typography>
           <Typography
-            sx={{ fontWeight: 700, color: colors.text.primary, fontSize: "14px" }}
+            sx={{
+              fontWeight: 700,
+              color: colors.text.primary,
+              fontSize: "14px",
+            }}
           >
             ₹ {formatINR(newEmi)}
           </Typography>
@@ -223,7 +228,11 @@ export default function LoanTransferResultCard({
             Gross Interest Savings
           </Typography>
           <Typography
-            sx={{ fontWeight: 700, color: colors.text.primary, fontSize: "14px" }}
+            sx={{
+              fontWeight: 700,
+              color: colors.text.primary,
+              fontSize: "14px",
+            }}
           >
             ₹ {formatINR(grossSavings)}
           </Typography>
@@ -242,7 +251,11 @@ export default function LoanTransferResultCard({
             Total Transfer & Admin Fees
           </Typography>
           <Typography
-            sx={{ fontWeight: 700, color: colors.text.primary, fontSize: "14px" }}
+            sx={{
+              fontWeight: 700,
+              color: colors.text.primary,
+              fontSize: "14px",
+            }}
           >
             ₹ {formatINR(totalFees)}
           </Typography>
@@ -258,28 +271,7 @@ export default function LoanTransferResultCard({
           borderRadius="10px"
           sx={{ py: 1.4, fontSize: "15px", fontWeight: 700 }}
         />
-
-        <CTAButton
-          fullWidth
-          variant="outlined"
-          label="Compare Partner Lenders"
-          href="/contact"
-          borderRadius="10px"
-          sx={{
-            py: 1.3,
-            fontSize: "14px",
-            fontWeight: 700,
-            backgroundColor: colors.surface.white,
-            borderColor: "#e2e8f0",
-            color: colors.text.primary,
-            "&:hover": {
-              borderColor: "#cbd5e1",
-              backgroundColor: "#f8fafc",
-            },
-          }}
-        />
       </Box>
     </Box>
   );
 }
-

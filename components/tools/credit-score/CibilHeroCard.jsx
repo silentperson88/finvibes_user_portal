@@ -1,67 +1,44 @@
 "use client";
 
-import { Box, Typography, Grid } from "@mui/material";
+import Image from "next/image";
+import { Box, Typography } from "@mui/material";
 import {
-  Check,
   LockOutlined,
   BoltOutlined,
-  BarChartOutlined,
+  VerifiedOutlined,
+  AutoAwesome,
 } from "@mui/icons-material";
-import { colors, typography, CREDIT_HERO_DATA } from "@/constants";
-
-const getPillIcon = (label = "") => {
-  if (label.includes("Secure")) return <LockOutlined sx={{ fontSize: 13 }} />;
-  if (label.includes("Instant")) return <BoltOutlined sx={{ fontSize: 13 }} />;
-  if (label.includes("Offers")) return <BarChartOutlined sx={{ fontSize: 13 }} />;
-  return <Check sx={{ fontSize: 13 }} />;
-};
+import ciblImg from "@/assets/CIBL.avif";
+import { typography, colors } from "@/constants";
 
 export default function CibilHeroCard() {
   return (
     <Box
       sx={{
-        backgroundColor: colors.brand.primary,
-        backgroundImage:
-          "linear-gradient(135deg, #0947ba 0%, #0b63e5 60%, #1774f7 100%)",
-        borderRadius: "20px",
-        p: { xs: 3, sm: 3.5 },
-        color: colors.text.white,
-        boxShadow: "0 8px 30px rgba(11, 99, 229, 0.18)",
-        mb: 2.5,
+        backgroundColor: "#ffffff",
+        borderRadius: "24px",
+        p: { xs: 3, sm: 3.8 },
+        border: "1px solid #e2e8f0",
+        boxShadow: "0 10px 30px rgba(11, 99, 229, 0.06)",
+        position: "relative",
+        overflow: "hidden",
+        mb: 3,
       }}
     >
-      {/* Top Pill Badge */}
-      <Box
-        sx={{
-          display: "inline-block",
-          backgroundColor: "rgba(255, 255, 255, 0.18)",
-          backdropFilter: "blur(6px)",
-          color: colors.text.white,
-          fontSize: "11px",
-          fontWeight: 800,
-          letterSpacing: "0.8px",
-          px: 1.5,
-          py: 0.45,
-          borderRadius: "50px",
-          textTransform: "uppercase",
-          mb: 1.8,
-        }}
-      >
-        {CREDIT_HERO_DATA.badge}
-      </Box>
-
-      {/* Headline */}
+      {/* Main Headline */}
       <Typography
+        component="h2"
         sx={{
           fontFamily: typography.fontFamily,
           fontSize: { xs: "22px", sm: "26px" },
-          fontWeight: 800,
+          fontWeight: 900,
           lineHeight: 1.25,
-          color: colors.text.white,
+          color: "#0a2540",
+          letterSpacing: "-0.6px",
           mb: 1,
         }}
       >
-        {CREDIT_HERO_DATA.title}
+        A Strong Credit Score Unlocks Better Rates
       </Typography>
 
       {/* Subtitle */}
@@ -69,190 +46,122 @@ export default function CibilHeroCard() {
         sx={{
           fontFamily: typography.fontFamily,
           fontSize: "13.5px",
-          color: "rgba(255, 255, 255, 0.85)",
-          lineHeight: 1.5,
-          mb: 2.2,
-          maxWidth: 480,
+          color: "#64748b",
+          lineHeight: 1.6,
+          mb: 2.5,
         }}
       >
-        {CREDIT_HERO_DATA.subtitle}
+        Check your official credit report instantly with zero score impact. Top
+        tier scores (750+) qualify for prime rates on home, personal, and
+        business loans.
       </Typography>
 
-      {/* Trust Pills */}
+      {/* ── Relatable Lifestyle Visual Banner ── */}
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          borderRadius: "18px",
+          overflow: "hidden",
+          border: "1px solid #e2e8f0",
+          boxShadow: "0 8px 25px rgba(10, 37, 64, 0.07)",
+          mb: 2.8,
+          backgroundColor: "#f8fafc",
+        }}
+      >
+        <Image
+          src={ciblImg}
+          alt="CIBIL Credit Score overview on Finvibes"
+          sizes="(max-width: 768px) 100vw, 650px"
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+            objectFit: "cover",
+          }}
+          priority
+        />
+
+        {/* Floating Verified Prime Pill on Image */}
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: { xs: 12, sm: 16 },
+            left: { xs: 12, sm: 16 },
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(16, 185, 129, 0.35)",
+            borderRadius: "50px",
+            px: 1.8,
+            py: 0.7,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 0.8,
+            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.16)",
+            fontSize: "12px",
+            fontWeight: 800,
+            color: "#0f172a",
+          }}
+        >
+          <Box
+            sx={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              backgroundColor: "#16a34a",
+              boxShadow: "0 0 8px #16a34a",
+            }}
+          />
+          750+ Score = Up to 1.5% Lower Loan Rate
+        </Box>
+      </Box>
+
+      {/* Trust Indicator Chips */}
       <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: 1,
-          mb: 3,
+          gap: 1.2,
         }}
       >
-        {CREDIT_HERO_DATA.trustPills.map((pill, idx) => {
-          const label = typeof pill === "string" ? pill : pill.label;
-          const icon = typeof pill === "object" && pill.icon ? pill.icon : getPillIcon(label);
-
-          return (
-            <Box
-              key={idx}
-              sx={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 0.6,
-                backgroundColor: "rgba(255, 255, 255, 0.12)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                px: 1.4,
-                py: 0.45,
-                borderRadius: "50px",
-                fontSize: "11.5px",
-                fontWeight: 600,
-                color: colors.text.white,
-              }}
-            >
-              {icon}
-              <Typography
-                component="span"
-                sx={{
-                  fontFamily: typography.fontFamily,
-                  fontSize: "11.5px",
-                  fontWeight: 600,
-                  color: colors.text.white,
-                }}
-              >
-                {label}
-              </Typography>
-            </Box>
-          );
-        })}
-      </Box>
-
-      {/* Embedded White Card with Score & Factors */}
-      <Box
-        sx={{
-          backgroundColor: colors.surface.white,
-          borderRadius: "16px",
-          p: { xs: 2.5, sm: 3 },
-          color: colors.text.primary,
-          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.08)",
-        }}
-      >
-        {/* Card Header Row */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            pb: 2,
-            borderBottom: "1px solid #f1f5f9",
-            mb: 2.5,
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: "11.5px",
-              fontWeight: 800,
-              letterSpacing: "0.8px",
-              color: colors.text.secondary,
-              textTransform: "uppercase",
-            }}
-          >
-            {CREDIT_HERO_DATA.cibilBoxTitle ? CREDIT_HERO_DATA.cibilBoxTitle : "CIBIL SCORE SUMMARY"}
-          </Typography>
-
+        {[
+          {
+            label: "100% Secure (Soft Check)",
+            icon: (
+              <LockOutlined
+                sx={{ fontSize: 14, color: colors.brand.primary }}
+              />
+            ),
+          },
+          {
+            label: "0 Impact on Score",
+            icon: <VerifiedOutlined sx={{ fontSize: 14, color: "#16a34a" }} />,
+          },
+          {
+            label: "Instant Bureau Access",
+            icon: <BoltOutlined sx={{ fontSize: 14, color: "#f59e0b" }} />,
+          },
+        ].map((pill, idx) => (
           <Box
+            key={idx}
             sx={{
-              backgroundColor: "#ecfdf5",
-              color: "#059669",
-              fontSize: "11px",
-              fontWeight: 700,
-              px: 1.2,
-              py: 0.35,
-              borderRadius: "50px",
-              display: "flex",
+              display: "inline-flex",
               alignItems: "center",
-              gap: 0.5,
-            }}
-          >
-            <Box
-              sx={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                backgroundColor: "#10b981",
-              }}
-            />
-            {CREDIT_HERO_DATA.updatedTag}
-          </Box>
-        </Box>
-
-        {/* Center Display: 782 and Good/Prime Score */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            py: 1,
-            mb: 2,
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: { xs: "48px", sm: "54px" },
-              fontWeight: 900,
-              color: colors.text.primary,
-              letterSpacing: "-1px",
-              lineHeight: 1,
-              mb: 1,
-            }}
-          >
-            {CREDIT_HERO_DATA.score}
-          </Typography>
-
-          <Box
-            sx={{
-              backgroundColor: "#e8f8f0",
-              color: "#0e8a4a",
-              fontSize: "12px",
-              fontWeight: 700,
-              px: 1.6,
-              py: 0.4,
+              gap: 0.7,
+              backgroundColor: "#f8fafc",
+              border: "1px solid #eef2f6",
+              px: 1.5,
+              py: 0.6,
               borderRadius: "50px",
+              fontSize: "11.5px",
+              fontWeight: 700,
+              color: "#334155",
             }}
           >
-            ★ {CREDIT_HERO_DATA.status}
+            {pill.icon}
+            <span>{pill.label}</span>
           </Box>
-        </Box>
-
-        {/* 2x2 Factor Checkmarks */}
-        <Box
-          sx={{
-            backgroundColor: "#f8fafc",
-            borderRadius: "12px",
-            p: 1.6,
-            border: "1px solid #f1f5f9",
-          }}
-        >
-          <Grid container spacing={1.2}>
-            {CREDIT_HERO_DATA.factors.map((factor, idx) => (
-              <Grid key={idx} size={{ xs: 6 }}>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 0.8 }}>
-                  <Check sx={{ fontSize: 14, color: "#10b981", strokeWidth: 2 }} />
-                  <Typography
-                    sx={{
-                      fontSize: "12px",
-                      fontWeight: 600,
-                      color: colors.text.primary,
-                    }}
-                  >
-                    {factor}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+        ))}
       </Box>
     </Box>
   );

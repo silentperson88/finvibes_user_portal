@@ -1,6 +1,7 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import LoanTransferCalculator from "@/components/tools/transfer/LoanTransferCalculator";
-import { colors, typography, LOAN_TRANSFER_HEADER } from "@/constants";
+import CommonPageBanner from "@/components/common/CommonPageBanner";
+import { colors } from "@/constants";
 
 export const metadata = {
   title: "Calculate Net Switch Benefits - Loan Balance Transfer Calculator | Finvibes",
@@ -10,48 +11,25 @@ export const metadata = {
 
 export default function LoanTransferPage() {
   return (
-    <Box
-      component="main"
-      sx={{
-        backgroundColor: colors.surface.white,
-        minHeight: "85vh",
-        pt: { xs: 4, md: 5.5 },
-        pb: { xs: 7, md: 9 },
-      }}
-    >
-      <Container maxWidth="lg">
-        {/* Page Title & Subtitle (No Breadcrumbs per design preference) */}
-        <Box sx={{ mb: { xs: 3, md: 4 } }}>
-          <Typography
-            component="h1"
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: { xs: "28px", sm: "34px", md: "40px" },
-              fontWeight: 800,
-              color: colors.text.primary,
-              letterSpacing: "-0.5px",
-              mb: 1.2,
-            }}
-          >
-            {LOAN_TRANSFER_HEADER.title}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamily,
-              fontSize: { xs: "14px", md: "15.5px" },
-              color: colors.text.secondary,
-              maxWidth: 720,
-              lineHeight: 1.5,
-            }}
-          >
-            {LOAN_TRANSFER_HEADER.subtitle}
-          </Typography>
-        </Box>
-      </Container>
+    <Box component="main" sx={{ backgroundColor: colors.surface.white, minHeight: "85vh", pb: { xs: 7, md: 9 } }}>
+      {/* ── Executive Common Page Banner ──────────────────────────── */}
+      <CommonPageBanner
+        eyebrow="SMART REFINANCING DESK • BALANCE TRANSFER"
+        title="Calculate Net"
+        highlight="Switch Benefits"
+        description="Compare your existing loan terms against our partner bank balance transfer offers factoring in one-time switching expenses. Instantly project your monthly EMI drop and total lifetime interest savings."
+        activeTabHref="/tools/loan-transfer"
+        showModuleTabs={false}
+        kpis={[
+          { value: "0.50% - 1.5%", label: "Typical Rate Reduction" },
+          { value: "Net ROI", label: "Fee vs Savings Audit" },
+        ]}
+      />
 
-      {/* Main Interactive Loan Transfer Calculator */}
-      <LoanTransferCalculator />
+      {/* Main Loan Transfer Calculator Component */}
+      <Box sx={{ pt: { xs: 3, md: 5 } }}>
+        <LoanTransferCalculator />
+      </Box>
     </Box>
   );
 }
-

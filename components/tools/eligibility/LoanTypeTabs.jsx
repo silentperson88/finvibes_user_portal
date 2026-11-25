@@ -29,35 +29,15 @@ export default function LoanTypeTabs({ activeTabId, onSelectTab }) {
         >
           CHOOSE LOAN TYPE
         </Typography>
-
-        <Box
-          component={NextLink}
-          href="/compare-loans"
-          sx={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 0.6,
-            fontSize: "13px",
-            fontWeight: 700,
-            color: colors.brand.primary,
-            textDecoration: "none",
-            "&:hover": {
-              textDecoration: "underline",
-              color: colors.brand.primaryHover,
-            },
-          }}
-        >
-          Compare Rates <East sx={{ fontSize: 14 }} />
-        </Box>
       </Box>
 
-      {/* 4 Category Tabs */}
-      <Grid container spacing={{ xs: 1.5, sm: 2.5 }}>
+      {/* Category Tabs: 5 responsive columns */}
+      <Grid container spacing={{ xs: 1.5, sm: 2 }}>
         {LOAN_ELIGIBILITY_TYPES.map((type) => {
           const isActive = activeTabId === type.id;
 
           return (
-            <Grid key={type.id} size={{ xs: 6, sm: 3 }}>
+            <Grid key={type.id} size={{ xs: 6, sm: 4, md: 2.4 }}>
               <Box
                 sx={{
                   display: "flex",
@@ -126,20 +106,6 @@ export default function LoanTypeTabs({ activeTabId, onSelectTab }) {
                     {type.label}
                   </Typography>
                 </ButtonBase>
-
-                {/* Active Indicator Dot */}
-                <Box
-                  sx={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    backgroundColor: isActive
-                      ? colors.brand.primary
-                      : "transparent",
-                    mt: 0.8,
-                    transition: "background-color 0.2s ease",
-                  }}
-                />
               </Box>
             </Grid>
           );

@@ -8,6 +8,13 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "@/theme";
 
 export default function ThemeRegistry({ children }) {
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   const [{ cache, flush }] = React.useState(() => {
     const cache = createCache({ key: "mui" });
     cache.compat = true;
