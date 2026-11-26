@@ -22,7 +22,6 @@ import {
   ShoppingBag,
   LocalGasStation,
 } from "@mui/icons-material";
-import heroWaveBg from "@/assets/hero_wave_bg.jpg";
 import dreamHomeImg from "@/assets/hero_concept_4_dream_home.jpg";
 import { HOME_HERO_V3_DATA, typography, colors } from "@/constants";
 
@@ -98,11 +97,8 @@ export default function HomeHeroSwiper({ onApply }) {
       sx={{
         position: "relative",
         minHeight: { xs: 580, sm: 530, md: 500, lg: 530 },
-        backgroundImage: `url(${heroWaveBg.src ? heroWaveBg.src : heroWaveBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: { xs: "center center", md: "center right" },
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "#e8eff7",
+        background:
+          "linear-gradient(115deg, #f5f9ff 0%, #eaf1fc 48%, #dce7f8 78%, #cfddf4 100%)",
         color: "#0a2540",
         overflow: "hidden",
         display: "flex",
@@ -111,6 +107,23 @@ export default function HomeHeroSwiper({ onApply }) {
         borderBottom: "1px solid rgba(203, 213, 225, 0.85)",
       }}
     >
+      {/* Subtle Right-Side Ambient Gradient Glow */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          right: { xs: "-15%", md: "4%" },
+          transform: "translateY(-50%)",
+          width: { xs: "360px", md: "560px" },
+          height: { xs: "360px", md: "560px" },
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(147, 197, 253, 0.35) 0%, rgba(191, 219, 254, 0.18) 45%, transparent 72%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
+
       {/* Slide Track Wrapper */}
       <Box
         sx={{
@@ -545,8 +558,7 @@ export default function HomeHeroSwiper({ onApply }) {
                     },
                     fontWeight: typography.fontWeights.extraBold,
                     lineHeight: 1.15,
-                    color: "#043B9F",
-                    // color: "#0a2540",
+                    color: colors.banner.titlePrimary,
                     letterSpacing: "-0.5px",
                     mb: 1.6,
                   }}
@@ -556,7 +568,7 @@ export default function HomeHeroSwiper({ onApply }) {
                     component="span"
                     sx={{
                       display: "block",
-                      color: "#0284c7",
+                      color: colors.banner.titleHighlight,
                     }}
                   >
                     Every Product You Need.

@@ -31,6 +31,7 @@ import {
 } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
+import wealthAdvisoryBannerImg from "@/assets/banner_wealth_advisory.jpg";
 
 const ADVISORY_PILLARS = [
   {
@@ -120,7 +121,6 @@ export default function WealthAdvisoryView() {
       style={{
         backgroundColor: "#f8fafc",
         minHeight: "100vh",
-        paddingBottom: "72px",
       }}
     >
       {/* ── Executive Common Page Banner ──────────────────────────── */}
@@ -131,10 +131,8 @@ export default function WealthAdvisoryView() {
         description="Derived from disciplined quantitative analysis, our framework balances aggressive compounding with conservative capital preservation. Private desk reviews, family trust structuring, and 0% commission fiduciary standard."
         activeTabHref="/services/wealth-advisory"
         showModuleTabs={false}
-        kpis={[
-          { value: "0%", label: "Commission Fiduciary" },
-          { value: "1-on-1", label: "Private Desk Consultation" },
-        ]}
+        bannerImage={wealthAdvisoryBannerImg}
+        bannerAlt="Wealth Advisory - Plan Smart. Grow Wealth."
       />
 
       <Container
@@ -203,7 +201,7 @@ export default function WealthAdvisoryView() {
                 sx={{
                   backgroundColor: colors.surface.white,
                   borderRadius: "22px",
-                  p: { xs: 3, sm: 3.8 },
+                  p: { xs: 2.5, sm: 3 },
                   border: "1px solid rgba(226, 232, 240, 0.9)",
                   boxShadow: "0 2px 12px rgba(15, 23, 42, 0.03)",
                   height: "100%",
@@ -217,42 +215,49 @@ export default function WealthAdvisoryView() {
                   },
                 }}
               >
-                {/* Icon Box */}
+                {/* Icon & Title Inline Row */}
                 <Box
                   sx={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: "14px",
-                    backgroundColor: "#eff6ff",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    mb: 2.2,
+                    gap: 1.6,
+                    mb: 1.2,
                   }}
                 >
-                  {pillar.icon}
-                </Box>
+                  <Box
+                    sx={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: "12px",
+                      backgroundColor: "#eff6ff",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {pillar.icon}
+                  </Box>
 
-                {/* Title */}
-                <Typography
-                  sx={{
-                    fontFamily: typography.fontFamily,
-                    fontSize: { xs: "17px", sm: "19px" },
-                    fontWeight: 800,
-                    color: "#0a2540",
-                    mb: 0.6,
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {pillar.title}
-                </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: typography.fontFamily,
+                      fontSize: { xs: "17px", sm: "19px" },
+                      fontWeight: 800,
+                      color: "#0a2540",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {pillar.title}
+                  </Typography>
+                </Box>
 
                 {/* Subtitle */}
                 <Typography
                   sx={{
                     fontSize: "13px",
                     color: colors.text.secondary,
-                    mb: 2.5,
+                    mb: 2,
                     lineHeight: 1.5,
                   }}
                 >

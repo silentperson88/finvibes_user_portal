@@ -23,7 +23,7 @@ export default function TermsPage() {
       sx={{
         backgroundColor: "#f8fafc",
         minHeight: "100vh",
-        pb: { xs: 8, md: 10 },
+        pb: { xs: 3.5, md: 4.5 },
       }}
     >
       {/* ── Standard Common Page Banner ── */}

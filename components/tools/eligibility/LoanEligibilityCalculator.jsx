@@ -22,6 +22,7 @@ export default function LoanEligibilityCalculator() {
 
   const [rate, setRate] = useState(activeConfig.defaultRate);
   const [tenure, setTenure] = useState(activeConfig.defaultTenure);
+  const [carType, setCarType] = useState("new");
 
   // Handle Tab Switch: updates default rate & tenure while preserving income & existing EMI
   const handleSelectTab = (tabId) => {
@@ -30,6 +31,14 @@ export default function LoanEligibilityCalculator() {
     const newConfig = matched ? matched : LOAN_ELIGIBILITY_TYPES[0];
     setRate(newConfig.defaultRate);
     setTenure(newConfig.defaultTenure);
+    if (tabId === "car") {
+      setCarType("new");
+    }
+  };
+
+  const handleCarTypeChange = (type) => {
+    setCarType(type);
+    setRate(type === "used" ? 11.5 : 8.5);
   };
 
   // Eligibility and FOIR Calculation
@@ -96,6 +105,9 @@ export default function LoanEligibilityCalculator() {
         {/* Left Column: Financial Details Form */}
         <Grid size={{ xs: 12, md: 7.2 }}>
           <FinancialDetailsCard
+            loanType={activeTabId}
+            carType={carType}
+            onCarTypeChange={handleCarTypeChange}
             income={income}
             onIncomeChange={setIncome}
             existingEmi={existingEmi}

@@ -9,7 +9,6 @@ import {
   TrendingUp,
   Person,
   FolderCopy,
-  CheckCircle,
 } from "@mui/icons-material";
 import { colors, typography, DIRECT_LOAN_CONFIG } from "@/constants";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
@@ -63,17 +62,6 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
           isPersonal
             ? "Finvibes Personal Loan - Instant Funds for Personal Needs"
             : "Finvibes Business Loan - Fuel & Scale Your Business Growth"
-        }
-        kpis={
-          isPersonal
-            ? [
-                { value: "Up to ₹25L", label: "Max Unsecured Limit" },
-                { value: "4 to 24 Hrs", label: "Direct Disbursal" },
-              ]
-            : [
-                { value: "Up to ₹50L", label: "Growth Capital" },
-                { value: "48 Hrs", label: "Fast-Track Sanction" },
-              ]
         }
       />
 

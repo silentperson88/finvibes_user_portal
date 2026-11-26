@@ -744,6 +744,12 @@ export const colors = {
     deep: "#0d1b3e", // Top Info Bar background
   },
 
+  // Banner Title Colors
+  banner: {
+    titlePrimary: "#043B9F",
+    titleHighlight: "#0284c7",
+  },
+
   // Text Hierarchy
   text: {
     primary: "#18253B", // Headings, nav links, strong text
@@ -1067,7 +1073,7 @@ export const PRODUCT_CALCULATOR_CONFIG = {
     minAmount: 100000,
     maxAmount: 20000000,
     rate: 8.5,
-    minRate: 6.5,
+    minRate: 7.1,
     maxRate: 15.0,
     years: 20,
     tenureOptions: [5, 10, 15, 20, 25, 30],
@@ -1078,7 +1084,7 @@ export const PRODUCT_CALCULATOR_CONFIG = {
     minAmount: 100000,
     maxAmount: 5000000,
     rate: 8.5, // Default for new car
-    minRate: 7.0,
+    minRate: 8.5,
     maxRate: 18.0,
     years: 5,
     tenureOptions: [1, 2, 3, 4, 5, 7],
@@ -1090,7 +1096,7 @@ export const PRODUCT_CALCULATOR_CONFIG = {
     minAmount: 100000,
     maxAmount: 10000000,
     rate: 8.5,
-    minRate: 7.0,
+    minRate: 8.1,
     maxRate: 15.0,
     years: 10,
     tenureOptions: [3, 5, 7, 10, 12, 15],

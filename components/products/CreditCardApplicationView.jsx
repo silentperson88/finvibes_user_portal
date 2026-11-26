@@ -25,6 +25,7 @@ import CommonFAQSection from "@/components/common/CommonFAQSection";
 import MyEligibleCardsWidget from "./credit-cards/MyEligibleCardsWidget";
 import CreditCardEligibilityModal from "./credit-cards/CreditCardEligibilityModal";
 import CreditCardListingCard from "./credit-cards/CreditCardListingCard";
+import creditCardsBannerImg from "@/assets/banner_credit_cards.jpg";
 
 const CATEGORY_CARD_ORDER = {
   rewards: [
@@ -161,7 +162,6 @@ export default function CreditCardApplicationView({
       style={{
         backgroundColor: "#f8fafc",
         minHeight: "100vh",
-        paddingBottom: "72px",
       }}
     >
       {/* ── Executive Common Page Banner ───────────────────────────── */}
@@ -172,15 +172,13 @@ export default function CreditCardApplicationView({
         description="Compare verified pre-approved and lifetime-free credit cards across India's premier banks. Maximize accelerated rewards, airport lounge access, online cashback, and fuel surcharge waivers."
         activeTabHref={`/products/credit-cards${selectedCategory ? `/${selectedCategory}` : ""}`}
         showModuleTabs={false}
+        bannerImage={creditCardsBannerImg}
+        bannerAlt="Credit Cards - Pick Smart. Swipe Better."
         cta={{
           label: "Check Eligible Cards",
           onClick: () => handleOpenModal(null),
           endIcon: <ArrowForward sx={{ fontSize: 16 }} />,
         }}
-        kpis={[
-          { value: "50+", label: "Leading Cards" },
-          { value: "₹0", label: "Lifetime Free Options" },
-        ]}
       />
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 5 } }}>
