@@ -104,13 +104,10 @@ export default function MainNavbar() {
             <Image
               src={logoImg}
               alt="Finvibes"
-              height={44}
-              width={Math.round(44 * (699 / 187))}
               style={{
-                objectFit: "contain",
+                height: "44px",
                 width: "auto",
-                height: "auto",
-                maxHeight: "44px",
+                objectFit: "contain",
                 display: "block",
               }}
               priority
