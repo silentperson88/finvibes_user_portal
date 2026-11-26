@@ -4,15 +4,18 @@ import CommonPageBanner from "@/components/common/CommonPageBanner";
 import { colors } from "@/constants";
 
 export const metadata = {
-  title: "Calculate Net Switch Benefits - Loan Balance Transfer Calculator | Finvibes",
+  title:
+    "Calculate Net Switch Benefits - Loan Balance Transfer Calculator | Finvibes",
   description:
     "Compare your current loan terms against our partner bank transfer offers factoring in one-time switching expenses. See your estimated monthly drop and net interest savings.",
 };
 
 export default function LoanTransferPage() {
   return (
-    <Box component="main" sx={{ backgroundColor: colors.surface.white, minHeight: "85vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
+    <Box
+      component="main"
+      sx={{ backgroundColor: colors.surface.white, minHeight: "85vh" }}
+    >
       <CommonPageBanner
         eyebrow="SMART REFINANCING DESK • BALANCE TRANSFER"
         title="Calculate Net"
@@ -26,7 +29,6 @@ export default function LoanTransferPage() {
         ]}
       />
 
-      {/* Main Loan Transfer Calculator Component */}
       <Box sx={{ py: { xs: 2, md: 2 } }}>
         <LoanTransferCalculator />
       </Box>

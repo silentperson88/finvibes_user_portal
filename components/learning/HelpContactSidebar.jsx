@@ -18,7 +18,6 @@ import { colors, typography, CONTACT_INFO } from "@/constants";
 export default function HelpContactSidebar() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
-      {/* ── Card 1: Main Contact Support Desk ───────────────────── */}
       <Box
         sx={{
           backgroundColor: colors.surface.white,
@@ -28,7 +27,6 @@ export default function HelpContactSidebar() {
           boxShadow: "0 4px 20px rgba(15, 23, 42, 0.04)",
         }}
       >
-        {/* Header */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2.5 }}>
           <Box
             sx={{
@@ -63,11 +61,9 @@ export default function HelpContactSidebar() {
           </Box>
         </Box>
 
-        {/* Channels List */}
         <Box
           sx={{ display: "flex", flexDirection: "column", gap: 1.5, mb: 2.5 }}
         >
-          {/* WhatsApp */}
           <Box
             component="a"
             href="https://wa.me/919601424284"
@@ -124,7 +120,6 @@ export default function HelpContactSidebar() {
             />
           </Box>
 
-          {/* Email */}
           <Box
             component="a"
             href={`mailto:${CONTACT_INFO.email}`}
@@ -180,7 +175,6 @@ export default function HelpContactSidebar() {
           </Box>
         </Box>
 
-        {/* Operating Hours Capsule */}
         <Box
           sx={{
             display: "flex",
@@ -202,7 +196,6 @@ export default function HelpContactSidebar() {
         </Box>
       </Box>
 
-      {/* ── Card 2: Our Promise (Green Tint) ────────────────────── */}
       <Box
         sx={{
           backgroundColor: "#f0fdf4",
@@ -238,7 +231,6 @@ export default function HelpContactSidebar() {
         </Typography>
       </Box>
 
-      {/* ── Card 3: Feedback (Warm Yellow Tint) ──────────────────── */}
       <Box
         sx={{
           backgroundColor: "#fefce8",
@@ -267,7 +259,6 @@ export default function HelpContactSidebar() {
             justifyContent: "space-between",
           }}
         >
-          {/* 5 Yellow Stars */}
           <Box
             component="a"
             href={
@@ -323,7 +314,6 @@ export default function HelpContactSidebar() {
         </Box>
       </Box>
 
-      {/* ── Security Footnote ────────────────────────────────────── */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, px: 0.5 }}>
         <ShieldOutlined
           sx={{ fontSize: 15, color: "#64748b", flexShrink: 0 }}

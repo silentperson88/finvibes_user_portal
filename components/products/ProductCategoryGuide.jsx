@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { InfoOutlined, CheckCircle } from "@mui/icons-material";
+import { CheckCircle } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 
 const GUIDE_DATA = {
@@ -155,9 +155,7 @@ export default function ProductCategoryGuide({ category = "home" }) {
       }}
     >
       <Container maxWidth="lg">
-        {/* Section Header */}
         <Box sx={{ maxWidth: "820px", mb: { xs: 3, md: 4 } }}>
-          {/* Heading */}
           <Typography
             component="h2"
             sx={{
@@ -184,7 +182,6 @@ export default function ProductCategoryGuide({ category = "home" }) {
             </Box>
           </Typography>
 
-          {/* Single Concise Description */}
           <Typography
             sx={{
               fontSize: { xs: "14px", sm: "14.5px" },
@@ -196,7 +193,6 @@ export default function ProductCategoryGuide({ category = "home" }) {
           </Typography>
         </Box>
 
-        {/* 2-Column Info & Breakdown Cards */}
         <Grid container spacing={2.5}>
           {data.infoCards.map((card) => (
             <Grid key={card.title} size={{ xs: 12, md: 6 }}>

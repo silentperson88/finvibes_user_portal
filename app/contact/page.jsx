@@ -17,7 +17,6 @@ export default function ContactPage() {
         minHeight: "100vh",
       }}
     >
-      {/* ── Standard Common Page Banner ── */}
       <CommonPageBanner
         eyebrow="DIRECT FINANCIAL DESK"
         title="Get in Touch with Finvibes"
@@ -26,7 +25,6 @@ export default function ContactPage() {
         showModuleTabs={false}
       />
 
-      {/* ── Visual Banner Card (Left) + Contact Form Card (Right) ── */}
       <ContactFormView />
     </Box>
   );

@@ -6,7 +6,6 @@ import {
   LockOutlined,
   BoltOutlined,
   VerifiedOutlined,
-  AutoAwesome,
 } from "@mui/icons-material";
 import ciblImg from "@/assets/CIBL.avif";
 import { typography, colors } from "@/constants";
@@ -25,7 +24,6 @@ export default function CibilHeroCard() {
         mb: 3,
       }}
     >
-      {/* Main Headline */}
       <Typography
         component="h2"
         sx={{
@@ -41,7 +39,6 @@ export default function CibilHeroCard() {
         A Strong Credit Score Unlocks Better Rates
       </Typography>
 
-      {/* Subtitle */}
       <Typography
         sx={{
           fontFamily: typography.fontFamily,
@@ -56,7 +53,6 @@ export default function CibilHeroCard() {
         business loans.
       </Typography>
 
-      {/* ── Relatable Lifestyle Visual Banner ── */}
       <Box
         sx={{
           position: "relative",
@@ -82,7 +78,6 @@ export default function CibilHeroCard() {
           priority
         />
 
-        {/* Floating Verified Prime Pill on Image */}
         <Box
           sx={{
             position: "absolute",
@@ -116,7 +111,6 @@ export default function CibilHeroCard() {
         </Box>
       </Box>
 
-      {/* Trust Indicator Chips */}
       <Box
         sx={{
           display: "flex",

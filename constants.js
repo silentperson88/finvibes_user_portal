@@ -36,7 +36,6 @@ export const CONTACT_INFO = {
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  // { label: "Compare Loans", href: "/compare-loans" },
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -472,7 +471,6 @@ export const SOCIAL_LINKS = [
 export const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },
-  // { label: "Disclaimer", href: "/disclaimer" },
 ];
 
 export const DISCLAIMER_TEXT =
@@ -723,7 +721,6 @@ export const CREDIT_FORM_CONTENT = {
 };
 
 export const colors = {
-  // Brand Blues
   brand: {
     primary: "#0b63e5",
     primaryHover: "#0851c2",
@@ -738,29 +735,25 @@ export const colors = {
     buttonBlueHover: "#0950b5",
   },
 
-  // Dark Navy Backgrounds
   navy: {
-    dark: "#07162e", // Footer background
-    deep: "#0d1b3e", // Top Info Bar background
+    dark: "#07162e",
+    deep: "#0d1b3e",
   },
 
-  // Banner Title Colors
   banner: {
     titlePrimary: "#043B9F",
     titleHighlight: "#0284c7",
   },
 
-  // Text Hierarchy
   text: {
-    primary: "#18253B", // Headings, nav links, strong text
-    secondary: "#64748b", // Subtitles, muted labels
+    primary: "#18253B",
+    secondary: "#64748b",
     white: "#ffffff",
     whiteMuted: "rgba(255, 255, 255, 0.78)",
     whiteBody: "rgba(255, 255, 255, 0.88)",
     whiteSubtle: "rgba(255, 255, 255, 0.52)",
   },
 
-  // Surfaces & Borders
   border: {
     light: "rgba(24, 37, 59, 0.08)",
     dark: "rgba(255, 255, 255, 0.08)",
@@ -786,22 +779,20 @@ export const colors = {
 export const typography = {
   fontFamily: "Inter, Arial, sans-serif",
 
-  // Typographic Scale
   fontSizes: {
-    xs: "11px", // Eyebrow, micro badges
-    sm: "12px", // Badges, dropdown sub-items, info bar
-    md: "13px", // Category pills, card brand, subtitle
-    base: "14px", // Main nav links, buttons, body text
-    body: "15.5px", // Hero description
-    lg: "16px", // Section headers, bold labels
-    xl: "20px", // Card titles
-    "2xl": "23px", // Card motto
-    "3xl": "34px", // Hero mobile
-    "4xl": "44px", // Hero tablet
-    "5xl": "52px", // Hero desktop h1
+    xs: "11px",
+    sm: "12px",
+    md: "13px",
+    base: "14px",
+    body: "15.5px",
+    lg: "16px",
+    xl: "20px",
+    "2xl": "23px",
+    "3xl": "34px",
+    "4xl": "44px",
+    "5xl": "52px",
   },
 
-  // Font Weights
   fontWeights: {
     regular: 400,
     medium: 500,
@@ -863,15 +854,6 @@ export const LOANS_EXPLORER_SECTION = {
       iconColor: "#ef4444",
       iconType: "car",
     },
-    // {
-    //   id: "compare",
-    //   title: "Loan Comparison",
-    //   description: "Compare estimated costs and key terms before deciding.",
-    //   href: "/tools/loan-transfer",
-    //   badgeBg: "#cffafe",
-    //   iconColor: "#0284c7",
-    //   iconType: "compare",
-    // },
   ],
 };
 
@@ -1065,7 +1047,6 @@ export const EDUCATION_LOAN_BANKS = [
   },
 ];
 
-// Product Calculator Configurations for EMI Sliders
 export const PRODUCT_CALCULATOR_CONFIG = {
   home: {
     title: "Home Loan EMI & Cost Calculator",
@@ -1083,7 +1064,7 @@ export const PRODUCT_CALCULATOR_CONFIG = {
     amount: 800000,
     minAmount: 100000,
     maxAmount: 5000000,
-    rate: 8.5, // Default for new car
+    rate: 8.5,
     minRate: 8.5,
     maxRate: 18.0,
     years: 5,
@@ -1103,7 +1084,6 @@ export const PRODUCT_CALCULATOR_CONFIG = {
   },
 };
 
-// Car Loan Type Tabs configuration
 export const CAR_LOAN_TYPE_TABS = [
   {
     id: "new",
@@ -1119,7 +1099,6 @@ export const CAR_LOAN_TYPE_TABS = [
   },
 ];
 
-// Direct Application Configurations for Personal & Business Loans
 export const DIRECT_LOAN_CONFIG = {
   personal: {
     title: "Understand Personal Loan",
@@ -1365,7 +1344,6 @@ export const BUSINESS_LOAN_BANKS = [
   },
 ];
 
-// Digital Savings Account Banner Configuration for Home Page
 export const DIGITAL_BANK_BANNER = {
   title: "Open Digital Bank Account",
   subtitle: "Simple. Secure. 100% Digital.",
@@ -1384,7 +1362,6 @@ export const DIGITAL_BANK_BANNER = {
   ],
 };
 
-// Digital Savings Accounts Data
 export const DIGITAL_SAVINGS_BANKS = [
   {
     id: "kotak-811",

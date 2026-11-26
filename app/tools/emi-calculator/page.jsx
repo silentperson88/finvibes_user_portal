@@ -10,8 +10,10 @@ export const metadata = {
 
 export default function EMICalculatorPage() {
   return (
-    <Box component="main" sx={{ backgroundColor: "#ffffff", minHeight: "85vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
+    <Box
+      component="main"
+      sx={{ backgroundColor: "#ffffff", minHeight: "85vh" }}
+    >
       <CommonPageBanner
         eyebrow="SMART FINANCIAL DESK • CALCULATORS"
         title="EMI"
@@ -25,7 +27,6 @@ export default function EMICalculatorPage() {
         ]}
       />
 
-      {/* Main Interactive EMI Calculator Tool */}
       <Box sx={{ py: { xs: 2, md: 2 } }}>
         <EMICalculator />
       </Box>

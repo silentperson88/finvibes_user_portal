@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   Star,
   LocationOnOutlined,
@@ -46,11 +46,9 @@ export default function LawyerCard({ lawyer }) {
         },
       }}
     >
-      {/* ── Left Content: Avatar + Details ───────────────────────── */}
       <Box
         sx={{ display: "flex", alignItems: "flex-start", gap: 2.5, flex: 1 }}
       >
-        {/* Lawyer Initials Square Badge */}
         <Box
           sx={{
             width: 48,
@@ -71,9 +69,7 @@ export default function LawyerCard({ lawyer }) {
           {lawyer.initials}
         </Box>
 
-        {/* Info Column */}
         <Box sx={{ flex: 1 }}>
-          {/* Line 1: Name + Rating Pill */}
           <Box
             sx={{
               display: "flex",
@@ -93,8 +89,6 @@ export default function LawyerCard({ lawyer }) {
             >
               {lawyer.name}
             </Typography>
-
-            {/* Rating pill */}
             <Box
               sx={{
                 display: "inline-flex",
@@ -119,7 +113,6 @@ export default function LawyerCard({ lawyer }) {
             </Box>
           </Box>
 
-          {/* Line 2: Specialization */}
           <Typography
             sx={{
               fontSize: "13px",
@@ -131,7 +124,6 @@ export default function LawyerCard({ lawyer }) {
             {lawyer.specialization}
           </Typography>
 
-          {/* Line 3: Meta details (Location · Experience · Highlight) */}
           <Box
             sx={{
               display: "flex",
@@ -143,7 +135,6 @@ export default function LawyerCard({ lawyer }) {
               mb: 1.4,
             }}
           >
-            {/* Location */}
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
               <LocationOnOutlined sx={{ fontSize: 14, color: "#64748b" }} />
               <span>{lawyer.location}</span>
@@ -158,7 +149,6 @@ export default function LawyerCard({ lawyer }) {
               }}
             />
 
-            {/* Experience */}
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
               <BusinessCenterOutlined sx={{ fontSize: 14, color: "#64748b" }} />
               <span>{lawyer.experience}</span>
@@ -173,14 +163,12 @@ export default function LawyerCard({ lawyer }) {
               }}
             />
 
-            {/* Highlight */}
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
               {getHighlightIcon(lawyer.highlight)}
               <span>{lawyer.highlight}</span>
             </Box>
           </Box>
 
-          {/* Line 4: Description */}
           <Typography
             sx={{
               fontSize: { xs: "12.5px", sm: "13px" },
@@ -193,58 +181,6 @@ export default function LawyerCard({ lawyer }) {
           </Typography>
         </Box>
       </Box>
-
-      {/* ── Right Column: Action Buttons ────────────────────────── */}
-      {/* <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "row", sm: "column" },
-          gap: 1.2,
-          minWidth: { sm: "140px" },
-          width: { xs: "100%", sm: "auto" },
-        }}
-      >
-        <Button
-          fullWidth
-          variant="contained"
-          sx={{
-            backgroundColor: colors.brand.primary,
-            color: "#ffffff",
-            fontWeight: 800,
-            fontSize: "12.5px",
-            py: 1,
-            borderRadius: "10px",
-            textTransform: "none",
-            boxShadow: "0 4px 14px rgba(11, 99, 229, 0.25)",
-            "&:hover": {
-              backgroundColor: colors.brand.primaryHover,
-            },
-          }}
-        >
-          Consult Now
-        </Button>
-
-        <Button
-          fullWidth
-          variant="outlined"
-          sx={{
-            borderColor: "rgba(11, 99, 229, 0.2)",
-            backgroundColor: "#f8fafc",
-            color: "#0a2540",
-            fontWeight: 700,
-            fontSize: "12.5px",
-            py: 0.9,
-            borderRadius: "10px",
-            textTransform: "none",
-            "&:hover": {
-              backgroundColor: "#f1f5f9",
-              borderColor: colors.brand.primary,
-            },
-          }}
-        >
-          View Profile
-        </Button>
-      </Box> */}
     </Box>
   );
 }

@@ -112,7 +112,6 @@ export default function ContactFormView() {
       }}
     >
       <Grid container spacing={{ xs: 4, lg: 4 }} sx={{ alignItems: "stretch" }}>
-        {/* ── LEFT COLUMN: Relatable Contact Us Advisory Banner Card ── */}
         <Grid size={{ xs: 12, md: 5, lg: 4.8 }}>
           <Box
             sx={{
@@ -126,7 +125,6 @@ export default function ContactFormView() {
               flexDirection: "column",
             }}
           >
-            {/* Top Image Frame with Contact-Specific Badges */}
             <Box
               sx={{
                 position: "relative",
@@ -143,7 +141,6 @@ export default function ContactFormView() {
                 style={{ objectFit: "cover" }}
                 priority
               />
-              {/* Gradient Scrim */}
               <Box
                 sx={{
                   position: "absolute",
@@ -153,7 +150,6 @@ export default function ContactFormView() {
                 }}
               />
 
-              {/* Top-Left Floating Badge: Ahmedabad Headquarters */}
               <Box
                 sx={{
                   position: "absolute",
@@ -184,7 +180,6 @@ export default function ContactFormView() {
                 </Typography>
               </Box>
 
-              {/* Bottom-Right Floating Badge: 2-Hour Response Time */}
               <Box
                 sx={{
                   position: "absolute",
@@ -214,8 +209,6 @@ export default function ContactFormView() {
                 </Typography>
               </Box>
             </Box>
-
-            {/* Bottom Content: Concise Advisory Context */}
             <Box
               sx={{
                 p: { xs: 3, sm: 3.5 },
@@ -226,7 +219,6 @@ export default function ContactFormView() {
               }}
             >
               <Box>
-                {/* Eyebrow & Location Badge Row */}
                 <Box
                   sx={{
                     display: "flex",
@@ -261,7 +253,6 @@ export default function ContactFormView() {
                   </Typography>
                 </Box>
 
-                {/* Shorter Title & Subtitle */}
                 <Typography
                   component="h3"
                   sx={{
@@ -287,7 +278,6 @@ export default function ContactFormView() {
                   doorstep assistance with zero consultation fees.
                 </Typography>
 
-                {/* Shorter 2-point Key Advantages */}
                 <Box
                   sx={{
                     display: "flex",
@@ -330,7 +320,6 @@ export default function ContactFormView() {
                 </Box>
               </Box>
 
-              {/* Direct Office & Phone Strip */}
               <Box
                 sx={{ pt: 2, borderTop: `1px solid ${colors.border.subtle}` }}
               >
@@ -438,7 +427,6 @@ export default function ContactFormView() {
           </Box>
         </Grid>
 
-        {/* ── RIGHT COLUMN: Interactive Contact Form Card ── */}
         <Grid size={{ xs: 12, md: 7, lg: 7.2 }}>
           <Box
             sx={{
@@ -454,7 +442,6 @@ export default function ContactFormView() {
             }}
           >
             <Box>
-              {/* Title & Subtext */}
               <Typography
                 component="h2"
                 sx={{
@@ -533,7 +520,6 @@ export default function ContactFormView() {
                   onSubmit={handleSubmit(onValidSubmit)}
                   noValidate
                 >
-                  {/* Input Fields: Name, Mobile, and Email */}
                   <Box
                     sx={{
                       display: "flex",
@@ -621,7 +607,6 @@ export default function ContactFormView() {
                       }}
                     />
 
-                    {/* Requirements / Query Note */}
                     <TextField
                       label="Loan Requirement / Query Details (Optional)"
                       multiline
@@ -644,7 +629,6 @@ export default function ContactFormView() {
                     />
                   </Box>
 
-                  {/* Submit Button & Confidentiality Note */}
                   <Box
                     sx={{
                       display: "flex",

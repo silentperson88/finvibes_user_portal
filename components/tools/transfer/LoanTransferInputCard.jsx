@@ -33,10 +33,10 @@ export default function LoanTransferInputCard({
         gap: 3.5,
       }}
     >
-      {/* ================= SECTION 1: YOUR CURRENT LOAN ================= */}
       <Box>
-        {/* Section Header */}
-        <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1.5, mb: 2.2 }}>
+        <Box
+          sx={{ display: "flex", alignItems: "flex-start", gap: 1.5, mb: 2.2 }}
+        >
           <Box
             sx={{
               width: 30,
@@ -80,7 +80,6 @@ export default function LoanTransferInputCard({
           </Box>
         </Box>
 
-        {/* Outstanding Loan Input */}
         <Box sx={{ mb: 2.5 }}>
           <CalculatorTextField
             label="How much loan is still left?"
@@ -93,7 +92,11 @@ export default function LoanTransferInputCard({
                 <IconButton
                   size="small"
                   onClick={() => onOutstandingLoanChange("")}
-                  sx={{ p: 0.4, color: "#94a3b8", "&:hover": { color: colors.text.primary } }}
+                  sx={{
+                    p: 0.4,
+                    color: "#94a3b8",
+                    "&:hover": { color: colors.text.primary },
+                  }}
                 >
                   <Close sx={{ fontSize: 16 }} />
                 </IconButton>
@@ -112,7 +115,6 @@ export default function LoanTransferInputCard({
           </Typography>
         </Box>
 
-        {/* Current Rate & Years Left Grid */}
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, sm: 6 }}>
             <CalculatorTextField
@@ -139,10 +141,10 @@ export default function LoanTransferInputCard({
         </Grid>
       </Box>
 
-      {/* ================= SECTION 2: NEW LOAN OFFER ================= */}
       <Box>
-        {/* Section Header */}
-        <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1.5, mb: 2.2 }}>
+        <Box
+          sx={{ display: "flex", alignItems: "flex-start", gap: 1.5, mb: 2.2 }}
+        >
           <Box
             sx={{
               width: 30,
@@ -186,7 +188,6 @@ export default function LoanTransferInputCard({
           </Box>
         </Box>
 
-        {/* New Rate with Difference Badge */}
         <Box sx={{ mb: 2.5 }}>
           <Box
             sx={{
@@ -233,7 +234,6 @@ export default function LoanTransferInputCard({
           />
         </Box>
 
-        {/* Processing Charges & Other Charges Grid */}
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, sm: 6 }}>
             <CalculatorTextField
@@ -258,4 +258,3 @@ export default function LoanTransferInputCard({
     </Box>
   );
 }
-

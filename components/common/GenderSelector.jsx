@@ -50,9 +50,7 @@ export default function GenderSelector({
                     ? "#f0f6ff"
                     : colors.surface.white,
                   border: "1.5px solid",
-                  borderColor: isSelected
-                    ? colors.brand.primary
-                    : "#e2e8f0",
+                  borderColor: isSelected ? colors.brand.primary : "#e2e8f0",
                   transition: "all 0.2s ease-in-out",
                   "&:hover": {
                     borderColor: isSelected
@@ -62,16 +60,13 @@ export default function GenderSelector({
                   },
                 }}
               >
-                {/* Radio Circle Icon */}
                 <Box
                   sx={{
                     width: 16,
                     height: 16,
                     borderRadius: "50%",
                     border: "2px solid",
-                    borderColor: isSelected
-                      ? colors.brand.primary
-                      : "#94a3b8",
+                    borderColor: isSelected ? colors.brand.primary : "#94a3b8",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -109,4 +104,3 @@ export default function GenderSelector({
     </Box>
   );
 }
-

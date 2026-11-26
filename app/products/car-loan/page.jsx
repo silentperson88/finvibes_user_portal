@@ -14,13 +14,10 @@ export const metadata = {
 export default function CarLoanPage() {
   return (
     <main>
-      {/* Option 4 Signature Overlapping Hero Section with Visual & Top HUD Calculator */}
       <LoanProductHeroSection loanType="car" />
 
-      {/* Relatable Product Category Introduction (4 Feature Cards) */}
       <ProductCategoryIntro category="car" />
 
-      {/* Partner Banks & Car Loan Offers Section */}
       <LoanBankOffers
         eyebrow="CAR LOAN PARTNER LENDERS"
         title="Top Car Loan Rates from Trusted Banks"
@@ -29,10 +26,8 @@ export default function CarLoanPage() {
         sidebarLayout={true}
       />
 
-      {/* Detailed Guide & Description Section (After Bank Comparison) */}
       <ProductCategoryGuide category="car" />
 
-      {/* Frequently Asked Questions */}
       <CommonFAQSection category="car-loan" />
     </main>
   );

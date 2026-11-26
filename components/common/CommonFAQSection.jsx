@@ -29,7 +29,6 @@ export default function CommonFAQSection({
 }) {
   const [expandedIndex, setExpandedIndex] = useState(false);
 
-  // Safely resolve the active category dataset
   const resolvedCategoryData =
     category && PRODUCT_FAQS[category]
       ? PRODUCT_FAQS[category]
@@ -59,7 +58,6 @@ export default function CommonFAQSection({
       }}
     >
       <Container maxWidth="lg">
-        {/* Section Header */}
         <Box sx={{ textAlign: "center", mb: { xs: 3.5, md: 5 } }}>
           {finalEyebrow ? (
             <Box
@@ -120,7 +118,6 @@ export default function CommonFAQSection({
           ) : null}
         </Box>
 
-        {/* FAQ Accordion List */}
         <Box sx={{ maxWidth: 840, mx: "auto", mb: { xs: 4, md: 5 } }}>
           {finalItems.map((item, index) => {
             const isExpanded = expandedIndex === index;
@@ -179,7 +176,9 @@ export default function CommonFAQSection({
                       fontFamily: typography.fontFamily,
                       fontSize: { xs: "0.925rem", sm: "1rem" },
                       fontWeight: isExpanded ? 700 : 600,
-                      color: isExpanded ? colors.brand.primary : colors.navy.dark,
+                      color: isExpanded
+                        ? colors.brand.primary
+                        : colors.navy.dark,
                       lineHeight: 1.45,
                       pr: 1,
                       transition: "color 0.2s ease",
@@ -215,7 +214,6 @@ export default function CommonFAQSection({
           })}
         </Box>
 
-        {/* Bottom Help Desk Callout */}
         <Box
           sx={{
             maxWidth: 840,
@@ -267,7 +265,8 @@ export default function CommonFAQSection({
                   lineHeight: 1.4,
                 }}
               >
-                Connect with our certified loan advisory desk for personalized assistance.
+                Connect with our certified loan advisory desk for personalized
+                assistance.
               </Typography>
             </Box>
           </Box>

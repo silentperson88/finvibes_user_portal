@@ -22,7 +22,6 @@ import { colors, typography } from "@/constants";
 
 export default function CreditCardListingCard({
   card,
-  onCheckEligibility,
   onApply,
   compact = false,
 }) {
@@ -49,23 +48,17 @@ export default function CreditCardListingCard({
         },
       }}
     >
-      {/* ── Top Row: Card Graphic & Identity ─────────────────────────── */}
       <Box
         sx={{
           display: "flex",
-          flexDirection: compact
-            ? "column"
-            : { xs: "column", sm: "row" },
-          alignItems: compact
-            ? "stretch"
-            : { xs: "flex-start", sm: "center" },
+          flexDirection: compact ? "column" : { xs: "column", sm: "row" },
+          alignItems: compact ? "stretch" : { xs: "flex-start", sm: "center" },
           justifyContent: "space-between",
           gap: compact ? 1.5 : 2,
           mb: compact ? 2 : 2.5,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-          {/* Realistic Metallic Credit Card Graphic */}
           <Box
             sx={{
               width: compact ? 64 : { xs: 72, sm: 84 },
@@ -90,7 +83,6 @@ export default function CreditCardListingCard({
                 alignItems: "center",
               }}
             >
-              {/* Golden Chip */}
               <Box
                 sx={{
                   width: 12,
@@ -123,7 +115,6 @@ export default function CreditCardListingCard({
             </Box>
           </Box>
 
-          {/* Title, Bank, Rating & Badge */}
           <Box sx={{ minWidth: 0, flex: 1 }}>
             <Box
               sx={{
@@ -137,9 +128,7 @@ export default function CreditCardListingCard({
               <Typography
                 sx={{
                   fontFamily: typography.fontFamily,
-                  fontSize: compact
-                    ? "15px"
-                    : { xs: "16px", sm: "18px" },
+                  fontSize: compact ? "15px" : { xs: "16px", sm: "18px" },
                   fontWeight: 900,
                   color: "#0a2540",
                   lineHeight: 1.25,
@@ -205,7 +194,6 @@ export default function CreditCardListingCard({
           </Box>
         </Box>
 
-        {/* Action Button: Direct Partner Apply Now */}
         <Box
           sx={{
             display: "flex",
@@ -249,7 +237,6 @@ export default function CreditCardListingCard({
         </Box>
       </Box>
 
-      {/* ── Key Highlight Banner ─────────────────────────────────────── */}
       <Box
         sx={{
           backgroundColor: "#f0fdf4",
@@ -265,13 +252,16 @@ export default function CreditCardListingCard({
       >
         <Verified sx={{ fontSize: 16, color: "#16a34a", flexShrink: 0 }} />
         <Typography
-          sx={{ fontSize: compact ? "11.5px" : "12.5px", fontWeight: 700, color: "#166534" }}
+          sx={{
+            fontSize: compact ? "11.5px" : "12.5px",
+            fontWeight: 700,
+            color: "#166534",
+          }}
         >
           {card.cashbackHighlight}
         </Typography>
       </Box>
 
-      {/* ── 3 Key Metrics Sub-boxes ──────────────────────────────────── */}
       <Box
         sx={{
           display: "grid",
@@ -350,9 +340,7 @@ export default function CreditCardListingCard({
             borderRadius: "12px",
             p: 1.2,
             border: "1px solid #f1f5f9",
-            gridColumn: compact
-              ? "span 2"
-              : { xs: "span 2", sm: "span 1" },
+            gridColumn: compact ? "span 2" : { xs: "span 2", sm: "span 1" },
           }}
         >
           <Typography
@@ -379,7 +367,6 @@ export default function CreditCardListingCard({
         </Box>
       </Box>
 
-      {/* ── Collapsible Card Benefits ────────────────────────────────── */}
       <Box>
         <ButtonBase
           onClick={() => setExpanded(!expanded)}

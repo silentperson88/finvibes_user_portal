@@ -9,13 +9,7 @@ import {
   Slider,
   Button,
 } from "@mui/material";
-import {
-  CurrencyRupee,
-  ArrowForward,
-  TuneOutlined,
-  ShieldOutlined,
-  Bolt,
-} from "@mui/icons-material";
+import { ArrowForward, ShieldOutlined } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 
 export default function QuickEMICalculatorSection({ onApply }) {
@@ -23,7 +17,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
   const [rate, setRate] = useState(8.5);
   const [tenureYears, setTenureYears] = useState(20);
 
-  // Accurate EMI calculation
   const calculations = useMemo(() => {
     const P = amount;
     const monthlyRate = rate / 12 / 100;
@@ -52,12 +45,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
     };
   }, [amount, rate, tenureYears]);
 
-  const handleApplyClick = () => {
-    if (typeof onApply === "function") {
-      onApply(amount);
-    }
-  };
-
   return (
     <Box
       component="section"
@@ -71,7 +58,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
       }}
     >
       <Container maxWidth="lg">
-        {/* Section Header */}
         <Box
           sx={{
             textAlign: "center",
@@ -110,13 +96,11 @@ export default function QuickEMICalculatorSection({ onApply }) {
           </Typography>
         </Box>
 
-        {/* Calculator Main Grid */}
         <Grid
           container
           spacing={{ xs: 4, lg: 5 }}
           sx={{ alignItems: "stretch" }}
         >
-          {/* Left Column: Interactive Sliders */}
           <Grid size={{ xs: 12, lg: 7 }}>
             <Box
               sx={{
@@ -132,7 +116,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                 gap: 3.5,
               }}
             >
-              {/* Slider 1: Loan Amount */}
               <Box>
                 <Box
                   sx={{
@@ -201,7 +184,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                 </Box>
               </Box>
 
-              {/* Slider 2: Interest Rate */}
               <Box>
                 <Box
                   sx={{
@@ -263,7 +245,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                 </Box>
               </Box>
 
-              {/* Slider 3: Loan Tenure */}
               <Box>
                 <Box
                   sx={{
@@ -347,7 +328,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
             </Box>
           </Grid>
 
-          {/* Right Column: Calculated Results & CTA */}
           <Grid size={{ xs: 12, lg: 5 }}>
             <Box
               sx={{
@@ -364,7 +344,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                 overflow: "hidden",
               }}
             >
-              {/* Background ambient lighting */}
               <Box
                 sx={{
                   position: "absolute",
@@ -417,7 +396,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                   </Box>
                 </Typography>
 
-                {/* Breakdown Strip */}
                 <Box
                   sx={{
                     backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -474,7 +452,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                     </Box>
                   </Box>
 
-                  {/* Percentage Ratio Bar */}
                   <Box
                     sx={{
                       width: "100%",
@@ -515,7 +492,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                 </Box>
               </Box>
 
-              {/* Action Buttons */}
               <Box
                 sx={{
                   position: "relative",
@@ -528,7 +504,6 @@ export default function QuickEMICalculatorSection({ onApply }) {
                 <Button
                   variant="contained"
                   fullWidth
-                  // onClick={handleApplyClick}
                   href="/tools/emi-calculator"
                   endIcon={<ArrowForward />}
                   sx={{

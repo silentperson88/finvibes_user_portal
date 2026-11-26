@@ -17,7 +17,6 @@ export default function SavingsAccountView() {
 
   return (
     <main style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
-      {/* ── Executive Navy Banner Just Like Other Pages ────────── */}
       <CommonPageBanner
         eyebrow="DIGITAL BANKING & SAVINGS DESK"
         title="Top Digital"
@@ -43,10 +42,8 @@ export default function SavingsAccountView() {
         </Box>
       </Container>
 
-      {/* ── Dynamic Category FAQ Section ──────── */}
       <CommonFAQSection category="savings-account" />
 
-      {/* ── In-App WebView Dialog (Keeps user inside web app) ──────── */}
       <BankWebViewModal
         open={Boolean(webViewBank)}
         bank={webViewBank}

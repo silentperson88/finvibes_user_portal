@@ -8,7 +8,6 @@ import { colors, typography, LOAN_ELIGIBILITY_TYPES } from "@/constants";
 export default function LoanTypeTabs({ activeTabId, onSelectTab }) {
   return (
     <Box sx={{ mb: 4 }}>
-      {/* Top Header Row: Label on left, Compare Rates on right */}
       <Box
         sx={{
           display: "flex",
@@ -31,7 +30,6 @@ export default function LoanTypeTabs({ activeTabId, onSelectTab }) {
         </Typography>
       </Box>
 
-      {/* Category Tabs: 5 responsive columns */}
       <Grid container spacing={{ xs: 1.5, sm: 2 }}>
         {LOAN_ELIGIBILITY_TYPES.map((type) => {
           const isActive = activeTabId === type.id;
@@ -74,7 +72,6 @@ export default function LoanTypeTabs({ activeTabId, onSelectTab }) {
                     },
                   }}
                 >
-                  {/* Icon Badge from constants.js */}
                   <Box
                     sx={{
                       width: 44,
@@ -91,7 +88,6 @@ export default function LoanTypeTabs({ activeTabId, onSelectTab }) {
                     {type.icon}
                   </Box>
 
-                  {/* Label from constants.js */}
                   <Typography
                     sx={{
                       fontFamily: typography.fontFamily,

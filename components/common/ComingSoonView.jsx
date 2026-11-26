@@ -33,7 +33,6 @@ export default function ComingSoonView({
             textAlign: "center",
           }}
         >
-          {/* Minimal Icon */}
           <Box
             sx={{
               width: 64,
@@ -51,7 +50,6 @@ export default function ComingSoonView({
             <ConstructionOutlined sx={{ fontSize: 32 }} />
           </Box>
 
-          {/* Clean One-Line Title */}
           <Typography
             sx={{
               fontFamily: typography.fontFamily,
@@ -65,7 +63,6 @@ export default function ComingSoonView({
             {title}
           </Typography>
 
-          {/* Short One/Two Line Description */}
           <Typography
             sx={{
               fontSize: { xs: "14px", sm: "15px" },
@@ -79,7 +76,6 @@ export default function ComingSoonView({
             {description}
           </Typography>
 
-          {/* Back Action */}
           <Button
             component={NextLink}
             href={backHref}

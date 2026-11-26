@@ -2,15 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  Box,
-  Typography,
-  ButtonBase,
-  Button,
-  Collapse,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
+import { Box, Typography, ButtonBase, Button, Collapse } from "@mui/material";
 import {
   AccountBalance,
   CheckCircle,
@@ -80,7 +72,6 @@ export default function SavingsBankCard({
         },
       }}
     >
-      {/* ── Top Row: Bank Identity & Direct Apply Button ───────────────── */}
       <Box
         sx={{
           display: "flex",
@@ -121,7 +112,9 @@ export default function SavingsBankCard({
                 }}
               />
             ) : (
-              <AccountBalance sx={{ fontSize: 26, color: colors.brand.primary }} />
+              <AccountBalance
+                sx={{ fontSize: 26, color: colors.brand.primary }}
+              />
             )}
           </Box>
           <Box>
@@ -152,7 +145,6 @@ export default function SavingsBankCard({
           </Box>
         </Box>
 
-        {/* Direct Action Button to Bank URL (Opens in In-App WebView) */}
         <Button
           onClick={(e) => {
             e.stopPropagation();
@@ -184,7 +176,6 @@ export default function SavingsBankCard({
         </Button>
       </Box>
 
-      {/* ── Main Highlight Bullet Points ───────────────────────────────── */}
       <Box
         sx={{
           display: "flex",
@@ -228,7 +219,6 @@ export default function SavingsBankCard({
         )}
       </Box>
 
-      {/* ── 4 Key Metrics Sub-boxes ────────────────────────────────────── */}
       <Box
         sx={{
           display: "grid",
@@ -306,7 +296,6 @@ export default function SavingsBankCard({
         </Box>
       </Box>
 
-      {/* ── Collapsible Sub-Bullet Points & Features ───────────────────── */}
       <Box>
         <ButtonBase
           onClick={(e) => {

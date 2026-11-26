@@ -9,4 +9,3 @@ export const metadata = {
 export default function BusinessLoanPage() {
   return <DirectLoanApplyView loanType="business" />;
 }
-

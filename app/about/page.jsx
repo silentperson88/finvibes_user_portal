@@ -1,9 +1,4 @@
-import {
-  Box,
-  Container,
-  Typography,
-  Card,
-} from "@mui/material";
+import { Box, Container, Typography, Card } from "@mui/material";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
 import {
   colors,
@@ -28,7 +23,6 @@ export default function AboutPage() {
         pb: { xs: 3.5, md: 4.5 },
       }}
     >
-      {/* ── Standard Common Page Banner ── */}
       <CommonPageBanner
         eyebrow="ABOUT US"
         title="Who We Are &"
@@ -42,10 +36,8 @@ export default function AboutPage() {
         ]}
       />
 
-      {/* ── Main Content Container (Wide Desktop Width) ── */}
       <Container maxWidth="lg" sx={{ mt: { xs: 3.5, md: 4.5 } }}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3.5 }}>
-          {/* Card 1: Company Introduction (Full Width) */}
           <Card
             elevation={0}
             sx={{
@@ -66,11 +58,11 @@ export default function AboutPage() {
                 mb: 2,
               }}
             >
-              Finvibes is a professional financial services platform built on trust,
-              expertise, and a proven record of success. Over the years, we have
-              successfully guided individuals and businesses toward smarter
-              financial decisions through tailored solutions and seamless
-              execution.
+              Finvibes is a professional financial services platform built on
+              trust, expertise, and a proven record of success. Over the years,
+              we have successfully guided individuals and businesses toward
+              smarter financial decisions through tailored solutions and
+              seamless execution.
             </Typography>
             <Typography
               sx={{
@@ -81,14 +73,13 @@ export default function AboutPage() {
                 fontWeight: 500,
               }}
             >
-              Our services span loans, insurance, and investments, delivered with
-              precision, transparency, and long-term perspective. At Finvibes, every
-              client engagement is handled with care, confidentiality, and a
-              commitment to excellence.
+              Our services span loans, insurance, and investments, delivered
+              with precision, transparency, and long-term perspective. At
+              Finvibes, every client engagement is handled with care,
+              confidentiality, and a commitment to excellence.
             </Typography>
           </Card>
 
-          {/* 2-Column Grid: Expertise (Left) + The Finvibes Advantage (Right) */}
           <Box
             sx={{
               display: "grid",
@@ -97,7 +88,6 @@ export default function AboutPage() {
               alignItems: "stretch",
             }}
           >
-            {/* Left Column: Our Expertise */}
             <Card
               elevation={0}
               sx={{
@@ -110,7 +100,6 @@ export default function AboutPage() {
                 flexDirection: "column",
               }}
             >
-              {/* Heading with Blue Underline */}
               <Box sx={{ mb: 3 }}>
                 <Typography
                   sx={{
@@ -133,8 +122,14 @@ export default function AboutPage() {
                 />
               </Box>
 
-              {/* Expertise List */}
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2, flex: 1 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  flex: 1,
+                }}
+              >
                 {ABOUT_EXPERTISE_LIST.map((item, index) => (
                   <Box
                     key={index}
@@ -184,7 +179,6 @@ export default function AboutPage() {
               </Box>
             </Card>
 
-            {/* Right Column: The Finvibes Advantage */}
             <Card
               elevation={0}
               sx={{
@@ -197,7 +191,6 @@ export default function AboutPage() {
                 flexDirection: "column",
               }}
             >
-              {/* Heading with Blue Underline */}
               <Box sx={{ mb: 3 }}>
                 <Typography
                   sx={{
@@ -220,8 +213,14 @@ export default function AboutPage() {
                 />
               </Box>
 
-              {/* Advantage List */}
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2, flex: 1 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  flex: 1,
+                }}
+              >
                 {ABOUT_ADVANTAGE_LIST.map((item, index) => (
                   <Box
                     key={index}

@@ -28,14 +28,12 @@ import CalculatorInputCard from "./CalculatorInputCard";
 import CalculatorTextField from "./CalculatorTextField";
 import { emiCalculatorSchema } from "@/validations/emiSchema";
 
-// Format currency in Indian numbering system
 const formatINR = (val) => {
   const num = Number(val);
   if (isNaN(num)) return "0";
   return new Intl.NumberFormat("en-IN").format(Math.round(num));
 };
 
-// Format values into Lakhs/Crore label (e.g. ₹50 lakh, ₹46.7 lakh)
 const formatLakhOrCrore = (val) => {
   const num = Number(val);
   if (isNaN(num) ? true : num <= 0) return "₹0";
@@ -56,7 +54,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
     ? PRODUCT_CALCULATOR_CONFIG[loanType]
     : PRODUCT_CALCULATOR_CONFIG.home;
 
-  // Car loan specific sub-tab state ("new" vs "used")
   const [carType, setCarType] = useState("new");
 
   const defaultSliderValues = {
@@ -83,7 +80,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
   const years = watch("years");
   const months = watch("months");
 
-  // Handle Car Loan Tab change based on CAR_LOAN_TYPE_TABS
   const handleCarTypeChange = (type) => {
     setCarType(type);
     const matchedTab = CAR_LOAN_TYPE_TABS.find((t) => t.id === type);
@@ -91,7 +87,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
     setValue("rate", newRate);
   };
 
-  // EMI Calculation Formula
   const calculation = useMemo(() => {
     const numAmount = Number(amount);
     const P = Math.max(0, isNaN(numAmount) ? 0 : numAmount);
@@ -152,7 +147,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
       <Grid container spacing={{ xs: 3, md: 4 }}>
-        {/* Left Column: Calculator Card (either Slider mode card or 3 textfield input cards) */}
         <Grid size={{ xs: 12, md: 7.2 }}>
           {isSliderMode ? (
             <Box
@@ -164,7 +158,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.04)",
               }}
             >
-              {/* Header inside Card */}
               <Box
                 sx={{
                   display: "flex",
@@ -237,7 +230,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 </Box>
               </Box>
 
-              {/* Optional Car Loan Tabs: configured from CAR_LOAN_TYPE_TABS in constants.js */}
               {config.hasCarTabs && (
                 <Box
                   sx={{
@@ -286,7 +278,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 </Box>
               )}
 
-              {/* Top Preview Card */}
               <Box
                 sx={{
                   backgroundColor: "#f4f8fd",
@@ -349,7 +340,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 </Box>
               </Box>
 
-              {/* Section 1: Loan Amount */}
               <Box sx={{ mb: 3 }}>
                 <Box
                   sx={{
@@ -409,7 +399,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 />
               </Box>
 
-              {/* Section 2: Interest Rate */}
               <Box sx={{ mb: 3 }}>
                 <Box
                   sx={{
@@ -469,7 +458,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 />
               </Box>
 
-              {/* Section 3: Tenure (Years) */}
               <Box sx={{ mb: 1 }}>
                 <Typography
                   sx={{
@@ -520,7 +508,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
             </Box>
           ) : (
             <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-              {/* Input Card 1: Loan Amount */}
               <CalculatorInputCard
                 icon={<CreditCard sx={{ fontSize: 19 }} />}
                 title="Loan Amount"
@@ -537,7 +524,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 />
               </CalculatorInputCard>
 
-              {/* Input Card 2: Interest Rate */}
               <CalculatorInputCard
                 icon={<Percent sx={{ fontSize: 18 }} />}
                 title="Interest Rate (p.a.)"
@@ -554,7 +540,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 />
               </CalculatorInputCard>
 
-              {/* Input Card 3: Loan Tenure */}
               <CalculatorInputCard
                 icon={<CalendarToday sx={{ fontSize: 18 }} />}
                 title="Loan Tenure"
@@ -587,7 +572,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
           )}
         </Grid>
 
-        {/* Right Column: Estimated Monthly Instalment (EMI) Summary Card */}
         <Grid size={{ xs: 12, md: 4.8 }}>
           <Box
             sx={{
@@ -600,7 +584,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
               top: 100,
             }}
           >
-            {/* Top Label */}
             <Typography
               sx={{
                 fontSize: "11px",
@@ -614,7 +597,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
               ESTIMATED MONTHLY INSTALMENT (EMI)
             </Typography>
 
-            {/* Big EMI Highlight Number */}
             <Box
               sx={{ display: "flex", alignItems: "baseline", gap: 1, mb: 3 }}
             >
@@ -641,7 +623,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
               </Typography>
             </Box>
 
-            {/* Split Progress / Distribution Bar */}
             <Box sx={{ mb: 3.5 }}>
               <Box
                 sx={{
@@ -669,7 +650,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 />
               </Box>
 
-              {/* Legend Row */}
               <Box
                 sx={{
                   display: "flex",
@@ -719,7 +699,6 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
               </Box>
             </Box>
 
-            {/* Financial Breakdown Rows */}
             <Box
               sx={{ display: "flex", flexDirection: "column", gap: 2.2, mb: 4 }}
             >

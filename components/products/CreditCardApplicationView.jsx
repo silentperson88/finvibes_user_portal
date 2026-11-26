@@ -1,19 +1,8 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
-import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  Chip,
-  Button,
-} from "@mui/material";
-import {
-  CreditCard,
-  ArrowForward,
-  Verified,
-} from "@mui/icons-material";
+import { Box, Container, Grid, Typography, Chip, Button } from "@mui/material";
+import { CreditCard, ArrowForward, Verified } from "@mui/icons-material";
 import {
   colors,
   typography,
@@ -51,12 +40,7 @@ const CATEGORY_DESCRIPTIONS = {
   fuel: "Complete fuel surcharge waiver and accelerated savings across petrol stations in India.",
 };
 
-export default function CreditCardApplicationView({
-  cardType = "all", // "all" | "rewards" | "travel" | "shopping" | "fuel"
-  headline = "CARD SAHI, MILEGA YAHIN!",
-  subheadline = "Get best Credit Cards for all your needs",
-  preApprovedNote = "Pre-Approved Offers & Lifetime Free Cards",
-}) {
+export default function CreditCardApplicationView({ cardType = "all" }) {
   const initialCategory = cardType
     ? cardType !== "all"
       ? cardType
@@ -68,7 +52,6 @@ export default function CreditCardApplicationView({
   const [eligibilityData, setEligibilityData] = useState(null);
   const headerRef = useRef(null);
 
-  // Sync category if passed via URL query parameter or cardType prop
   useEffect(() => {
     if (typeof window !== "undefined") {
       const searchParams = new URLSearchParams(window.location.search);
@@ -86,7 +69,6 @@ export default function CreditCardApplicationView({
     }
   }, [cardType]);
 
-  // Smoothly scroll to the cards showcase header on category change
   const handleSelectCategory = (catId) => {
     setEligibilityData(null);
     setSelectedCategory(catId);
@@ -95,13 +77,11 @@ export default function CreditCardApplicationView({
     }
   };
 
-  // Handler for opening the eligibility modal
   const handleOpenModal = (card = null) => {
     setPreselectedCard(card);
     setOpenEligibilityModal(true);
   };
 
-  // Compute dynamic card counts for each category
   const categoryCounts = useMemo(() => {
     const counts = { rewards: 0, travel: 0, shopping: 0, fuel: 0 };
     const list = AVAILABLE_CREDIT_CARDS ? AVAILABLE_CREDIT_CARDS : [];
@@ -119,7 +99,6 @@ export default function CreditCardApplicationView({
     return counts;
   }, []);
 
-  // Filter cards based on Category and ordered as requested
   const filteredCards = useMemo(() => {
     if (!selectedCategory) return [];
 
@@ -146,7 +125,6 @@ export default function CreditCardApplicationView({
     return matched;
   }, [selectedCategory]);
 
-  // Find active category label for the list title
   const activeCategoryObj = CREDIT_CARD_CATEGORIES.find(
     (c) => c.id === selectedCategory,
   );
@@ -164,7 +142,6 @@ export default function CreditCardApplicationView({
         minHeight: "100vh",
       }}
     >
-      {/* ── Executive Common Page Banner ───────────────────────────── */}
       <CommonPageBanner
         eyebrow="PRE-APPROVED CREDIT DESK & OFFERS"
         title="Card Sahi,"
@@ -187,7 +164,6 @@ export default function CreditCardApplicationView({
           spacing={{ xs: 3, md: 4 }}
           sx={{ alignItems: "flex-start" }}
         >
-          {/* ── Left Column: Vertical Category Rail ── */}
           <Grid
             size={{ xs: 12, md: 4.2 }}
             sx={{
@@ -205,11 +181,9 @@ export default function CreditCardApplicationView({
             />
           </Grid>
 
-          {/* ── Right Column: Full Cards Showcase (or Eligible Cards Results) ── */}
           <Grid size={{ xs: 12, md: 7.8 }}>
             {eligibilityData ? (
               <>
-                {/* Eligible Cards Header */}
                 <Box
                   ref={headerRef}
                   id="cards-showcase-header"
@@ -318,7 +292,6 @@ export default function CreditCardApplicationView({
                   </Box>
                 </Box>
 
-                {/* Eligible Cards List */}
                 {eligibilityData.passedCards.length > 0 ? (
                   <Box
                     sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}
@@ -380,7 +353,6 @@ export default function CreditCardApplicationView({
               </>
             ) : (
               <>
-                {/* Header: Title, Count Chip & Description */}
                 <Box
                   ref={headerRef}
                   id="cards-showcase-header"
@@ -440,7 +412,6 @@ export default function CreditCardApplicationView({
                   </Box>
                 </Box>
 
-                {/* Cards List for Selected Category */}
                 {filteredCards.length > 0 ? (
                   <Box
                     sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}
@@ -482,7 +453,6 @@ export default function CreditCardApplicationView({
               </>
             )}
 
-            {/* Bottom Indicative Disclaimer */}
             <Box sx={{ pt: 3, pb: 1, textAlign: "center" }}>
               <Typography
                 sx={{ fontSize: "12px", color: "#94a3b8", fontStyle: "italic" }}
@@ -495,10 +465,8 @@ export default function CreditCardApplicationView({
         </Grid>
       </Container>
 
-      {/* ── Dynamic Category FAQ Section ──────── */}
       <CommonFAQSection category="credit-cards" />
 
-      {/* ── Dialog: "Find cards you qualify for" ───────────────────────── */}
       <CreditCardEligibilityModal
         open={openEligibilityModal}
         onClose={() => {
@@ -510,7 +478,9 @@ export default function CreditCardApplicationView({
           const list = results ? results : [];
           const passed = list.filter((r) => r.eligible);
           const passedFullCards = passed.map((item) => {
-            const full = AVAILABLE_CREDIT_CARDS.find((c) => c.id === item.card.id);
+            const full = AVAILABLE_CREDIT_CARDS.find(
+              (c) => c.id === item.card.id,
+            );
             return full ? full : item.card;
           });
           setEligibilityData({
@@ -519,7 +489,10 @@ export default function CreditCardApplicationView({
             rawResults: results,
           });
           if (headerRef.current) {
-            headerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+            headerRef.current.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
           }
         }}
       />

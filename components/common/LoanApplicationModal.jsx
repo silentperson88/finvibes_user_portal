@@ -15,7 +15,6 @@ import {
   FormControlLabel,
   Select,
   MenuItem,
-  Alert,
   FormHelperText,
 } from "@mui/material";
 import {
@@ -45,10 +44,8 @@ export default function LoanApplicationModal({
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [loanAmount, setLoanAmount] = useState(defaultLoanAmount);
-  // Car Loan specific fields
-  const [carType, setCarType] = useState("new"); // "new" or "used"
+  const [carType, setCarType] = useState("new");
   const [carModel, setCarModel] = useState("");
-  // Education Loan specific fields
   const [studyCountry, setStudyCountry] = useState("");
   const [universityLetterReceived, setUniversityLetterReceived] =
     useState("no");
@@ -248,7 +245,6 @@ export default function LoanApplicationModal({
             onSubmit={handleSubmit}
             sx={{ display: "flex", flexDirection: "column", gap: 1.8 }}
           >
-            {/* Field 1: First Name */}
             <Box>
               <Typography
                 sx={{
@@ -281,7 +277,6 @@ export default function LoanApplicationModal({
               />
             </Box>
 
-            {/* Field 2: Last Name */}
             <Box>
               <Typography
                 sx={{
@@ -313,8 +308,6 @@ export default function LoanApplicationModal({
                 }}
               />
             </Box>
-
-            {/* Field 3: Mobile Number */}
             <Box>
               <Typography
                 sx={{
@@ -348,7 +341,6 @@ export default function LoanApplicationModal({
               />
             </Box>
 
-            {/* Field 4: Email */}
             <Box>
               <Typography
                 sx={{
@@ -382,7 +374,6 @@ export default function LoanApplicationModal({
               />
             </Box>
 
-            {/* Car Model Field (Only for Car Loan) */}
             {isCarLoan && (
               <Box>
                 <Typography
@@ -417,7 +408,6 @@ export default function LoanApplicationModal({
               </Box>
             )}
 
-            {/* Country Dropdown (Only for Education Loan) */}
             {isEducationLoan && (
               <Box>
                 <Typography
@@ -468,7 +458,6 @@ export default function LoanApplicationModal({
               </Box>
             )}
 
-            {/* Field: Loan Amount Require */}
             <Box>
               <Typography
                 sx={{
@@ -501,7 +490,6 @@ export default function LoanApplicationModal({
               />
             </Box>
 
-            {/* Car Type Radio Group (In Last, Only for Car Loan) */}
             {isCarLoan && (
               <Box>
                 <Typography
@@ -575,7 +563,6 @@ export default function LoanApplicationModal({
               </Box>
             )}
 
-            {/* University Letter Radio Group (Last, Only for Education Loan) */}
             {isEducationLoan && (
               <Box>
                 <Typography
@@ -649,7 +636,6 @@ export default function LoanApplicationModal({
               </Box>
             )}
 
-            {/* Blue Action Button: Connect Me Personally */}
             <Button
               type="submit"
               fullWidth

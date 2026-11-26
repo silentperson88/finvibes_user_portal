@@ -81,7 +81,6 @@ const STEPS = [
 export default function LoanAgainstMutualFundsView() {
   return (
     <main style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
       <CommonPageBanner
         eyebrow="SMART LIQUIDITY & COLLATERAL FINANCING"
         title="Loan Against"
@@ -109,9 +108,6 @@ export default function LoanAgainstMutualFundsView() {
           spacing={{ xs: 4, lg: 5 }}
           sx={{ alignItems: "stretch" }}
         >
-          {/* ═══════════════════════════════════════════════════════════════ */}
-          {/* LEFT COLUMN: Why Borrow Against Mutual Funds                   */}
-          {/* ═══════════════════════════════════════════════════════════════ */}
           <Grid
             size={{ xs: 12, lg: 6 }}
             sx={{ display: "flex", flexDirection: "column" }}
@@ -170,7 +166,6 @@ export default function LoanAgainstMutualFundsView() {
                 </Typography>
               </Box>
 
-              {/* 2x2 Benefits Grid - stretched to fill column */}
               <Grid
                 container
                 spacing={2}
@@ -243,9 +238,6 @@ export default function LoanAgainstMutualFundsView() {
             </Box>
           </Grid>
 
-          {/* ═══════════════════════════════════════════════════════════════ */}
-          {/* RIGHT COLUMN: 6 Simple Steps Timeline                           */}
-          {/* ═══════════════════════════════════════════════════════════════ */}
           <Grid
             size={{ xs: 12, lg: 6 }}
             sx={{ display: "flex", flexDirection: "column" }}
@@ -263,7 +255,6 @@ export default function LoanAgainstMutualFundsView() {
                 justifyContent: "space-between",
               }}
             >
-              {/* Header inside the Steps Card */}
               <Box sx={{ mb: 2 }}>
                 <Box
                   sx={{
@@ -308,7 +299,6 @@ export default function LoanAgainstMutualFundsView() {
                 </Typography>
               </Box>
 
-              {/* 6 Steps Connected Timeline */}
               <Box
                 sx={{
                   position: "relative",
@@ -320,7 +310,6 @@ export default function LoanAgainstMutualFundsView() {
                   gap: 1.1,
                 }}
               >
-                {/* Connecting Vertical Track Line */}
                 <Box
                   sx={{
                     display: { xs: "none", sm: "block" },
@@ -345,7 +334,6 @@ export default function LoanAgainstMutualFundsView() {
                       zIndex: 1,
                     }}
                   >
-                    {/* Step Number Circle / Node */}
                     <Box
                       sx={{
                         width: 32,
@@ -371,7 +359,6 @@ export default function LoanAgainstMutualFundsView() {
                       {step.number}
                     </Box>
 
-                    {/* Step Card Body */}
                     <Box
                       sx={{
                         flex: 1,
