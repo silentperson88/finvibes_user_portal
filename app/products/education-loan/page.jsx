@@ -14,13 +14,10 @@ export const metadata = {
 export default function EducationLoanPage() {
   return (
     <main>
-      {/* Option 4 Signature Overlapping Hero Section with Visual & Top HUD Calculator */}
       <LoanProductHeroSection loanType="education" />
 
-      {/* Relatable Product Category Introduction (4 Feature Cards) */}
       <ProductCategoryIntro category="education" />
 
-      {/* Partner Banks & Education Loan Offers Section */}
       <LoanBankOffers
         eyebrow="STUDENT FINANCE PARTNERS"
         title="Top Education Loan Rates from Trusted Banks"
@@ -29,10 +26,8 @@ export default function EducationLoanPage() {
         sidebarLayout={true}
       />
 
-      {/* Detailed Guide & Description Section (After Bank Comparison) */}
       <ProductCategoryGuide category="education" />
 
-      {/* Frequently Asked Questions */}
       <CommonFAQSection category="education-loan" />
     </main>
   );

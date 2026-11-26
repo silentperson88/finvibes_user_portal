@@ -34,7 +34,6 @@ import {
   Verified,
   AutoAwesome,
   ExploreOutlined,
-  PersonAddAlt1,
 } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 import {
@@ -49,10 +48,8 @@ export default function CreditCardEligibilityModal({
   preselectedCard = null,
   onEligibilityVerified,
 }) {
-  // Phase: "form" | "loading" | "results"
   const [phase, setPhase] = useState("form");
 
-  // Form inputs
   const [age, setAge] = useState("28");
   const [city, setCity] = useState("Ahmedabad");
   const [citizenship, setCitizenship] = useState("Resident Indian");
@@ -61,7 +58,6 @@ export default function CreditCardEligibilityModal({
   const [hasOtherCard, setHasOtherCard] = useState("yes"); // "yes" | "no"
   const [errorMsg, setErrorMsg] = useState("");
 
-  // Evaluated results
   const [evaluationResults, setEvaluationResults] = useState([]);
   const [submittedSalary, setSubmittedSalary] = useState("3,00,000");
   const [submittedEmp, setSubmittedEmp] = useState("salaried");
@@ -88,7 +84,6 @@ export default function CreditCardEligibilityModal({
     setSubmittedSalary(salary);
     setSubmittedEmp(employmentType);
 
-    // Profile for evaluation
     const isSalaried = employmentType === "salaried";
     const profile = {
       age: validAge,
@@ -100,7 +95,6 @@ export default function CreditCardEligibilityModal({
       hasOtherCreditCard: hasOtherCard === "yes",
     };
 
-    // Realistic evaluation delay (800ms)
     setTimeout(() => {
       const results = EligibilityEngine.evaluateAll(profile, CREDIT_CARD_RULES);
       if (onEligibilityVerified) {
@@ -149,7 +143,6 @@ export default function CreditCardEligibilityModal({
         },
       }}
     >
-      {/* ── Dialog Header ────────────────────────────────────────────── */}
       <DialogTitle
         sx={{
           p: 0,
@@ -214,9 +207,6 @@ export default function CreditCardEligibilityModal({
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* PHASE 2: LOADING SPINNER                                        */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
         {phase === "loading" ? (
           <Box
             sx={{
@@ -256,11 +246,7 @@ export default function CreditCardEligibilityModal({
             </Typography>
           </Box>
         ) : phase === "results" ? (
-          /* ═══════════════════════════════════════════════════════════════ */
-          /* PHASE 3: ELIGIBILITY RESULTS (Matching Screenshot Exactly)       */
-          /* ═══════════════════════════════════════════════════════════════ */
           passedCards.length === 0 ? (
-            /* ── No Offer Available State (Matching Image Exactly) ────── */
             <Box
               sx={{
                 backgroundColor: "#ffffff",
@@ -271,7 +257,6 @@ export default function CreditCardEligibilityModal({
                 textAlign: "center",
               }}
             >
-              {/* Gold Sparkle Badge */}
               <Box
                 sx={{
                   width: 68,
@@ -319,7 +304,6 @@ export default function CreditCardEligibilityModal({
                 today.
               </Typography>
 
-              {/* What happens next? Blue Box */}
               <Box
                 sx={{
                   backgroundColor: "#eff6ff",
@@ -455,7 +439,6 @@ export default function CreditCardEligibilityModal({
             </Box>
           ) : (
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {/* Top Results Overview Card */}
               <Box
                 sx={{
                   backgroundColor: "#ffffff",
@@ -465,7 +448,6 @@ export default function CreditCardEligibilityModal({
                   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.02)",
                 }}
               >
-                {/* Green Passed Pill Badge */}
                 <Box
                   sx={{
                     display: "inline-flex",
@@ -544,7 +526,6 @@ export default function CreditCardEligibilityModal({
                 </Button>
               </Box>
 
-              {/* List of Eligible Cards (Matching Screenshot Layout) */}
               {passedCards.map((item) => {
                 const rule = item.card;
 
@@ -564,7 +545,6 @@ export default function CreditCardEligibilityModal({
                       },
                     }}
                   >
-                    {/* Bank Name & Passed Badge */}
                     <Box
                       sx={{
                         display: "flex",
@@ -604,7 +584,6 @@ export default function CreditCardEligibilityModal({
                       </Box>
                     </Box>
 
-                    {/* Card Title */}
                     <Typography
                       sx={{
                         fontFamily: typography.fontFamily,
@@ -618,7 +597,6 @@ export default function CreditCardEligibilityModal({
                       {rule.name}
                     </Typography>
 
-                    {/* Category Pill & Fee Row */}
                     <Box
                       sx={{
                         display: "flex",
@@ -649,7 +627,6 @@ export default function CreditCardEligibilityModal({
                       </Typography>
                     </Box>
 
-                    {/* Benefit Highlight Banner (Peach / Warm Card from screenshot) */}
                     <Box
                       sx={{
                         backgroundColor: "#fffbeb",
@@ -677,7 +654,6 @@ export default function CreditCardEligibilityModal({
                       </Typography>
                     </Box>
 
-                    {/* Screening Criteria Passed Box (Light Blue border box from screenshot) */}
                     <Box
                       sx={{
                         backgroundColor: "#f8fafc",
@@ -711,7 +687,6 @@ export default function CreditCardEligibilityModal({
                         </Typography>
                       </Box>
 
-                      {/* 3 Criteria Sub-pills (Income Met, Age Bracket, Nationality) */}
                       <Box
                         sx={{
                           display: "grid",
@@ -814,7 +789,6 @@ export default function CreditCardEligibilityModal({
                         </Box>
                       </Box>
 
-                      {/* Notes Bullet Points */}
                       {rule.notes ? (
                         <Box
                           sx={{
@@ -855,7 +829,6 @@ export default function CreditCardEligibilityModal({
                       ) : null}
                     </Box>
 
-                    {/* Apply Now Button with Verified Partner Link */}
                     <Button
                       component="a"
                       href={rule.applyUrl}
@@ -884,7 +857,6 @@ export default function CreditCardEligibilityModal({
                 );
               })}
 
-              {/* Indicative Disclaimer Line */}
               <Box
                 sx={{
                   textAlign: "center",
@@ -907,16 +879,12 @@ export default function CreditCardEligibilityModal({
             </Box>
           )
         ) : (
-          /* ═══════════════════════════════════════════════════════════════ */
-          /* PHASE 1: INPUT FORM (Matching Image 2)                          */
-          /* ═══════════════════════════════════════════════════════════════ */
           <Box
             component="form"
             onSubmit={handleSubmit}
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
           >
             <Box>
-              {/* Chip: Zero CIBIL Impact */}
               <Chip
                 icon={
                   <ShieldOutlined
@@ -982,7 +950,6 @@ export default function CreditCardEligibilityModal({
               ) : null}
             </Box>
 
-            {/* ── Subheader: Applicant Details ──────────────────────────── */}
             <Box
               sx={{
                 display: "flex",
@@ -1028,7 +995,6 @@ export default function CreditCardEligibilityModal({
               </Alert>
             ) : null}
 
-            {/* Field 1: Age */}
             <Box>
               <Box
                 sx={{
@@ -1082,7 +1048,6 @@ export default function CreditCardEligibilityModal({
               </Typography>
             </Box>
 
-            {/* Field 2: Current Residence City */}
             <Box>
               <Typography
                 sx={{
@@ -1121,7 +1086,6 @@ export default function CreditCardEligibilityModal({
               />
             </Box>
 
-            {/* Field 3: Citizenship / Residence */}
             <Box>
               <Typography
                 sx={{
@@ -1153,8 +1117,6 @@ export default function CreditCardEligibilityModal({
                 </Select>
               </FormControl>
             </Box>
-
-            {/* Field 4: Employment Type */}
             <Box>
               <Typography
                 sx={{
@@ -1185,7 +1147,6 @@ export default function CreditCardEligibilityModal({
               </FormControl>
             </Box>
 
-            {/* Field 5: Gross Monthly Salary / Annual ITR */}
             <Box>
               <Typography
                 sx={{
@@ -1237,7 +1198,6 @@ export default function CreditCardEligibilityModal({
               </Typography>
             </Box>
 
-            {/* Field 6: Do you have any other credit card? */}
             <Box>
               <Typography
                 sx={{
@@ -1250,7 +1210,6 @@ export default function CreditCardEligibilityModal({
                 Do you have any other credit card? *
               </Typography>
               <Grid container spacing={1.5}>
-                {/* Yes Option */}
                 <Grid size={{ xs: 6 }}>
                   <Box
                     onClick={() => setHasOtherCard("yes")}
@@ -1312,7 +1271,6 @@ export default function CreditCardEligibilityModal({
                   </Box>
                 </Grid>
 
-                {/* No Option */}
                 <Grid size={{ xs: 6 }}>
                   <Box
                     onClick={() => setHasOtherCard("no")}
@@ -1376,7 +1334,6 @@ export default function CreditCardEligibilityModal({
               </Grid>
             </Box>
 
-            {/* Check Eligibility Button */}
             <Button
               type="submit"
               fullWidth

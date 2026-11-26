@@ -29,7 +29,7 @@ export default function HomeHeroSwiper({ onApply }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const totalSlides = 2;
-  const slideDuration = 5000; // 5s per slide
+  const slideDuration = 5000;
   const touchStartXRef = useRef(0);
   const touchEndXRef = useRef(0);
 
@@ -41,7 +41,6 @@ export default function HomeHeroSwiper({ onApply }) {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   }, [totalSlides]);
 
-  // Autoplay lifecycle
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
@@ -50,7 +49,6 @@ export default function HomeHeroSwiper({ onApply }) {
     return () => clearInterval(interval);
   }, [isPaused, handleNext, slideDuration]);
 
-  // Touch swipe handling
   const handleTouchStart = (e) => {
     touchStartXRef.current = e.touches[0].clientX;
   };
@@ -107,7 +105,6 @@ export default function HomeHeroSwiper({ onApply }) {
         borderBottom: "1px solid rgba(203, 213, 225, 0.85)",
       }}
     >
-      {/* Subtle Right-Side Ambient Gradient Glow */}
       <Box
         sx={{
           position: "absolute",
@@ -124,7 +121,6 @@ export default function HomeHeroSwiper({ onApply }) {
         }}
       />
 
-      {/* Slide Track Wrapper */}
       <Box
         sx={{
           position: "relative",
@@ -137,9 +133,6 @@ export default function HomeHeroSwiper({ onApply }) {
           pb: { xs: 4.5, sm: 5, md: 5.5 },
         }}
       >
-        {/* ========================================================= */}
-        {/* SLIDE 1: CORE HERO (Commented out per user request)       */}
-        {/* ========================================================= */}
         {false ? (
           <Box
             sx={{
@@ -155,9 +148,7 @@ export default function HomeHeroSwiper({ onApply }) {
                 spacing={{ xs: 3.5, md: 3, lg: 4 }}
                 sx={{ alignItems: "center" }}
               >
-                {/* Left Column */}
                 <Grid size={{ xs: 12, md: 6.8, lg: 6.8 }}>
-                  {/* Eyebrow Pill */}
                   <Box
                     sx={{
                       display: "inline-flex",
@@ -194,7 +185,6 @@ export default function HomeHeroSwiper({ onApply }) {
                     </Typography>
                   </Box>
 
-                  {/* H1 Main Heading */}
                   <Typography
                     component="h1"
                     sx={{
@@ -229,7 +219,6 @@ export default function HomeHeroSwiper({ onApply }) {
                     </Box>
                   </Typography>
 
-                  {/* Subtitle */}
                   <Typography
                     sx={{
                       fontSize: { xs: "0.875rem", md: "0.95rem" },
@@ -242,7 +231,6 @@ export default function HomeHeroSwiper({ onApply }) {
                     {heroData.subtitle}
                   </Typography>
 
-                  {/* CTA Buttons */}
                   <Box
                     sx={{
                       display: "flex",
@@ -317,8 +305,6 @@ export default function HomeHeroSwiper({ onApply }) {
                       <NorthEast sx={{ fontSize: 15 }} />
                     </Box>
                   </Box>
-
-                  {/* Trust Markers Row */}
                   <Box
                     sx={{
                       display: "flex",
@@ -369,7 +355,6 @@ export default function HomeHeroSwiper({ onApply }) {
                   </Box>
                 </Grid>
 
-                {/* Right Column: 3D Visual */}
                 <Grid
                   size={{ xs: 12, md: 5.2, lg: 5.2 }}
                   sx={{
@@ -404,7 +389,6 @@ export default function HomeHeroSwiper({ onApply }) {
                       }}
                     />
 
-                    {/* Floating Top-Right KYC Pill */}
                     <Box
                       sx={{
                         position: "absolute",
@@ -438,7 +422,6 @@ export default function HomeHeroSwiper({ onApply }) {
                       </Typography>
                     </Box>
 
-                    {/* Central Visual: Concept 4 Dream Home */}
                     <Box
                       sx={{
                         position: "relative",
@@ -471,7 +454,6 @@ export default function HomeHeroSwiper({ onApply }) {
                       />
                     </Box>
 
-                    {/* Floating Bottom-Left Sanction Pill */}
                     <Box
                       sx={{
                         position: "absolute",
@@ -527,9 +509,6 @@ export default function HomeHeroSwiper({ onApply }) {
           </Box>
         ) : null}
 
-        {/* ========================================================= */}
-        {/* SLIDE 2: PRODUCTS SUITE BANNER (Loans, Demat, LAMF)       */}
-        {/* ========================================================= */}
         <Box
           sx={{
             flex: "0 0 100%",
@@ -544,9 +523,7 @@ export default function HomeHeroSwiper({ onApply }) {
               spacing={{ xs: 3.5, md: 3, lg: 4 }}
               sx={{ alignItems: "center" }}
             >
-              {/* Left Column */}
               <Grid size={{ xs: 12, md: 6 }}>
-                {/* H1 / Title */}
                 <Typography
                   component="h2"
                   sx={{
@@ -575,7 +552,6 @@ export default function HomeHeroSwiper({ onApply }) {
                   </Box>
                 </Typography>
 
-                {/* Subtitle */}
                 <Typography
                   sx={{
                     fontSize: { xs: "0.875rem", md: "0.95rem" },
@@ -591,10 +567,8 @@ export default function HomeHeroSwiper({ onApply }) {
                 </Typography>
               </Grid>
 
-              {/* Right Column: 2x2 Interactive Product Showcase Cards */}
               <Grid size={{ xs: 12, md: 6 }}>
                 <Grid container spacing={2}>
-                  {/* Home Loan Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -687,7 +661,6 @@ export default function HomeHeroSwiper({ onApply }) {
                     </Box>
                   </Grid>
 
-                  {/* Personal Loan Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -779,8 +752,6 @@ export default function HomeHeroSwiper({ onApply }) {
                       </Typography>
                     </Box>
                   </Grid>
-
-                  {/* Digital Account Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -871,7 +842,6 @@ export default function HomeHeroSwiper({ onApply }) {
                     </Box>
                   </Grid>
 
-                  {/* LAMF Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -968,9 +938,6 @@ export default function HomeHeroSwiper({ onApply }) {
           </Container>
         </Box>
 
-        {/* ========================================================= */}
-        {/* SLIDE 3: CREDIT CARDS ("Card Sahi, Milega Yahin!")        */}
-        {/* ========================================================= */}
         <Box
           sx={{
             flex: "0 0 100%",
@@ -985,9 +952,7 @@ export default function HomeHeroSwiper({ onApply }) {
               spacing={{ xs: 3.5, md: 3, lg: 4 }}
               sx={{ alignItems: "center" }}
             >
-              {/* Left Column */}
               <Grid size={{ xs: 12, md: 6.2 }}>
-                {/* H1 / Title */}
                 <Typography
                   component="h2"
                   sx={{
@@ -1016,7 +981,6 @@ export default function HomeHeroSwiper({ onApply }) {
                   </Box>
                 </Typography>
 
-                {/* Subtitle */}
                 <Typography
                   sx={{
                     fontSize: { xs: "0.875rem", md: "0.95rem" },
@@ -1031,11 +995,8 @@ export default function HomeHeroSwiper({ onApply }) {
                   rewards, airport lounge access, and fuel surcharge waivers.
                 </Typography>
               </Grid>
-
-              {/* Right Column: 4 Credit Card Category Cards (2x2 Grid) */}
               <Grid size={{ xs: 12, md: 5.8 }}>
                 <Grid container spacing={2}>
-                  {/* Rewards Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -1127,7 +1088,6 @@ export default function HomeHeroSwiper({ onApply }) {
                     </Box>
                   </Grid>
 
-                  {/* Travel Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -1218,8 +1178,6 @@ export default function HomeHeroSwiper({ onApply }) {
                       </Typography>
                     </Box>
                   </Grid>
-
-                  {/* Shopping Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -1313,7 +1271,6 @@ export default function HomeHeroSwiper({ onApply }) {
                     </Box>
                   </Grid>
 
-                  {/* Fuel Surcharge Card */}
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <Box
                       component={NextLink}
@@ -1413,7 +1370,6 @@ export default function HomeHeroSwiper({ onApply }) {
         </Box>
       </Box>
 
-      {/* Prev Slide Navigation Button */}
       <IconButton
         onClick={handlePrev}
         aria-label="Previous Slide"
@@ -1443,7 +1399,6 @@ export default function HomeHeroSwiper({ onApply }) {
         <NavigateBefore sx={{ fontSize: { xs: 24, md: 30 } }} />
       </IconButton>
 
-      {/* Next Slide Navigation Button */}
       <IconButton
         onClick={handleNext}
         aria-label="Next Slide"

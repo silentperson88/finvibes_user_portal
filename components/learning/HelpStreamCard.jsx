@@ -2,7 +2,6 @@
 
 import { Box, Typography } from "@mui/material";
 import {
-  ArrowForward,
   DescriptionOutlined,
   PercentOutlined,
   AccountBalanceOutlined,
@@ -56,11 +55,9 @@ export default function HelpStreamCard({ stream }) {
         },
       }}
     >
-      {/* ── Left Content with Icon ───────────────────────────────── */}
       <Box
         sx={{ display: "flex", alignItems: "flex-start", gap: 2.5, flex: 1 }}
       >
-        {/* Stream Square Icon */}
         <Box
           sx={{
             width: 44,
@@ -78,7 +75,6 @@ export default function HelpStreamCard({ stream }) {
           {getStreamIcon(stream.iconType)}
         </Box>
 
-        {/* Text and Tags */}
         <Box sx={{ flex: 1 }}>
           <Typography
             sx={{
@@ -105,7 +101,6 @@ export default function HelpStreamCard({ stream }) {
             {stream.description}
           </Typography>
 
-          {/* Tags list with check icons */}
           <Box
             sx={{
               display: "flex",

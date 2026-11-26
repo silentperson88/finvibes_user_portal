@@ -1,6 +1,5 @@
 "use client";
 
-import NextLink from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +7,6 @@ import {
   Typography,
   IconButton,
   Grid,
-  Button,
 } from "@mui/material";
 import {
   Close,
@@ -16,10 +14,9 @@ import {
   SyncAlt,
   TrendingDown,
   CheckCircle,
-  ArrowForward,
   LockOutlined,
 } from "@mui/icons-material";
-import { colors, typography } from "@/constants";
+import { typography } from "@/constants";
 
 const formatINR = (val) => {
   const num = Number(val);
@@ -67,7 +64,6 @@ export default function LoanTransferComparisonModal({
         },
       }}
     >
-      {/* Modal Top Title Bar with Close Button */}
       <Box
         sx={{
           display: "flex",
@@ -119,16 +115,11 @@ export default function LoanTransferComparisonModal({
       </Box>
 
       <DialogContent sx={{ p: 0, overflow: "visible" }}>
-        {/* 2-Column Balanced Dashboard Layout to prevent vertical scroll */}
         <Grid container spacing={2.2} sx={{ alignItems: "stretch" }}>
-          {/* ═══════════════════════════════════════════════════════════ */}
-          {/* LEFT COLUMN: Savings Banner + Side-by-Side Current vs New   */}
-          {/* ═══════════════════════════════════════════════════════════ */}
           <Grid
             size={{ xs: 12, md: 6.8 }}
             sx={{ display: "flex", flexDirection: "column", gap: 1.6 }}
           >
-            {/* Top Mint Green Summary Banner */}
             <Box
               sx={{
                 backgroundColor: "#ecfdf5",
@@ -139,7 +130,6 @@ export default function LoanTransferComparisonModal({
                 overflow: "hidden",
               }}
             >
-              {/* Subtle Ambient Decorative Circle */}
               <Box
                 sx={{
                   position: "absolute",
@@ -211,9 +201,7 @@ export default function LoanTransferComparisonModal({
               </Box>
             </Box>
 
-            {/* Side-by-Side Current vs After Transfer Cards */}
             <Grid container spacing={1.5} sx={{ flex: 1 }}>
-              {/* Current Loan */}
               <Grid size={{ xs: 12, sm: 6 }} sx={{ display: "flex" }}>
                 <Box
                   sx={{
@@ -354,7 +342,6 @@ export default function LoanTransferComparisonModal({
                 </Box>
               </Grid>
 
-              {/* After Transfer */}
               <Grid size={{ xs: 12, sm: 6 }} sx={{ display: "flex" }}>
                 <Box
                   sx={{
@@ -498,9 +485,6 @@ export default function LoanTransferComparisonModal({
             </Grid>
           </Grid>
 
-          {/* ═══════════════════════════════════════════════════════════ */}
-          {/* RIGHT COLUMN: Audit Breakdown, Net Saving & Action Button    */}
-          {/* ═══════════════════════════════════════════════════════════ */}
           <Grid
             size={{ xs: 12, md: 5.2 }}
             sx={{ display: "flex", flexDirection: "column" }}
@@ -518,7 +502,6 @@ export default function LoanTransferComparisonModal({
                 gap: 1.4,
               }}
             >
-              {/* Card Header */}
               <Box
                 sx={{
                   display: "flex",
@@ -547,7 +530,6 @@ export default function LoanTransferComparisonModal({
                 </Box>
               </Box>
 
-              {/* Rows */}
               <Box sx={{ display: "flex", flexDirection: "column", gap: 0.9 }}>
                 <Box
                   sx={{
@@ -613,7 +595,6 @@ export default function LoanTransferComparisonModal({
                 </Box>
               </Box>
 
-              {/* Highlight Net Saving Banner */}
               <Box
                 sx={{
                   backgroundColor: "#dcfce7",
@@ -655,31 +636,7 @@ export default function LoanTransferComparisonModal({
                 </Typography>
               </Box>
 
-              {/* Action Button & Trust Note */}
               <Box sx={{ display: "flex", flexDirection: "column", gap: 0.8 }}>
-                {/* <Button
-                  component={NextLink}
-                  href="/contact"
-                  variant="contained"
-                  fullWidth
-                  endIcon={<ArrowForward sx={{ fontSize: 16 }} />}
-                  sx={{
-                    py: 1.25,
-                    borderRadius: "10px",
-                    backgroundColor: colors.brand.primary,
-                    color: "#ffffff",
-                    fontWeight: 800,
-                    fontSize: "13.5px",
-                    textTransform: "none",
-                    boxShadow: "0 4px 14px rgba(11, 99, 229, 0.22)",
-                    "&:hover": {
-                      backgroundColor: colors.brand.primaryDark,
-                    },
-                  }}
-                >
-                  Proceed with Balance Transfer
-                </Button> */}
-
                 <Box
                   sx={{
                     display: "flex",

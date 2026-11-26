@@ -10,8 +10,10 @@ export const metadata = {
 
 export default function CreditGuidePage() {
   return (
-    <Box component="main" sx={{ backgroundColor: "#ffffff", minHeight: "85vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
+    <Box
+      component="main"
+      sx={{ backgroundColor: "#ffffff", minHeight: "85vh" }}
+    >
       <CommonPageBanner
         eyebrow="CREDIT HEALTH DESK • BUREAU SPECTRUM"
         title="Credit Score"
@@ -25,7 +27,6 @@ export default function CreditGuidePage() {
         ]}
       />
 
-      {/* Main Credit Score Guide / Analyzer */}
       <Box sx={{ py: { xs: 2, md: 2 } }}>
         <CreditScoreGuide />
       </Box>

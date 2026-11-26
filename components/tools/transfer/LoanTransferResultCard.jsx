@@ -42,7 +42,6 @@ export default function LoanTransferResultCard({
         top: 100,
       }}
     >
-      {/* Top Header Row: Label & Savings Badge */}
       <Box
         sx={{
           display: "flex",
@@ -84,7 +83,6 @@ export default function LoanTransferResultCard({
         </Box>
       </Box>
 
-      {/* Big Highlighted Savings Amount in Emerald Green */}
       <Typography
         sx={{
           fontFamily: typography.fontFamily,
@@ -98,8 +96,6 @@ export default function LoanTransferResultCard({
       >
         ₹ {formatINR(netSavings)}
       </Typography>
-
-      {/* Estimated Monthly Drop Highlight Card */}
       <Box
         sx={{
           backgroundColor: colors.surface.white,
@@ -167,9 +163,7 @@ export default function LoanTransferResultCard({
         </Box>
       </Box>
 
-      {/* Breakdown Rows with Clean Dividers */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1.6, mb: 3.5 }}>
-        {/* Row 1: Current Monthly EMI */}
         <Box
           sx={{
             display: "flex",
@@ -192,7 +186,6 @@ export default function LoanTransferResultCard({
           </Typography>
         </Box>
 
-        {/* Row 2: New Reduced Monthly EMI */}
         <Box
           sx={{
             display: "flex",
@@ -215,7 +208,6 @@ export default function LoanTransferResultCard({
           </Typography>
         </Box>
 
-        {/* Row 3: Gross Interest Savings */}
         <Box
           sx={{
             display: "flex",
@@ -238,7 +230,6 @@ export default function LoanTransferResultCard({
           </Typography>
         </Box>
 
-        {/* Row 4: Total Transfer & Admin Fees */}
         <Box
           sx={{
             display: "flex",
@@ -262,7 +253,6 @@ export default function LoanTransferResultCard({
         </Box>
       </Box>
 
-      {/* Action Buttons */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1.4 }}>
         <CTAButton
           fullWidth

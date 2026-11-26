@@ -77,7 +77,6 @@ export default function LoanBankOffers({
     ? activeRateOption.label
     : "All Rates";
 
-  // Check if any filter is active without logical OR operators
   const hasActiveFilters = searchQuery
     ? true
     : rateFilter !== "all"
@@ -104,8 +103,6 @@ export default function LoanBankOffers({
     setRateFilter(val);
     scrollToSectionTop();
   };
-
-  // Prepare items for NavDropdown
   const dropdownItems = useMemo(() => {
     return RATE_FILTER_OPTIONS.map((opt) => ({
       label: opt.label,
@@ -114,7 +111,6 @@ export default function LoanBankOffers({
     }));
   }, [id]);
 
-  // Filter and sort banks
   const filteredBanks = useMemo(() => {
     const trimmedQuery = searchQuery.trim().toLowerCase();
 
@@ -237,7 +233,6 @@ export default function LoanBankOffers({
                 },
               }}
             >
-              {/* Top Header Row: Bank Avatar, Name, Badge + Processing Fee & Apply CTA */}
               <Box
                 sx={{
                   display: "flex",
@@ -248,7 +243,6 @@ export default function LoanBankOffers({
                   mb: 2.5,
                 }}
               >
-                {/* Left: Bank Logo & Name */}
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1.8 }}>
                   <Box
                     sx={{
@@ -341,7 +335,6 @@ export default function LoanBankOffers({
                   </Box>
                 </Box>
 
-                {/* Right: Processing Fee & CTA Button */}
                 <Box
                   sx={{
                     display: "flex",
@@ -389,7 +382,6 @@ export default function LoanBankOffers({
                 </Box>
               </Box>
 
-              {/* Middle: Spacious Key Metrics Sub-Grid */}
               <Box
                 sx={{
                   display: "grid",
@@ -405,7 +397,6 @@ export default function LoanBankOffers({
                   mb: 2,
                 }}
               >
-                {/* Interest Rate */}
                 <Box
                   sx={{
                     p: 1.2,
@@ -440,7 +431,6 @@ export default function LoanBankOffers({
                   </Typography>
                 </Box>
 
-                {/* Max Tenure */}
                 <Box
                   sx={{
                     p: 1.2,
@@ -475,7 +465,6 @@ export default function LoanBankOffers({
                   </Typography>
                 </Box>
 
-                {/* Max Loan Amount */}
                 <Box
                   sx={{
                     p: 1.2,
@@ -512,7 +501,6 @@ export default function LoanBankOffers({
                 </Box>
               </Box>
 
-              {/* Bottom: Highlights Bullet Points */}
               {bank.highlights && bank.highlights.length > 0 ? (
                 <Box
                   sx={{
@@ -561,20 +549,7 @@ export default function LoanBankOffers({
       }}
     >
       <Container maxWidth="lg">
-        {/* Section Header */}
         <Box sx={{ mb: { xs: 3.5, md: 4.5 }, textAlign: "center" }}>
-          {/* <Typography
-            sx={{
-              fontSize: "12px",
-              fontWeight: 700,
-              letterSpacing: "1.2px",
-              color: colors.brand.primary,
-              textTransform: "uppercase",
-              mb: 1,
-            }}
-          >
-            {eyebrow}
-          </Typography> */}
           <Typography
             sx={{
               fontFamily: typography.fontFamily,
@@ -593,7 +568,6 @@ export default function LoanBankOffers({
               fontSize: { xs: "14px", sm: "15px" },
               color: colors.text.secondary,
               maxWidth: "680px",
-              // mx: "auto",
               lineHeight: 1.6,
               textAlign: "left",
             }}
@@ -611,7 +585,6 @@ export default function LoanBankOffers({
               alignItems: "start",
             }}
           >
-            {/* ── LEFT SIDEBAR: Sticky Filter Offers & Interest Rate Range ── */}
             <Box
               component="aside"
               sx={{
@@ -629,7 +602,6 @@ export default function LoanBankOffers({
                   boxShadow: "0 4px 20px rgba(15, 23, 42, 0.04)",
                 }}
               >
-                {/* Header: Filter Offers & Count */}
                 <Box
                   sx={{
                     display: "flex",
@@ -672,7 +644,6 @@ export default function LoanBankOffers({
                   </Box>
                 </Box>
 
-                {/* Search Box */}
                 <TextField
                   fullWidth
                   size="small"
@@ -722,7 +693,6 @@ export default function LoanBankOffers({
                   }}
                 />
 
-                {/* Filter Label: Interest Rate Range */}
                 <Typography
                   sx={{
                     fontFamily: typography.fontFamily,
@@ -737,7 +707,6 @@ export default function LoanBankOffers({
                   Interest Rate Range
                 </Typography>
 
-                {/* Rate Range Buttons */}
                 <Box
                   sx={{ display: "flex", flexDirection: "column", gap: 0.8 }}
                 >
@@ -779,7 +748,6 @@ export default function LoanBankOffers({
                   })}
                 </Box>
 
-                {/* Reset Filters button if any filter is active */}
                 {hasActiveFilters ? (
                   <Button
                     fullWidth
@@ -807,14 +775,10 @@ export default function LoanBankOffers({
               </Box>
             </Box>
 
-            {/* ── RIGHT COLUMN: Bank Cards List ── */}
             <Box sx={{ minWidth: 0 }}>{renderBankCards()}</Box>
           </Box>
         ) : (
           <>
-            {/* ═══════════════════════════════════════════════════════════
-                SEARCH & RATE FILTER TOOLBAR (RIGHT ALIGNED WITH NavDropdown)
-                ═══════════════════════════════════════════════════════════ */}
             <Box
               sx={{
                 display: "flex",
@@ -825,7 +789,6 @@ export default function LoanBankOffers({
                 mb: 3,
               }}
             >
-              {/* Left: Dynamic Bank Count Badge */}
               <Box
                 sx={{
                   display: "flex",
@@ -859,7 +822,6 @@ export default function LoanBankOffers({
                 </Box>
               </Box>
 
-              {/* Right: Pure White Search Box + Navbar-Styled Dropdown */}
               <Box
                 sx={{
                   display: "flex",
@@ -868,7 +830,6 @@ export default function LoanBankOffers({
                   flexWrap: "wrap",
                 }}
               >
-                {/* Pure White Search Box */}
                 <TextField
                   size="small"
                   value={searchQuery}
@@ -917,7 +878,6 @@ export default function LoanBankOffers({
                   }}
                 />
 
-                {/* Interest Rate Dropdown using existing NavDropdown */}
                 <Box
                   sx={{
                     width: { xs: "100%", sm: "auto" },
@@ -948,7 +908,6 @@ export default function LoanBankOffers({
               </Box>
             </Box>
 
-            {/* FULL-WIDTH HORIZONTAL BANK OFFER CARDS LIST */}
             {renderBankCards()}
           </>
         )}

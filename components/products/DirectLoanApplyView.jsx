@@ -44,7 +44,6 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
 
   return (
     <main style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
-      {/* ── Executive Navy Banner Just Like Other Pages ────────── */}
       <CommonPageBanner
         title={isPersonal ? "Quick Paperless" : "Collateral-Free"}
         highlight={isPersonal ? "Personal Loans" : "Business Loans"}
@@ -67,9 +66,7 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
         <Grid container spacing={{ xs: 4, md: 4 }}>
-          {/* Left Column: Content & Checklists */}
           <Grid size={{ xs: 12, md: 7.2 }}>
-            {/* Header */}
             <Box sx={{ mb: 4 }}>
               <Typography
                 sx={{
@@ -95,7 +92,6 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
               </Typography>
             </Box>
 
-            {/* 4 Feature/Benefit Cards (2x2 Grid) */}
             <Grid container spacing={2.5} sx={{ mb: 3.5 }}>
               {config.benefits.map((benefit, idx) => (
                 <Grid key={idx} size={{ xs: 12, sm: 6 }}>
@@ -158,9 +154,7 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
               ))}
             </Grid>
 
-            {/* 2 Detailed Checklist Cards (2x1 Grid) */}
             <Grid container spacing={2.5}>
-              {/* Card 1: Eligibility */}
               <Grid size={{ xs: 12, sm: 6 }}>
                 <Box
                   sx={{
@@ -254,7 +248,6 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
                 </Box>
               </Grid>
 
-              {/* Card 2: Documents */}
               <Grid size={{ xs: 12, sm: 6 }}>
                 <Box
                   sx={{
@@ -350,7 +343,6 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
             </Grid>
           </Grid>
 
-          {/* Right Column: Sticky Application Lead Card */}
           <Grid size={{ xs: 12, md: 4.8 }}>
             <DirectApplyLeadCard
               badge={config.leadBadge}
@@ -366,7 +358,6 @@ export default function DirectLoanApplyView({ loanType = "personal" }) {
         </Grid>
       </Container>
 
-      {/* ── Dynamic Category FAQ Section ──────── */}
       <CommonFAQSection
         category={loanType === "personal" ? "personal-loan" : "business-loan"}
       />

@@ -33,12 +33,10 @@ export default function NavDropdown({
     setSubAnchorEl(null);
   }, []);
 
-  // Auto-close menu immediately whenever the window/page is scrolled or user clicks outside
   useEffect(() => {
     if (!open) return;
 
     const handleWindowScroll = (event) => {
-      // If user is scrolling inside the open menu dropdown paper itself, do not close
       if (
         event?.target &&
         event.target.closest &&
@@ -70,12 +68,17 @@ export default function NavDropdown({
       handleImmediateClose();
     };
 
-    window.addEventListener("scroll", handleWindowScroll, { capture: true, passive: true });
+    window.addEventListener("scroll", handleWindowScroll, {
+      capture: true,
+      passive: true,
+    });
     window.addEventListener("wheel", handleWheel, { passive: true });
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      window.removeEventListener("scroll", handleWindowScroll, { capture: true });
+      window.removeEventListener("scroll", handleWindowScroll, {
+        capture: true,
+      });
       window.removeEventListener("wheel", handleWheel);
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -123,7 +126,9 @@ export default function NavDropdown({
 
   const activeColor = disableHover
     ? colors.text.primary
-    : (open ? "primary.main" : colors.text.primary);
+    : open
+      ? "primary.main"
+      : colors.text.primary;
 
   return (
     <Box
@@ -184,7 +189,6 @@ export default function NavDropdown({
         />
       </Box>
 
-      {/* Main Menu */}
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -225,9 +229,16 @@ export default function NavDropdown({
         }}
       >
         {items.map((item, index) => {
-          const itemKey = item.href ? item.href : (item.value !== undefined ? item.value : index);
-          const hasSubItems = Boolean(item.subItems && item.subItems.length > 0);
-          const isSubMenuOpen = activeSubMenuIndex === index && Boolean(subAnchorEl);
+          const itemKey = item.href
+            ? item.href
+            : item.value !== undefined
+              ? item.value
+              : index;
+          const hasSubItems = Boolean(
+            item.subItems && item.subItems.length > 0,
+          );
+          const isSubMenuOpen =
+            activeSubMenuIndex === index && Boolean(subAnchorEl);
 
           if (hasSubItems) {
             return (
@@ -266,7 +277,9 @@ export default function NavDropdown({
                     borderRadius: "6px",
                     mx: 0.6,
                     lineHeight: 1.5,
-                    backgroundColor: isSubMenuOpen ? "rgba(11, 99, 229, 0.08)" : "transparent",
+                    backgroundColor: isSubMenuOpen
+                      ? "rgba(11, 99, 229, 0.08)"
+                      : "transparent",
                     "&:hover": {
                       backgroundColor: "rgba(11, 99, 229, 0.08)",
                       color: "primary.main",
@@ -285,14 +298,15 @@ export default function NavDropdown({
                   <ChevronRight
                     sx={{
                       fontSize: 18,
-                      color: isSubMenuOpen ? "primary.main" : colors.text.secondary,
+                      color: isSubMenuOpen
+                        ? "primary.main"
+                        : colors.text.secondary,
                       transition: "transform 0.2s ease",
                       transform: isSubMenuOpen ? "translateX(2px)" : "none",
                     }}
                   />
                 </MenuItem>
 
-                {/* Nested Submenu */}
                 <Menu
                   anchorEl={subAnchorEl}
                   open={isSubMenuOpen}
@@ -312,8 +326,10 @@ export default function NavDropdown({
                     paper: {
                       onMouseEnter: () => {
                         if (triggerType === "click") return;
-                        if (subTimeoutRef.current) clearTimeout(subTimeoutRef.current);
-                        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                        if (subTimeoutRef.current)
+                          clearTimeout(subTimeoutRef.current);
+                        if (timeoutRef.current)
+                          clearTimeout(timeoutRef.current);
                       },
                       onMouseLeave: () => {
                         if (triggerType === "hover") {
@@ -374,7 +390,8 @@ export default function NavDropdown({
                 onClick={handleImmediateClose}
                 onMouseEnter={() => {
                   if (triggerType === "click") return;
-                  if (subTimeoutRef.current) clearTimeout(subTimeoutRef.current);
+                  if (subTimeoutRef.current)
+                    clearTimeout(subTimeoutRef.current);
                   setActiveSubMenuIndex(null);
                   setSubAnchorEl(null);
                 }}
@@ -422,7 +439,9 @@ export default function NavDropdown({
                 fontFamily: "inherit",
                 fontSize: typography.fontSizes.sm,
                 fontWeight: item.selected ? 700 : typography.fontWeights.medium,
-                color: item.selected ? colors.brand.primary : colors.text.primary,
+                color: item.selected
+                  ? colors.brand.primary
+                  : colors.text.primary,
                 backgroundColor: item.selected ? "#f0f6ff" : "transparent",
                 padding: "9px 14px",
                 borderRadius: "6px",
@@ -430,8 +449,12 @@ export default function NavDropdown({
                 lineHeight: 1.5,
                 "&:hover": disableHover
                   ? {
-                      backgroundColor: item.selected ? "#f0f6ff" : "transparent",
-                      color: item.selected ? colors.brand.primary : colors.text.primary,
+                      backgroundColor: item.selected
+                        ? "#f0f6ff"
+                        : "transparent",
+                      color: item.selected
+                        ? colors.brand.primary
+                        : colors.text.primary,
                     }
                   : {
                       backgroundColor: "rgba(11, 99, 229, 0.08)",

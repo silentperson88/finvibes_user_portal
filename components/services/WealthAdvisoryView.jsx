@@ -8,7 +8,6 @@ import {
   Grid,
   Typography,
   Button,
-  Chip,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -26,8 +25,6 @@ import {
   CheckCircle,
   Close as CloseIcon,
   NorthEast,
-  VerifiedUserOutlined,
-  AutoGraphOutlined,
 } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
@@ -123,7 +120,6 @@ export default function WealthAdvisoryView() {
         minHeight: "100vh",
       }}
     >
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
       <CommonPageBanner
         eyebrow="PRIVATE WEALTH DESK & ASSET ARCHITECTURE"
         title="Institutional"
@@ -139,7 +135,6 @@ export default function WealthAdvisoryView() {
         maxWidth="lg"
         sx={{ pt: { xs: 4, md: 6 }, pb: { xs: 4, md: 6 } }}
       >
-        {/* ── Section Header ─────────────────────────────────────────── */}
         <Box sx={{ maxWidth: "800px", mb: { xs: 4, md: 5 } }}>
           <Typography
             sx={{
@@ -168,7 +163,6 @@ export default function WealthAdvisoryView() {
             preservation.
           </Typography>
 
-          {/* Call to Action Button */}
           <Button
             variant="contained"
             onClick={handleOpenModal}
@@ -193,7 +187,6 @@ export default function WealthAdvisoryView() {
           </Button>
         </Box>
 
-        {/* ── 2x2 Pillars Grid ───────────────────────────────────────── */}
         <Grid container spacing={3}>
           {ADVISORY_PILLARS.map((pillar) => (
             <Grid key={pillar.id} size={{ xs: 12, md: 6 }}>
@@ -215,7 +208,6 @@ export default function WealthAdvisoryView() {
                   },
                 }}
               >
-                {/* Icon & Title Inline Row */}
                 <Box
                   sx={{
                     display: "flex",
@@ -252,7 +244,6 @@ export default function WealthAdvisoryView() {
                   </Typography>
                 </Box>
 
-                {/* Subtitle */}
                 <Typography
                   sx={{
                     fontSize: "13px",
@@ -264,7 +255,6 @@ export default function WealthAdvisoryView() {
                   {pillar.subtitle}
                 </Typography>
 
-                {/* Inner Bullet Points Card */}
                 <Box
                   sx={{
                     backgroundColor: "#f8fafc",
@@ -312,8 +302,6 @@ export default function WealthAdvisoryView() {
           ))}
         </Grid>
       </Container>
-
-      {/* ── Book Consultation Dialog ───────────────────────────────── */}
       <Dialog
         open={openModal}
         onClose={handleCloseModal}
@@ -446,7 +434,6 @@ export default function WealthAdvisoryView() {
         </Box>
       </Dialog>
 
-      {/* Snackbar feedback */}
       <Snackbar
         open={openSnackbar}
         autoHideDuration={4000}

@@ -63,7 +63,6 @@ export default function SmartToolsShowcase() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Section Heading */}
         <Box
           sx={{
             textAlign: "center",
@@ -101,8 +100,6 @@ export default function SmartToolsShowcase() {
             bank paperwork.
           </Typography>
         </Box>
-
-        {/* Tools 4-Column Grid */}
         <Grid container spacing={{ xs: 2.5, md: 3 }}>
           {TOOLS.map((tool) => (
             <Grid key={tool.title} size={{ xs: 12, sm: 6, lg: 3 }}>
@@ -133,7 +130,6 @@ export default function SmartToolsShowcase() {
                 }}
               >
                 <Box>
-                  {/* Top Bar: Icon & Badge */}
                   <Box
                     sx={{
                       display: "flex",
@@ -170,7 +166,6 @@ export default function SmartToolsShowcase() {
                     </Typography>
                   </Box>
 
-                  {/* Title & Desc */}
                   <Typography
                     component="h3"
                     sx={{
@@ -194,7 +189,6 @@ export default function SmartToolsShowcase() {
                   </Typography>
                 </Box>
 
-                {/* Bottom Action Link */}
                 <Box
                   sx={{
                     display: "flex",

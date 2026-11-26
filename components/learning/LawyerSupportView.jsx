@@ -9,7 +9,6 @@ import CommonPageBanner from "@/components/common/CommonPageBanner";
 export default function LawyerSupportView() {
   return (
     <main style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
       <CommonPageBanner
         eyebrow="EMPANELLED LEGAL DESK & DUE DILIGENCE"
         title="Verified Legal Counsel"
@@ -23,7 +22,6 @@ export default function LawyerSupportView() {
       />
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
-        {/* Header */}
         <Box
           sx={{
             display: "flex",
@@ -33,7 +31,9 @@ export default function LawyerSupportView() {
           }}
         >
           <Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 0.5 }}>
+            <Box
+              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 0.5 }}
+            >
               <Box
                 sx={{
                   width: 26,
@@ -88,7 +88,6 @@ export default function LawyerSupportView() {
           />
         </Box>
 
-        {/* Lawyer Cards Column - Full Width Container */}
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
           {EMPANELLED_LAWYERS.map((lawyer) => (
             <LawyerCard key={lawyer.id} lawyer={lawyer} />

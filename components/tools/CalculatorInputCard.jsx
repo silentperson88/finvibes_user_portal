@@ -22,7 +22,6 @@ export default function CalculatorInputCard({
         ...sx,
       }}
     >
-      {/* Header */}
       <Box
         sx={{
           display: "flex",
@@ -76,7 +75,6 @@ export default function CalculatorInputCard({
           </Box>
         </Box>
 
-        {/* Optional Right Badge (e.g. FOIR: 60%) */}
         {badge && (
           <Box
             sx={{
@@ -96,9 +94,7 @@ export default function CalculatorInputCard({
         )}
       </Box>
 
-      {/* Card Content */}
       {children}
     </Box>
   );
 }
-

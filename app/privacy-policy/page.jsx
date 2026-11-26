@@ -11,7 +11,6 @@ export default function PrivacyPolicyPage() {
   const [activeKey, setActiveKey] = useState("point-1");
   const isClickScrollingRef = useRef(false);
 
-  // Smooth scroll to the specific point when clicked from the left side
   const handleScrollToPoint = (key) => {
     setActiveKey(key);
     isClickScrollingRef.current = true;
@@ -19,13 +18,11 @@ export default function PrivacyPolicyPage() {
     if (targetEl) {
       targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    // Release click scroll lock after animation completes
     setTimeout(() => {
       isClickScrollingRef.current = false;
     }, 700);
   };
 
-  // Scroll spy to automatically update active point on the left as user scrolls the right side
   useEffect(() => {
     const handleScroll = () => {
       if (isClickScrollingRef.current) return;
@@ -59,7 +56,6 @@ export default function PrivacyPolicyPage() {
         pb: { xs: 3.5, md: 4.5 },
       }}
     >
-      {/* ── Standard Common Page Banner ── */}
       <CommonPageBanner
         eyebrow="LEGAL & PRIVACY"
         title="Privacy"
@@ -69,7 +65,6 @@ export default function PrivacyPolicyPage() {
         showModuleTabs={false}
       />
 
-      {/* ── Main Layout: Left Navigation + Right Content ── */}
       <Container maxWidth="lg" sx={{ mt: { xs: 3.5, md: 5 } }}>
         <Box
           sx={{
@@ -79,7 +74,6 @@ export default function PrivacyPolicyPage() {
             alignItems: "start",
           }}
         >
-          {/* ── LEFT SIDE: Sticky Navigation Index ── */}
           <Box
             sx={{
               position: { xs: "sticky", md: "sticky" },
@@ -90,7 +84,6 @@ export default function PrivacyPolicyPage() {
               pb: { xs: 1.5, md: 0 },
             }}
           >
-            {/* Desktop Vertical Menu */}
             <Card
               elevation={0}
               sx={{
@@ -179,7 +172,6 @@ export default function PrivacyPolicyPage() {
               </Box>
             </Card>
 
-            {/* Mobile Horizontal Scrollable Pills */}
             <Box
               sx={{
                 display: { xs: "flex", md: "none" },
@@ -233,7 +225,6 @@ export default function PrivacyPolicyPage() {
             </Box>
           </Box>
 
-          {/* ── RIGHT SIDE: Points with Full Descriptions (Single Clean Document) ── */}
           <Card
             elevation={0}
             sx={{
@@ -246,7 +237,6 @@ export default function PrivacyPolicyPage() {
               flexDirection: "column",
             }}
           >
-            {/* Header: Title & Opening Paragraph */}
             <Box sx={{ pb: 3.5 }}>
               <Typography
                 sx={{
@@ -285,7 +275,6 @@ export default function PrivacyPolicyPage() {
               </Typography>
             </Box>
 
-            {/* Render all 9 Points without separate cards */}
             {PRIVACY_SECTIONS.map((section) => (
               <Box
                 key={section.key}
@@ -297,7 +286,6 @@ export default function PrivacyPolicyPage() {
                   borderTop: "1px solid #f1f5f9",
                 }}
               >
-                {/* Point Title */}
                 <Typography
                   sx={{
                     fontFamily: typography.fontFamily,
@@ -310,7 +298,6 @@ export default function PrivacyPolicyPage() {
                   {section.title}
                 </Typography>
 
-                {/* Point Lead / Description */}
                 {section.lead && (
                   <Typography
                     sx={{
@@ -327,7 +314,6 @@ export default function PrivacyPolicyPage() {
                   </Typography>
                 )}
 
-                {/* Subsections with Bullet Lists (if any) */}
                 {section.subsections.map((sub, sIdx) => (
                   <Box
                     key={sIdx}
@@ -374,7 +360,6 @@ export default function PrivacyPolicyPage() {
                   </Box>
                 ))}
 
-                {/* Closing Text (for section 6) */}
                 {section.closingText && (
                   <Typography
                     sx={{
@@ -389,7 +374,6 @@ export default function PrivacyPolicyPage() {
                   </Typography>
                 )}
 
-                {/* Contact Email Box (for section 9) */}
                 {section.contactEmail && (
                   <Box
                     sx={{
@@ -422,7 +406,6 @@ export default function PrivacyPolicyPage() {
               </Box>
             ))}
 
-            {/* Important Notice Callout Box (Exact from Screenshot 3) */}
             <Box
               sx={{
                 p: { xs: 2.5, sm: 3 },
@@ -477,7 +460,6 @@ export default function PrivacyPolicyPage() {
               </Box>
             </Box>
 
-            {/* Last Updated Timestamp (Exact from Screenshot 3) */}
             <Typography
               sx={{
                 fontFamily: typography.fontFamily,

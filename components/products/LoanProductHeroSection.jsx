@@ -33,14 +33,12 @@ import homeLoanHeroImg from "@/assets/home_loan_hero.jpg";
 import carLoanVisualImg from "@/assets/car_loan_visual.jpg";
 import educationLoanVisualImg from "@/assets/education_loan_visual.jpg";
 
-// Format currency in Indian numbering system
 const formatINR = (val) => {
   const num = Number(val);
   if (isNaN(num)) return "0";
   return new Intl.NumberFormat("en-IN").format(Math.round(num));
 };
 
-// Format values into Lakhs/Crore label (e.g. ₹50 lakh, ₹1.04 Cr)
 const formatLakhOrCrore = (val) => {
   const num = Number(val);
   if (isNaN(num) ? true : num <= 0) return "₹0";
@@ -55,7 +53,6 @@ const formatLakhOrCrore = (val) => {
   return `₹${lk} lakh`;
 };
 
-// Per-loan product configuration for Option 4 layout
 const LOAN_HERO_CONFIG = {
   home: {
     titlePrefix: "Home Loan Rates & ",
@@ -133,10 +130,8 @@ export default function LoanProductHeroSection({
     ? PRODUCT_CALCULATOR_CONFIG[loanType]
     : PRODUCT_CALCULATOR_CONFIG.home;
 
-  // Car loan specific sub-tab state ("new" vs "used")
   const [carType, setCarType] = useState("new");
 
-  // Calculator State
   const [amount, setAmount] = useState(calcConfig.amount);
   const [rate, setRate] = useState(calcConfig.rate);
   const [rateInput, setRateInput] = useState(String(calcConfig.rate));
@@ -158,7 +153,6 @@ export default function LoanProductHeroSection({
     setRateInput(String(newRate));
   };
 
-  // EMI Math Calculation
   const calculation = useMemo(() => {
     const P = Math.max(0, amount);
     const R = Math.max(0, rate) / 12 / 100;
@@ -197,9 +191,6 @@ export default function LoanProductHeroSection({
         pb: { xs: 5, md: 7 },
       }}
     >
-      {/* ═══════════════════════════════════════════════════════════
-          TOP EXECUTIVE HEADER STRIP (MATCHING DIGITAL BANK BANNER)
-          ═══════════════════════════════════════════════════════════ */}
       <Box
         sx={{
           background:
@@ -213,7 +204,6 @@ export default function LoanProductHeroSection({
           overflow: "hidden",
         }}
       >
-        {/* Ambient glow orbs */}
         <Box
           sx={{
             position: "absolute",
@@ -285,9 +275,6 @@ export default function LoanProductHeroSection({
         </Container>
       </Box>
 
-      {/* ═══════════════════════════════════════════════════════════
-          OVERLAPPING CONTENT CARDS (SIDE BY SIDE)
-          ═══════════════════════════════════════════════════════════ */}
       <Container
         maxWidth="lg"
         sx={{
@@ -301,9 +288,6 @@ export default function LoanProductHeroSection({
           spacing={{ xs: 3, md: 3.5 }}
           sx={{ alignItems: "stretch" }}
         >
-          {/* ──────────────────────────────────────────────────────────
-              LEFT CARD: PRODUCT IMAGE & VALUE PROPOSITION
-              ────────────────────────────────────────────────────────── */}
           <Grid size={{ xs: 12, md: 4.8 }}>
             <Box
               sx={{
@@ -321,7 +305,6 @@ export default function LoanProductHeroSection({
                 },
               }}
             >
-              {/* Photo Area */}
               <Box
                 sx={{
                   position: "relative",
@@ -344,7 +327,6 @@ export default function LoanProductHeroSection({
                 />
               </Box>
 
-              {/* Body Content */}
               <Box
                 sx={{
                   p: { xs: 2.8, sm: 3.2 },
@@ -415,7 +397,6 @@ export default function LoanProductHeroSection({
                     {heroConfig.cardDescription}
                   </Typography>
 
-                  {/* Feature Checkpoints */}
                   <Box
                     sx={{
                       display: "flex",
@@ -450,7 +431,6 @@ export default function LoanProductHeroSection({
                   </Box>
                 </Box>
 
-                {/* Bottom Action Button */}
                 <CTAButton
                   variant="contained"
                   label="Check Pre-Approved Offer →"
@@ -476,9 +456,6 @@ export default function LoanProductHeroSection({
             </Box>
           </Grid>
 
-          {/* ──────────────────────────────────────────────────────────
-              RIGHT CARD: CALCULATOR WITH EXACT PREVIOUS SLIDERS & TOP HUD
-              ────────────────────────────────────────────────────────── */}
           <Grid size={{ xs: 12, md: 7.2 }}>
             <Box
               sx={{
@@ -494,7 +471,6 @@ export default function LoanProductHeroSection({
               }}
             >
               <Box>
-                {/* Header row */}
                 <Box
                   sx={{
                     display: "flex",
@@ -520,7 +496,6 @@ export default function LoanProductHeroSection({
                   </Box>
                 </Box>
 
-                {/* Optional Car Loan Sub-Tabs (New Car vs Used Car) */}
                 {calcConfig.hasCarTabs && (
                   <Box
                     sx={{
@@ -568,11 +543,6 @@ export default function LoanProductHeroSection({
                     })}
                   </Box>
                 )}
-
-                {/* ════════════════════════════════════════════════════
-                    TOP HUD: EMI RESULT SITS PROMINENTLY ON TOP
-                    (Matches user screenshot: Left EMI, Right Total Interest)
-                    ════════════════════════════════════════════════════ */}
                 <Box
                   sx={{
                     backgroundColor: "#f4f8fd",
@@ -642,10 +612,6 @@ export default function LoanProductHeroSection({
                   </Box>
                 </Box>
 
-                {/* ════════════════════════════════════════════════════
-                    SLIDERS CONTROLS (EXACTLY MATCHING USER SCREENSHOT)
-                    ════════════════════════════════════════════════════ */}
-                {/* 1. Loan Amount */}
                 <Box sx={{ mb: 3 }}>
                   <Box
                     sx={{
@@ -705,7 +671,6 @@ export default function LoanProductHeroSection({
                   />
                 </Box>
 
-                {/* 2. Interest Rate */}
                 <Box sx={{ mb: 3 }}>
                   <Box
                     sx={{
@@ -784,7 +749,10 @@ export default function LoanProductHeroSection({
                   <Slider
                     value={Math.min(
                       calcConfig.maxRate,
-                      Math.max(rateRule.minRate, Number(rate) ? Number(rate) : rateRule.minRate),
+                      Math.max(
+                        rateRule.minRate,
+                        Number(rate) ? Number(rate) : rateRule.minRate,
+                      ),
                     )}
                     min={rateRule.minRate}
                     max={calcConfig.maxRate}
@@ -831,7 +799,6 @@ export default function LoanProductHeroSection({
                   ) : null}
                 </Box>
 
-                {/* 3. Tenure (Years) */}
                 <Box sx={{ mb: 1.5 }}>
                   <Box
                     sx={{
@@ -899,7 +866,6 @@ export default function LoanProductHeroSection({
                 </Box>
               </Box>
 
-              {/* Bottom Quick Total Summary Strip */}
               <Box
                 sx={{
                   pt: 2.5,

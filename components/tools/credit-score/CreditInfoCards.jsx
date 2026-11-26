@@ -26,7 +26,6 @@ export default function CreditInfoCards() {
             },
           }}
         >
-          {/* Icon Badge */}
           <Box
             sx={{
               width: 42,
@@ -42,7 +41,6 @@ export default function CreditInfoCards() {
             {item.icon}
           </Box>
 
-          {/* Texts */}
           <Box>
             <Typography
               sx={{

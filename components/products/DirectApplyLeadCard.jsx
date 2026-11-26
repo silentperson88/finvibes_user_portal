@@ -21,7 +21,6 @@ export default function DirectApplyLeadCard({
         top: 100,
       }}
     >
-      {/* Main Heading */}
       <Typography
         sx={{
           fontFamily: typography.fontFamily,
@@ -47,7 +46,6 @@ export default function DirectApplyLeadCard({
         partner portal.
       </Typography>
 
-      {/* Checkmarks Feature Pills */}
       <Box
         sx={{
           display: "flex",
@@ -79,7 +77,6 @@ export default function DirectApplyLeadCard({
         ))}
       </Box>
 
-      {/* Action Button: Apply Now opening in another tab */}
       <Button
         component="a"
         href={applyUrl}
@@ -109,7 +106,6 @@ export default function DirectApplyLeadCard({
         Apply Now
       </Button>
 
-      {/* Trust & Security Footer */}
       <Box
         sx={{
           display: "flex",

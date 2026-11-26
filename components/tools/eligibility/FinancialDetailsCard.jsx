@@ -1,12 +1,10 @@
 "use client";
 
 import { Box, Grid, Typography, Button } from "@mui/material";
-import { East } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 import { validateInterestRate } from "@/validations/loanRateSchema";
 import CalculatorInputCard from "../CalculatorInputCard";
 import CalculatorTextField from "../CalculatorTextField";
-import CTAButton from "@/components/common/CTAButton";
 import NavDropdown from "@/components/common/NavDropdown";
 
 export default function FinancialDetailsCard({
@@ -33,7 +31,6 @@ export default function FinancialDetailsCard({
       badge={`FOIR: ${foirPct}%`}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2.4 }}>
-        {/* Car Loan Sub-Type Toggle (New vs Used) */}
         {loanType === "car" ? (
           <Box sx={{ display: "flex", gap: 1.2 }}>
             {[
@@ -76,7 +73,6 @@ export default function FinancialDetailsCard({
             })}
           </Box>
         ) : null}
-        {/* Input 1: Monthly Income */}
         <CalculatorTextField
           label="Monthly Income"
           placeholder="100000"
@@ -88,7 +84,6 @@ export default function FinancialDetailsCard({
           startAdornment="₹"
         />
 
-        {/* Input 2: Existing Monthly EMI */}
         <CalculatorTextField
           label="Existing Monthly EMI"
           placeholder="10000"
@@ -100,7 +95,6 @@ export default function FinancialDetailsCard({
           startAdornment="₹"
         />
 
-        {/* Dual Inputs: Interest Rate & Loan Tenure */}
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, sm: 6 }}>
             <CalculatorTextField

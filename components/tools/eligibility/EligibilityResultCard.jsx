@@ -35,7 +35,6 @@ export default function EligibilityResultCard({
         top: 100,
       }}
     >
-      {/* Top Header Row: Label & Pre-Qualified Badge */}
       <Box
         sx={{
           display: "flex",
@@ -58,7 +57,6 @@ export default function EligibilityResultCard({
         </Typography>
       </Box>
 
-      {/* Big Highlighted Eligibility Amount */}
       <Typography
         sx={{
           fontFamily: typography.fontFamily,
@@ -73,7 +71,6 @@ export default function EligibilityResultCard({
         ₹ {formatINR(eligibilityAmount)}
       </Typography>
 
-      {/* 3 Metric Cards Row */}
       <Grid container spacing={1.5} sx={{ mb: 3 }}>
         <Grid size={{ xs: 4 }} sx={{ display: "flex" }}>
           <Box
@@ -202,7 +199,6 @@ export default function EligibilityResultCard({
         </Grid>
       </Grid>
 
-      {/* FOIR Progress & Utilisation Box */}
       <Box
         sx={{
           backgroundColor: colors.surface.white,
@@ -240,7 +236,6 @@ export default function EligibilityResultCard({
           </Typography>
         </Box>
 
-        {/* Progress Bar */}
         <Box
           sx={{
             height: 9,
@@ -261,7 +256,6 @@ export default function EligibilityResultCard({
           />
         </Box>
 
-        {/* Dynamic Caption */}
         <Typography
           sx={{
             fontSize: "12px",
@@ -278,7 +272,6 @@ export default function EligibilityResultCard({
         </Typography>
       </Box>
 
-      {/* Bottom CTA Button: Triggers Application Popup Modal */}
       <CTAButton
         onClick={onApplyClick}
         label="Apply for This Loan"

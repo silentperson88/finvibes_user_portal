@@ -39,7 +39,6 @@ export default function CommonPageBanner({
         width: "100%",
       }}
     >
-      {/* Background Subtle Luminous Ambient Light (matching Digital Bank Banner) */}
       <Box
         sx={{
           position: "absolute",
@@ -85,9 +84,7 @@ export default function CommonPageBanner({
             alignItems: "center",
           }}
         >
-          {/* Left Side: Header info, description, and module tabs */}
           <Box>
-            {/* H1 Main Heading */}
             <Typography
               component="h1"
               sx={{
@@ -114,7 +111,6 @@ export default function CommonPageBanner({
               ) : null}
             </Typography>
 
-            {/* Description */}
             <Typography
               sx={{
                 fontSize: { xs: "13.5px", sm: "15px" },
@@ -128,7 +124,6 @@ export default function CommonPageBanner({
               {description}
             </Typography>
 
-            {/* In-banner KPIs when bannerImage is present */}
             {bannerImage && kpis.length > 0 ? (
               <Box
                 sx={{
@@ -173,7 +168,6 @@ export default function CommonPageBanner({
               </Box>
             ) : null}
 
-            {/* Optional Call to Action Button */}
             {cta ? (
               <Box sx={{ pt: 0.5, mb: 1 }}>
                 <Button
@@ -211,7 +205,6 @@ export default function CommonPageBanner({
             ) : null}
           </Box>
 
-          {/* Right-hand Visual: Banner Image or KPI Widget */}
           {bannerImage ? (
             <Box
               sx={{

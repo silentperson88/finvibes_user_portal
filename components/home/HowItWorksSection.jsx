@@ -32,7 +32,6 @@ export default function HowItWorksSection() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Section Heading */}
         <Box
           sx={{
             textAlign: "center",
@@ -71,7 +70,6 @@ export default function HowItWorksSection() {
           </Typography>
         </Box>
 
-        {/* Steps Grid */}
         <Grid container spacing={{ xs: 3, md: 4 }}>
           {HOW_IT_WORKS_STEPS.map((item, idx) => (
             <Grid key={item.step} size={{ xs: 12, md: 4 }}>
@@ -96,7 +94,6 @@ export default function HowItWorksSection() {
                 }}
               >
                 <Box>
-                  {/* Top Bar: Step number badge & icon */}
                   <Box
                     sx={{
                       display: "flex",
@@ -133,7 +130,6 @@ export default function HowItWorksSection() {
                     </Typography>
                   </Box>
 
-                  {/* Step Title */}
                   <Typography
                     component="h3"
                     sx={{
@@ -146,7 +142,6 @@ export default function HowItWorksSection() {
                     {item.title}
                   </Typography>
 
-                  {/* Step Description */}
                   <Typography
                     sx={{
                       fontSize: "0.875rem",
@@ -158,8 +153,6 @@ export default function HowItWorksSection() {
                     {item.desc}
                   </Typography>
                 </Box>
-
-                {/* Bottom Tag */}
                 <Box
                   sx={{
                     display: "inline-flex",

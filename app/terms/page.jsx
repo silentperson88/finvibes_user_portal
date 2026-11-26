@@ -2,13 +2,7 @@ import Link from "next/link";
 import { Box, Container, Typography, Card, IconButton } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
-import {
-  colors,
-  typography,
-  COMPANY_NAME,
-  CONTACT_INFO,
-  TERMS_SECTIONS,
-} from "@/constants";
+import { colors, typography, CONTACT_INFO, TERMS_SECTIONS } from "@/constants";
 
 export const metadata = {
   title: "Terms & Conditions - Finvibes Financial Services Private Limited",
@@ -26,7 +20,6 @@ export default function TermsPage() {
         pb: { xs: 3.5, md: 4.5 },
       }}
     >
-      {/* ── Standard Common Page Banner ── */}
       <CommonPageBanner
         eyebrow="LEGAL & COMPLIANCE"
         title="Terms &"
@@ -36,10 +29,8 @@ export default function TermsPage() {
         showModuleTabs={false}
       />
 
-      {/* ── Main Content Container ── */}
       <Container maxWidth="lg" sx={{ mt: { xs: 4, md: 5 } }}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3.5 }}>
-          {/* Important Notice Callout Box (from screenshot) */}
           <Card
             elevation={0}
             sx={{
@@ -93,8 +84,6 @@ export default function TermsPage() {
               </Typography>
             </Box>
           </Card>
-
-          {/* Main Card: Welcome to Finvibes & Terms Clauses */}
           <Card
             elevation={0}
             sx={{
@@ -105,7 +94,6 @@ export default function TermsPage() {
               boxShadow: "0 4px 20px rgba(15, 23, 42, 0.04)",
             }}
           >
-            {/* Header: Welcome to Finvibes */}
             <Box sx={{ mb: 3.5 }}>
               <Typography
                 sx={{
@@ -128,7 +116,6 @@ export default function TermsPage() {
               />
             </Box>
 
-            {/* List of 10 Terms in 2 Columns on Desktop */}
             <Box
               sx={{
                 display: "grid",
@@ -178,7 +165,6 @@ export default function TermsPage() {
             </Box>
           </Card>
 
-          {/* Contact & Queries Card */}
           <Card
             elevation={0}
             sx={{

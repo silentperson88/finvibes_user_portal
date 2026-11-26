@@ -8,7 +8,6 @@ import InsightArticleCard from "./InsightArticleCard";
 export default function FinancialEducationView() {
   return (
     <main style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
       <CommonPageBanner
         eyebrow="FINANCIAL EDUCATION & KNOWLEDGE DESK"
         title="Smart Financial Insights"
@@ -21,9 +20,7 @@ export default function FinancialEducationView() {
         ]}
       />
 
-      {/* ── Articles List Section (Matching Reference Image) ──────── */}
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
-        {/* Section Header */}
         <Box
           sx={{
             display: "flex",
@@ -32,7 +29,6 @@ export default function FinancialEducationView() {
             mb: 3.5,
           }}
         >
-          {/* Vertical Blue Bar + Title */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
             <Box
               sx={{
@@ -55,7 +51,6 @@ export default function FinancialEducationView() {
             </Typography>
           </Box>
 
-          {/* Right Counter */}
           <Typography
             sx={{
               fontSize: "12.5px",
@@ -66,8 +61,6 @@ export default function FinancialEducationView() {
             Showing {FINANCIAL_INSIGHTS_ARTICLES.length} curated articles
           </Typography>
         </Box>
-
-        {/* Article Cards Column */}
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
           {FINANCIAL_INSIGHTS_ARTICLES.map((article) => (
             <InsightArticleCard key={article.id} article={article} />
