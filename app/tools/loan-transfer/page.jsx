@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function LoanTransferPage() {
   return (
-    <Box component="main" sx={{ backgroundColor: colors.surface.white, minHeight: "85vh", pb: { xs: 7, md: 9 } }}>
+    <Box component="main" sx={{ backgroundColor: colors.surface.white, minHeight: "85vh" }}>
       {/* ── Executive Common Page Banner ──────────────────────────── */}
       <CommonPageBanner
         eyebrow="SMART REFINANCING DESK • BALANCE TRANSFER"
@@ -27,7 +27,7 @@ export default function LoanTransferPage() {
       />
 
       {/* Main Loan Transfer Calculator Component */}
-      <Box sx={{ pt: { xs: 3, md: 5 } }}>
+      <Box sx={{ py: { xs: 2, md: 2 } }}>
         <LoanTransferCalculator />
       </Box>
     </Box>

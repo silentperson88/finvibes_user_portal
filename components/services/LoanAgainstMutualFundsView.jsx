@@ -10,6 +10,7 @@ import {
 } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
+import lamfBannerImg from "@/assets/banner_lamf.jpg";
 
 const BENEFITS = [
   {
@@ -88,6 +89,8 @@ export default function LoanAgainstMutualFundsView() {
         description="Unlock immediate credit limits up to 80% of your equity and debt portfolio without liquidating fund units. Zero prepayment charges, attractive interest rates, and seamless CAMS/KFintech pledge."
         activeTabHref="/services/loan-against-mutual-funds"
         showModuleTabs={false}
+        bannerImage={lamfBannerImg}
+        bannerAlt="Loan Against Mutual Funds - Keep Growing. Borrow Instant."
         cta={{
           label: "Apply Now",
           onClick: () =>
@@ -98,10 +101,6 @@ export default function LoanAgainstMutualFundsView() {
             ),
           endIcon: <NorthEast sx={{ fontSize: 16 }} />,
         }}
-        kpis={[
-          { value: "Up to 80%", label: "Portfolio Value Limit" },
-          { value: "24 Hrs", label: "Digital Disbursal" },
-        ]}
       />
 
       <Container maxWidth="lg" sx={{ py: { xs: 5, md: 7 } }}>

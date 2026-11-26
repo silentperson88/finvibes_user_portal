@@ -1,22 +1,15 @@
-import Link from "next/link";
 import {
   Box,
   Container,
   Typography,
   Card,
-  IconButton,
 } from "@mui/material";
-import {
-  FormatQuote,
-  ArrowForward,
-} from "@mui/icons-material";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
 import {
   colors,
   typography,
   ABOUT_EXPERTISE_LIST,
   ABOUT_ADVANTAGE_LIST,
-  ABOUT_SOCIAL_CHANNELS,
 } from "@/constants";
 
 export const metadata = {
@@ -32,7 +25,7 @@ export default function AboutPage() {
       sx={{
         backgroundColor: "#f8fafc",
         minHeight: "100vh",
-        pb: { xs: 8, md: 10 },
+        pb: { xs: 3.5, md: 4.5 },
       }}
     >
       {/* ── Standard Common Page Banner ── */}
@@ -290,109 +283,6 @@ export default function AboutPage() {
               </Box>
             </Card>
           </Box>
-
-          {/* Full-Width Quote Bar & Social Channels */}
-          <Card
-            elevation={0}
-            sx={{
-              p: { xs: 3, sm: 3.5, md: 4 },
-              borderRadius: "20px",
-              border: "1px solid #bfdbfe",
-              backgroundColor: "#eff6ff",
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: { xs: "flex-start", md: "center" },
-              justifyContent: "space-between",
-              gap: 3,
-            }}
-          >
-            {/* Left side: Quote & Link */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, flex: 1 }}>
-              <Box
-                sx={{
-                  width: 52,
-                  height: 52,
-                  borderRadius: "50%",
-                  backgroundColor: "#074cb8",
-                  color: "#ffffff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  boxShadow: "0 6px 16px rgba(7, 76, 184, 0.3)",
-                }}
-              >
-                <FormatQuote sx={{ fontSize: 32 }} />
-              </Box>
-
-              <Box>
-                <Typography
-                  sx={{
-                    fontFamily: typography.fontFamily,
-                    fontSize: { xs: "14.5px", sm: "16px" },
-                    fontWeight: 700,
-                    color: colors.text.primary,
-                    lineHeight: 1.5,
-                    mb: 0.5,
-                  }}
-                >
-                  At Finvibes, we go beyond transactions—we create enduring
-                  financial value and confidence.
-                </Typography>
-                <Link
-                  href="/contact"
-                  style={{
-                    textDecoration: "none",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    color: colors.brand.primary,
-                    fontSize: "14.5px",
-                    fontWeight: 800,
-                  }}
-                >
-                  Let&apos;s connect!
-                  <ArrowForward sx={{ fontSize: 16 }} />
-                </Link>
-              </Box>
-            </Box>
-
-            {/* Right side: Social Channels */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1.8,
-                flexShrink: 0,
-                alignSelf: { xs: "center", md: "auto" },
-              }}
-            >
-              {ABOUT_SOCIAL_CHANNELS.map((channel) => (
-                <IconButton
-                  key={channel.name}
-                  component="a"
-                  href={channel.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={channel.name}
-                  sx={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: "12px",
-                    background: channel.bg,
-                    boxShadow: "0 4px 14px rgba(15, 23, 42, 0.12)",
-                    transition: "all 0.2s ease",
-                    "&:hover": {
-                      transform: "translateY(-3px)",
-                      boxShadow: "0 8px 20px rgba(15, 23, 42, 0.2)",
-                    },
-                  }}
-                >
-                  {channel.icon}
-                </IconButton>
-              ))}
-            </Box>
-          </Card>
         </Box>
       </Container>
     </Box>

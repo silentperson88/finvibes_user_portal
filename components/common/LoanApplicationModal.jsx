@@ -16,6 +16,7 @@ import {
   Select,
   MenuItem,
   Alert,
+  FormHelperText,
 } from "@mui/material";
 import {
   Close as CloseIcon,
@@ -24,6 +25,7 @@ import {
   ArrowBackIosNew,
 } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
+import { createLoanApplicationSchema } from "@/validations/loanApplicationSchema";
 
 export default function LoanApplicationModal({
   open = false,
@@ -51,7 +53,16 @@ export default function LoanApplicationModal({
   const [universityLetterReceived, setUniversityLetterReceived] =
     useState("no");
   const [submitted, setSubmitted] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  const clearFieldError = (field) => {
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (defaultLoanAmount) {
@@ -65,32 +76,32 @@ export default function LoanApplicationModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      firstName.trim() === "" ||
-      lastName.trim() === "" ||
-      mobile.trim() === "" ||
-      email.trim() === ""
-    ) {
-      setErrorMsg("Please fill in all required fields to continue.");
+    const schema = createLoanApplicationSchema({ isCarLoan, isEducationLoan });
+    const parsed = schema.safeParse({
+      firstName,
+      lastName,
+      mobile,
+      email,
+      loanAmount,
+      carModel,
+      studyCountry,
+    });
+
+    if (!parsed.success) {
+      const nextErrors = {};
+      if (parsed.error && parsed.error.issues) {
+        parsed.error.issues.forEach((issue) => {
+          const key = issue.path && issue.path[0] ? issue.path[0] : null;
+          if (key && !nextErrors[key]) {
+            nextErrors[key] = issue.message;
+          }
+        });
+      }
+      setFieldErrors(nextErrors);
       return;
     }
 
-    if (mobile.trim().length < 10) {
-      setErrorMsg("Please enter a valid 10-digit mobile number.");
-      return;
-    }
-
-    if (isCarLoan && carModel.trim() === "") {
-      setErrorMsg("Please specify the car model you are looking for.");
-      return;
-    }
-
-    if (isEducationLoan && studyCountry === "") {
-      setErrorMsg("Please select the country you are applying to.");
-      return;
-    }
-
-    setErrorMsg("");
+    setFieldErrors({});
     setSubmitted(true);
   };
 
@@ -105,7 +116,7 @@ export default function LoanApplicationModal({
     setUniversityLetterReceived("no");
     setLoanAmount(defaultLoanAmount);
     setSubmitted(false);
-    setErrorMsg("");
+    setFieldErrors({});
     if (onClose) onClose();
   };
 
@@ -237,12 +248,6 @@ export default function LoanApplicationModal({
             onSubmit={handleSubmit}
             sx={{ display: "flex", flexDirection: "column", gap: 1.8 }}
           >
-            {errorMsg && (
-              <Alert severity="error" sx={{ fontSize: "12px", py: 0.5 }}>
-                {errorMsg}
-              </Alert>
-            )}
-
             {/* Field 1: First Name */}
             <Box>
               <Typography
@@ -260,7 +265,12 @@ export default function LoanApplicationModal({
                 size="small"
                 placeholder="e.g. Rahul"
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                error={Boolean(fieldErrors.firstName)}
+                helperText={fieldErrors.firstName}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                  clearFieldError("firstName");
+                }}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "10px",
@@ -288,7 +298,12 @@ export default function LoanApplicationModal({
                 size="small"
                 placeholder="e.g. Sharma"
                 value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                error={Boolean(fieldErrors.lastName)}
+                helperText={fieldErrors.lastName}
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                  clearFieldError("lastName");
+                }}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "10px",
@@ -316,9 +331,12 @@ export default function LoanApplicationModal({
                 size="small"
                 placeholder="10-digit mobile"
                 value={mobile}
-                onChange={(e) =>
-                  setMobile(e.target.value.replace(/\D/g, "").slice(0, 10))
-                }
+                error={Boolean(fieldErrors.mobile)}
+                helperText={fieldErrors.mobile}
+                onChange={(e) => {
+                  setMobile(e.target.value.replace(/\D/g, "").slice(0, 10));
+                  clearFieldError("mobile");
+                }}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "10px",
@@ -348,7 +366,12 @@ export default function LoanApplicationModal({
                 type="email"
                 placeholder="e.g. rahul@example.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                error={Boolean(fieldErrors.email)}
+                helperText={fieldErrors.email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  clearFieldError("email");
+                }}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "10px",
@@ -377,7 +400,12 @@ export default function LoanApplicationModal({
                   size="small"
                   placeholder="e.g. Hyundai Creta / Tata Nexon EV"
                   value={carModel}
-                  onChange={(e) => setCarModel(e.target.value)}
+                  error={Boolean(fieldErrors.carModel)}
+                  helperText={fieldErrors.carModel}
+                  onChange={(e) => {
+                    setCarModel(e.target.value);
+                    clearFieldError("carModel");
+                  }}
                   sx={{
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "10px",
@@ -407,7 +435,11 @@ export default function LoanApplicationModal({
                   size="small"
                   displayEmpty
                   value={studyCountry}
-                  onChange={(e) => setStudyCountry(e.target.value)}
+                  error={Boolean(fieldErrors.studyCountry)}
+                  onChange={(e) => {
+                    setStudyCountry(e.target.value);
+                    clearFieldError("studyCountry");
+                  }}
                   sx={{
                     borderRadius: "10px",
                     backgroundColor: "#f8fafc",
@@ -428,6 +460,11 @@ export default function LoanApplicationModal({
                   <MenuItem value="Singapore">Singapore</MenuItem>
                   <MenuItem value="Other">Other</MenuItem>
                 </Select>
+                {fieldErrors.studyCountry ? (
+                  <FormHelperText error sx={{ mx: 1.5 }}>
+                    {fieldErrors.studyCountry}
+                  </FormHelperText>
+                ) : null}
               </Box>
             )}
 
@@ -441,14 +478,19 @@ export default function LoanApplicationModal({
                   mb: 0.6,
                 }}
               >
-                Loan Amount Require
+                Loan Amount Require *
               </Typography>
               <TextField
                 fullWidth
                 size="small"
                 placeholder="e.g. ₹ 50,00,000"
                 value={loanAmount}
-                onChange={(e) => setLoanAmount(e.target.value)}
+                error={Boolean(fieldErrors.loanAmount)}
+                helperText={fieldErrors.loanAmount}
+                onChange={(e) => {
+                  setLoanAmount(e.target.value);
+                  clearFieldError("loanAmount");
+                }}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "10px",

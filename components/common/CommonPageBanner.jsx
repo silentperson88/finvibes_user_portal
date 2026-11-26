@@ -94,7 +94,7 @@ export default function CommonPageBanner({
                 fontFamily: typography.fontFamily,
                 fontSize: { xs: "26px", sm: "34px", md: "40px" },
                 fontWeight: 900,
-                color: "#0a2540",
+                color: colors.banner.titlePrimary,
                 lineHeight: 1.18,
                 letterSpacing: "-0.5px",
                 mb: 1.5,
@@ -105,10 +105,7 @@ export default function CommonPageBanner({
                 <Box
                   component="span"
                   sx={{
-                    background:
-                      "linear-gradient(135deg, #0b63e5 0%, #0284c7 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
+                    color: colors.banner.titleHighlight,
                     display: "inline-block",
                   }}
                 >
@@ -221,14 +218,6 @@ export default function CommonPageBanner({
                 position: "relative",
                 borderRadius: "18px",
                 overflow: "hidden",
-                boxShadow: "0 14px 36px rgba(15, 23, 42, 0.12)",
-                border: "1px solid rgba(255, 255, 255, 0.95)",
-                backgroundColor: "#ffffff",
-                transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                "&:hover": {
-                  transform: "translateY(-3px)",
-                  boxShadow: "0 20px 48px rgba(15, 23, 42, 0.16)",
-                },
               }}
             >
               <Image

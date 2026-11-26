@@ -7,7 +7,9 @@ import {
   ButtonBase,
   Container,
   Grid,
+  InputAdornment,
   Slider,
+  TextField,
   Typography,
 } from "@mui/material";
 import {
@@ -23,6 +25,10 @@ import {
   CAR_LOAN_TYPE_TABS,
 } from "@/constants";
 import CTAButton from "@/components/common/CTAButton";
+import {
+  getInterestRateRule,
+  validateInterestRate,
+} from "@/validations/loanRateSchema";
 import homeLoanHeroImg from "@/assets/home_loan_hero.jpg";
 import carLoanVisualImg from "@/assets/car_loan_visual.jpg";
 import educationLoanVisualImg from "@/assets/education_loan_visual.jpg";
@@ -133,13 +139,23 @@ export default function LoanProductHeroSection({
   // Calculator State
   const [amount, setAmount] = useState(calcConfig.amount);
   const [rate, setRate] = useState(calcConfig.rate);
+  const [rateInput, setRateInput] = useState(String(calcConfig.rate));
   const [years, setYears] = useState(calcConfig.years);
+
+  const rateRule = getInterestRateRule(loanType, carType);
+  const rateError = validateInterestRate(
+    rateInput,
+    loanType,
+    carType,
+    calcConfig.maxRate,
+  );
 
   const handleCarTypeChange = (type) => {
     setCarType(type);
     const matchedTab = CAR_LOAN_TYPE_TABS.find((t) => t.id === type);
     const newRate = matchedTab ? matchedTab.rate : 8.5;
     setRate(newRate);
+    setRateInput(String(newRate));
   };
 
   // EMI Math Calculation
@@ -238,7 +254,7 @@ export default function LoanProductHeroSection({
                 fontWeight: 800,
                 lineHeight: { xs: 1.2, sm: 1.22 },
                 letterSpacing: "-0.5px",
-                color: "#0a2540",
+                color: colors.banner.titlePrimary,
                 mb: 1.5,
               }}
             >
@@ -246,10 +262,7 @@ export default function LoanProductHeroSection({
               <Box
                 component="span"
                 sx={{
-                  background:
-                    "linear-gradient(135deg, #0b63e5 0%, #0284c7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
+                  color: colors.banner.titleHighlight,
                   display: "inline-block",
                 }}
               >
@@ -700,6 +713,7 @@ export default function LoanProductHeroSection({
                       justifyContent: "space-between",
                       alignItems: "center",
                       mb: 1.2,
+                      gap: 1.5,
                     }}
                   >
                     <Typography
@@ -711,23 +725,75 @@ export default function LoanProductHeroSection({
                     >
                       Interest Rate (% p.a.)
                     </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "15.5px",
-                        fontWeight: 800,
-                        color: colors.brand.primary,
+                    <TextField
+                      size="small"
+                      value={rateInput}
+                      error={Boolean(rateError)}
+                      onChange={(e) => {
+                        let val = e.target.value.replace(/[^0-9.]/g, "");
+                        const parts = val.split(".");
+                        if (parts.length > 2) {
+                          val = parts[0] + "." + parts.slice(1).join("");
+                        }
+                        if (parts.length === 2 && parts[1].length > 2) {
+                          val = parts[0] + "." + parts[1].slice(0, 2);
+                        }
+                        setRateInput(val);
+                        const num = Number(val);
+                        if (val !== "" && !Number.isNaN(num)) {
+                          setRate(num);
+                        }
                       }}
-                    >
-                      {Number(rate).toFixed(2)}%
-                    </Typography>
+                      slotProps={{
+                        input: {
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Typography
+                                sx={{
+                                  fontSize: "13px",
+                                  fontWeight: 800,
+                                  color: rateError
+                                    ? "#dc2626"
+                                    : colors.brand.primary,
+                                }}
+                              >
+                                %
+                              </Typography>
+                            </InputAdornment>
+                          ),
+                        },
+                      }}
+                      sx={{
+                        width: "105px",
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: "8px",
+                          backgroundColor: "#f8fafc",
+                          fontSize: "14px",
+                          fontWeight: 800,
+                          color: rateError ? "#dc2626" : colors.brand.primary,
+                          "& input": {
+                            py: 0.6,
+                            px: 1.1,
+                            textAlign: "right",
+                          },
+                        },
+                      }}
+                    />
                   </Box>
 
                   <Slider
-                    value={rate}
-                    min={calcConfig.minRate}
+                    value={Math.min(
+                      calcConfig.maxRate,
+                      Math.max(rateRule.minRate, Number(rate) ? Number(rate) : rateRule.minRate),
+                    )}
+                    min={rateRule.minRate}
                     max={calcConfig.maxRate}
                     step={0.05}
-                    onChange={(_, val) => setRate(Number(val))}
+                    onChange={(_, val) => {
+                      const nextRate = Number(val);
+                      setRate(nextRate);
+                      setRateInput(nextRate.toFixed(2));
+                    }}
                     sx={{
                       color: colors.brand.primary,
                       height: 6,
@@ -750,6 +816,19 @@ export default function LoanProductHeroSection({
                       },
                     }}
                   />
+
+                  {rateError ? (
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        fontWeight: 600,
+                        color: "#dc2626",
+                        mt: 0.5,
+                      }}
+                    >
+                      {rateError}
+                    </Typography>
+                  ) : null}
                 </Box>
 
                 {/* 3. Tenure (Years) */}

@@ -3,7 +3,14 @@
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, ButtonBase, Container, Grid, Slider, Typography } from "@mui/material";
+import {
+  Box,
+  ButtonBase,
+  Container,
+  Grid,
+  Slider,
+  Typography,
+} from "@mui/material";
 import {
   CreditCard,
   Percent,
@@ -33,7 +40,10 @@ const formatLakhOrCrore = (val) => {
   const num = Number(val);
   if (isNaN(num) ? true : num <= 0) return "₹0";
   if (num >= 10000000) {
-    const cr = (num / 10000000).toFixed(2).replace(/\.00$/, "").replace(/(\.[1-9])0$/, "$1");
+    const cr = (num / 10000000)
+      .toFixed(2)
+      .replace(/\.00$/, "")
+      .replace(/(\.[1-9])0$/, "$1");
     return `₹${cr} Cr`;
   }
   const lk = (num / 100000).toFixed(1).replace(/\.0$/, "");
@@ -168,8 +178,17 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                 }}
               >
                 <Box>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 0.8, mb: 0.5 }}>
-                    <AutoGraphOutlined sx={{ fontSize: 16, color: colors.brand.primary }} />
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 0.8,
+                      mb: 0.5,
+                    }}
+                  >
+                    <AutoGraphOutlined
+                      sx={{ fontSize: 16, color: colors.brand.primary }}
+                    />
                     <Typography
                       sx={{
                         fontSize: "11px",
@@ -241,11 +260,17 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                           py: 1,
                           px: 2,
                           borderRadius: "8px",
-                          backgroundColor: isActive ? colors.surface.white : "transparent",
-                          color: isActive ? colors.brand.primary : colors.text.secondary,
+                          backgroundColor: isActive
+                            ? colors.surface.white
+                            : "transparent",
+                          color: isActive
+                            ? colors.brand.primary
+                            : colors.text.secondary,
                           fontWeight: isActive ? 700 : 500,
                           fontSize: "13.5px",
-                          boxShadow: isActive ? "0 2px 8px rgba(0,0,0,0.06)" : "none",
+                          boxShadow: isActive
+                            ? "0 2px 8px rgba(0,0,0,0.06)"
+                            : "none",
                           transition: "all 0.15s ease",
                           display: "flex",
                           gap: 0.8,
@@ -470,14 +495,18 @@ export default function EMICalculator({ mode = "default", loanType = "home" }) {
                             px: 1,
                             borderRadius: "10px",
                             border: `1px solid ${isActive ? colors.brand.primary : "#d6dbe1"}`,
-                            backgroundColor: isActive ? colors.brand.primary : colors.surface.white,
+                            backgroundColor: isActive
+                              ? colors.brand.primary
+                              : colors.surface.white,
                             color: isActive ? "#ffffff" : colors.text.primary,
                             fontWeight: isActive ? 700 : 500,
                             fontSize: "13px",
                             transition: "all 0.15s ease",
                             "&:hover": {
                               borderColor: colors.brand.primary,
-                              backgroundColor: isActive ? colors.brand.primary : `${colors.brand.primary}0a`,
+                              backgroundColor: isActive
+                                ? colors.brand.primary
+                                : `${colors.brand.primary}0a`,
                             },
                           }}
                         >
