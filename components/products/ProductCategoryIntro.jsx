@@ -18,7 +18,6 @@ import { colors, typography } from "@/constants";
 
 const CATEGORY_INTRO_DATA = {
   home: {
-    // eyebrow: "KEY ADVANTAGES",
     title: "Why Choose a Home Loan",
     highlight: "Through Finvibes?",
     features: [
@@ -218,9 +217,7 @@ export default function ProductCategoryIntro({ category = "home" }) {
       }}
     >
       <Container maxWidth="lg">
-        {/* Compact Header */}
         <Box sx={{ maxWidth: "760px", mb: { xs: 2.5, md: 3.5 } }}>
-          {/* Main Title */}
           <Typography
             component="h2"
             sx={{
@@ -247,7 +244,6 @@ export default function ProductCategoryIntro({ category = "home" }) {
           </Typography>
         </Box>
 
-        {/* 4 Feature Cards Grid */}
         <Grid container spacing={2}>
           {data.features.map((feature) => (
             <Grid key={feature.title} size={{ xs: 12, sm: 6, lg: 3 }}>

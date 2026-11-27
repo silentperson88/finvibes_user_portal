@@ -1,13 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { Box, Typography } from "@mui/material";
 import {
   ShieldOutlined,
   HealthAndSafetyOutlined,
   TrendingUp,
   CreditCardOutlined,
-  ChevronRight,
 } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 
@@ -48,7 +46,6 @@ export default function OtherProductSupportCard({ item }) {
       }}
     >
       <Box>
-        {/* Top: Icon + Title */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}>
           <Box
             sx={{
@@ -77,7 +74,6 @@ export default function OtherProductSupportCard({ item }) {
           </Typography>
         </Box>
 
-        {/* Description */}
         <Typography
           sx={{
             fontSize: "12.5px",

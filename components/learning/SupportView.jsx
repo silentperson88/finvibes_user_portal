@@ -1,10 +1,7 @@
 "use client";
 
 import { Box, Container, Grid, Typography, Chip } from "@mui/material";
-import {
-  DescriptionOutlined,
-  CategoryOutlined,
-} from "@mui/icons-material";
+import { DescriptionOutlined, CategoryOutlined } from "@mui/icons-material";
 import {
   colors,
   typography,
@@ -19,7 +16,6 @@ import CommonPageBanner from "@/components/common/CommonPageBanner";
 export default function SupportView() {
   return (
     <main style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
       <CommonPageBanner
         eyebrow="FINVIBES HELP & SUPPORT DESK"
         title="Dedicated Assistance"
@@ -34,9 +30,7 @@ export default function SupportView() {
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
         <Grid container spacing={{ xs: 4, md: 4 }}>
-          {/* ── Left Column: What We Help With + Other Products Support ── */}
           <Grid size={{ xs: 12, md: 7.6 }}>
-            {/* Section 1: Header Strip */}
             <Box
               sx={{
                 display: "flex",
@@ -46,7 +40,14 @@ export default function SupportView() {
               }}
             >
               <Box>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 0.5 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1.5,
+                    mb: 0.5,
+                  }}
+                >
                   <Box
                     sx={{
                       width: 24,
@@ -87,7 +88,6 @@ export default function SupportView() {
                 </Typography>
               </Box>
 
-              {/* Counter Pill */}
               <Chip
                 label={`${HELP_SUPPORT_STREAMS.length} Core Streams`}
                 size="small"
@@ -102,14 +102,14 @@ export default function SupportView() {
               />
             </Box>
 
-            {/* Stream Cards Stack */}
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 5 }}>
+            <Box
+              sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 5 }}
+            >
               {HELP_SUPPORT_STREAMS.map((stream) => (
                 <HelpStreamCard key={stream.id} stream={stream} />
               ))}
             </Box>
 
-            {/* ── Section 2: Other Products Support (Image 2) ──────── */}
             <Box
               sx={{
                 p: { xs: 3, sm: 3.5 },
@@ -119,9 +119,15 @@ export default function SupportView() {
                 boxShadow: "0 4px 16px rgba(15, 23, 42, 0.03)",
               }}
             >
-              {/* Header */}
               <Box sx={{ mb: 3 }}>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 0.5 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1.5,
+                    mb: 0.5,
+                  }}
+                >
                   <Box
                     sx={{
                       width: 24,
@@ -162,7 +168,6 @@ export default function SupportView() {
                 </Typography>
               </Box>
 
-              {/* 2x2 Grid of Other Support Items */}
               <Grid container spacing={2.5}>
                 {OTHER_PRODUCTS_SUPPORT.map((item) => (
                   <Grid key={item.id} size={{ xs: 12, sm: 6 }}>
@@ -173,7 +178,6 @@ export default function SupportView() {
             </Box>
           </Grid>
 
-          {/* ── Right Column: Contact Support Cards (Sticky) ──────── */}
           <Grid size={{ xs: 12, md: 4.4 }}>
             <Box sx={{ position: { md: "sticky" }, top: "24px" }}>
               <HelpContactSidebar />

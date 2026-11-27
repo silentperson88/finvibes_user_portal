@@ -9,22 +9,20 @@ import LoanTransferComparisonModal from "./LoanTransferComparisonModal";
 
 export default function LoanTransferCalculator() {
   const [outstandingLoan, setOutstandingLoan] = useState(
-    DEFAULT_LOAN_TRANSFER_VALUES.outstandingLoan
+    DEFAULT_LOAN_TRANSFER_VALUES.outstandingLoan,
   );
   const [currentRate, setCurrentRate] = useState(
-    DEFAULT_LOAN_TRANSFER_VALUES.currentRate
+    DEFAULT_LOAN_TRANSFER_VALUES.currentRate,
   );
   const [yearsLeft, setYearsLeft] = useState(
-    DEFAULT_LOAN_TRANSFER_VALUES.yearsLeft
+    DEFAULT_LOAN_TRANSFER_VALUES.yearsLeft,
   );
-  const [newRate, setNewRate] = useState(
-    DEFAULT_LOAN_TRANSFER_VALUES.newRate
-  );
+  const [newRate, setNewRate] = useState(DEFAULT_LOAN_TRANSFER_VALUES.newRate);
   const [processingCharges, setProcessingCharges] = useState(
-    DEFAULT_LOAN_TRANSFER_VALUES.processingCharges
+    DEFAULT_LOAN_TRANSFER_VALUES.processingCharges,
   );
   const [otherCharges, setOtherCharges] = useState(
-    DEFAULT_LOAN_TRANSFER_VALUES.otherCharges
+    DEFAULT_LOAN_TRANSFER_VALUES.otherCharges,
   );
   const [comparisonOpen, setComparisonOpen] = useState(false);
 
@@ -51,11 +49,9 @@ export default function LoanTransferCalculator() {
 
     const rateDifference = Math.max(0, r1 - r2);
 
-    // Monthly interest rates
     const m1 = r1 / 12 / 100;
     const m2 = r2 / 12 / 100;
 
-    // Current EMI
     let currentEmi = 0;
     if (P > 0 && m1 > 0 && N > 0) {
       const pow1 = Math.pow(1 + m1, N);
@@ -64,7 +60,6 @@ export default function LoanTransferCalculator() {
       currentEmi = P / N;
     }
 
-    // New EMI
     let newEmi = 0;
     if (P > 0 && m2 > 0 && N > 0) {
       const pow2 = Math.pow(1 + m2, N);
@@ -83,7 +78,6 @@ export default function LoanTransferCalculator() {
     const totalNewPayment = roundedNewEmi * N;
     const totalNewInterest = Math.max(0, totalNewPayment - P);
 
-    // Total gross savings over loan tenure
     const grossSavings = Math.max(0, monthlyDrop * N);
     const netSavings = Math.max(0, grossSavings - totalFees);
 
@@ -110,7 +104,6 @@ export default function LoanTransferCalculator() {
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 2, md: 3 } }}>
       <Grid container spacing={{ xs: 3, md: 4 }}>
-        {/* Left Column: Input Form (Step 1 & Step 2) */}
         <Grid size={{ xs: 12, md: 7.2 }}>
           <LoanTransferInputCard
             outstandingLoan={outstandingLoan}
@@ -129,7 +122,6 @@ export default function LoanTransferCalculator() {
           />
         </Grid>
 
-        {/* Right Column: Dynamic Net Switch Benefits Results */}
         <Grid size={{ xs: 12, md: 4.8 }}>
           <LoanTransferResultCard
             netSavings={calculations.netSavings}
@@ -143,7 +135,6 @@ export default function LoanTransferCalculator() {
         </Grid>
       </Grid>
 
-      {/* Comparison Popup Modal triggered only on "Calculate My Savings" */}
       <LoanTransferComparisonModal
         open={comparisonOpen}
         onClose={() => setComparisonOpen(false)}

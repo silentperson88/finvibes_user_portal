@@ -89,7 +89,6 @@ export default function MainNavbar() {
             py: { xs: 1, md: 2.2 },
           }}
         >
-          {/* Left — Logo */}
           <Box
             component={NextLink}
             href="/"
@@ -104,20 +103,16 @@ export default function MainNavbar() {
             <Image
               src={logoImg}
               alt="Finvibes"
-              height={44}
-              width={Math.round(44 * (699 / 187))}
               style={{
-                objectFit: "contain",
+                height: "44px",
                 width: "auto",
-                height: "auto",
-                maxHeight: "44px",
+                objectFit: "contain",
                 display: "block",
               }}
               priority
             />
           </Box>
 
-          {/* Center — Desktop Navigation Links (hidden on mobile/tablet) */}
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
@@ -148,22 +143,6 @@ export default function MainNavbar() {
               <NavLink key={link.href} href={link.href} label={link.label} />
             ))}
           </Box>
-
-          {/* Right — Desktop CTA Button */}
-          {/* <Box
-            sx={{
-              display: { xs: "none", sm: "block" },
-              flexShrink: 0,
-            }}
-          >
-            <CTAButton
-              label="Get Started"
-              href="/contact"
-              icon={<NorthEast sx={{ fontSize: "16px" }} />}
-            />
-          </Box> */}
-
-          {/* Mobile — Hamburger Menu Icon */}
           <IconButton
             onClick={handleDrawerToggle}
             sx={{
@@ -179,7 +158,6 @@ export default function MainNavbar() {
         </Toolbar>
       </Container>
 
-      {/* Mobile Drawer */}
       <Drawer
         anchor="right"
         open={mobileOpen}
@@ -198,7 +176,6 @@ export default function MainNavbar() {
         }}
       >
         <Box>
-          {/* Drawer Top Header with Logo & Close Button */}
           <Box
             sx={{
               display: "flex",
@@ -231,9 +208,7 @@ export default function MainNavbar() {
 
           <Divider sx={{ mb: 2, borderColor: colors.border.light }} />
 
-          {/* Drawer Links List */}
           <List disablePadding>
-            {/* Home */}
             <ListItem disablePadding>
               <ListItemButton
                 component={NextLink}
@@ -257,7 +232,6 @@ export default function MainNavbar() {
               </ListItemButton>
             </ListItem>
 
-            {/* Products Accordion */}
             <ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 onClick={handleProductsToggle}
@@ -418,7 +392,6 @@ export default function MainNavbar() {
               </Collapse>
             </ListItem>
 
-            {/* Smart Tools Accordion */}
             <ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 onClick={handleToolsToggle}
@@ -486,7 +459,6 @@ export default function MainNavbar() {
               </Collapse>
             </ListItem>
 
-            {/* Remaining Links */}
             {NAV_LINKS.slice(1).map((link) => (
               <ListItem key={link.href} disablePadding>
                 <ListItemButton
@@ -514,11 +486,9 @@ export default function MainNavbar() {
           </List>
         </Box>
 
-        {/* Drawer Bottom Section */}
         <Box sx={{ mt: 3 }}>
           <Divider sx={{ mb: 2.5, borderColor: colors.border.light }} />
 
-          {/* Full-width CTA Button inside Drawer */}
           <CTAButton
             label="Get Started"
             href="/contact"
@@ -526,7 +496,6 @@ export default function MainNavbar() {
             sx={{ width: "100%", justifyContent: "center", py: 1.2 }}
           />
 
-          {/* Contact Details in Drawer */}
           <Box sx={{ mt: 2.5, textAlign: "center" }}>
             <Typography
               sx={{

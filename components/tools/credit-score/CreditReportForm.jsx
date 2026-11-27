@@ -117,8 +117,8 @@ export default function CreditReportForm() {
           }}
         >
           We have dispatched a one-time verification password to{" "}
-          <strong>+91 {submittedMobile}</strong>. Enter the OTP to view your full CIBIL &
-          Equifax report.
+          <strong>+91 {submittedMobile}</strong>. Enter the OTP to view your
+          full CIBIL & Equifax report.
         </Typography>
 
         <CTAButton
@@ -146,7 +146,6 @@ export default function CreditReportForm() {
         top: 100,
       }}
     >
-      {/* Top Partner Badge */}
       <Box
         sx={{
           display: "inline-block",
@@ -165,7 +164,6 @@ export default function CreditReportForm() {
         {CREDIT_FORM_CONTENT.partnerBadge}
       </Box>
 
-      {/* Main Title & Subtitle */}
       <Typography
         sx={{
           fontFamily: typography.fontFamily,
@@ -202,7 +200,6 @@ export default function CreditReportForm() {
         {CREDIT_FORM_CONTENT.caption}
       </Typography>
 
-      {/* Benefits Badges */}
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2.2 }}>
         {CREDIT_FORM_CONTENT.trustHighlights.map((b, idx) => (
           <Box
@@ -227,7 +224,6 @@ export default function CreditReportForm() {
         ))}
       </Box>
 
-      {/* Security Alert Notice */}
       <Box
         sx={{
           backgroundColor: "#fffbeb",
@@ -253,13 +249,10 @@ export default function CreditReportForm() {
         </Typography>
       </Box>
 
-      {/* Inputs */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <GenderSelector
           value={gender}
-          onChange={(val) =>
-            setValue("gender", val, { shouldValidate: true })
-          }
+          onChange={(val) => setValue("gender", val, { shouldValidate: true })}
         />
 
         <FormTextField
@@ -312,7 +305,6 @@ export default function CreditReportForm() {
           required
         />
 
-        {/* Bureau Consent Checkbox */}
         <Box>
           <FormControlLabel
             control={
@@ -351,7 +343,6 @@ export default function CreditReportForm() {
           ) : null}
         </Box>
 
-        {/* Submit CTA */}
         <CTAButton
           fullWidth
           type="submit"

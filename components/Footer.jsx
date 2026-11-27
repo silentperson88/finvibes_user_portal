@@ -47,11 +47,8 @@ export default function Footer() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Main 4-Column Grid */}
         <Grid container spacing={{ xs: 3, md: 3.5 }}>
-          {/* Column 1: Brand Info */}
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            {/* White Logo directly on footer background */}
             <Box
               component={NextLink}
               href="/"
@@ -109,7 +106,6 @@ export default function Footer() {
               Money Matters.
             </Typography>
 
-            {/* Social Media Icons */}
             <Box sx={{ display: "flex", gap: 1 }}>
               {SOCIAL_LINKS.map((s) => (
                 <IconButton
@@ -139,7 +135,6 @@ export default function Footer() {
             </Box>
           </Grid>
 
-          {/* Column 2: Products */}
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography
               sx={{
@@ -177,7 +172,6 @@ export default function Footer() {
             </Box>
           </Grid>
 
-          {/* Column 3: Smart Tools & More */}
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography
               sx={{
@@ -215,7 +209,6 @@ export default function Footer() {
             </Box>
           </Grid>
 
-          {/* Column 4: Contact & Office */}
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography
               sx={{
@@ -230,7 +223,6 @@ export default function Footer() {
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1.4 }}>
-              {/* Email */}
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 <EmailIcon
                   sx={{
@@ -248,8 +240,6 @@ export default function Footer() {
                   {CONTACT_INFO.email}
                 </Typography>
               </Box>
-
-              {/* Phone Numbers */}
               <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
                 <PhoneIcon
                   sx={{
@@ -259,7 +249,9 @@ export default function Footer() {
                     mt: 0.3,
                   }}
                 />
-                <Box sx={{ display: "flex", flexDirection: "column", gap: 0.3 }}>
+                <Box
+                  sx={{ display: "flex", flexDirection: "column", gap: 0.3 }}
+                >
                   {CONTACT_INFO.phones.map((phone) => (
                     <Typography
                       key={phone.raw}
@@ -274,7 +266,6 @@ export default function Footer() {
                 </Box>
               </Box>
 
-              {/* Office Address */}
               <Box
                 sx={{
                   display: "flex",
@@ -320,7 +311,6 @@ export default function Footer() {
           </Grid>
         </Grid>
 
-        {/* Regulatory Disclaimer */}
         <Box
           sx={{
             mt: 3.5,
@@ -339,7 +329,6 @@ export default function Footer() {
 
         <Divider sx={{ my: 2, borderColor: colors.border.dark }} />
 
-        {/* Bottom Bar: Copyright & Legal Links */}
         <Box
           sx={{
             display: "flex",

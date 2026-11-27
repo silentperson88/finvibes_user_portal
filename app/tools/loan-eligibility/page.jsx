@@ -10,8 +10,10 @@ export const metadata = {
 
 export default function LoanEligibilityPage() {
   return (
-    <Box component="main" sx={{ backgroundColor: "#ffffff", minHeight: "85vh", pb: { xs: 7, md: 9 } }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
+    <Box
+      component="main"
+      sx={{ backgroundColor: "#ffffff", minHeight: "85vh" }}
+    >
       <CommonPageBanner
         eyebrow="SMART UNDERWRITING DESK • ELIGIBILITY"
         title="Check Your"
@@ -25,8 +27,7 @@ export default function LoanEligibilityPage() {
         ]}
       />
 
-      {/* Main Eligibility Calculator Component */}
-      <Box sx={{ pt: { xs: 3, md: 5 } }}>
+      <Box sx={{ py: { xs: 2, md: 2 } }}>
         <LoanEligibilityCalculator />
       </Box>
     </Box>

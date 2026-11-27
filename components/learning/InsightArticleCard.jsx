@@ -46,9 +46,7 @@ export default function InsightArticleCard({ article }) {
         },
       }}
     >
-      {/* ── Left Content ────────────────────────────────────────── */}
       <Box sx={{ flex: 1 }}>
-        {/* Meta Header: Tags & Reading Time */}
         <Box
           sx={{
             display: "flex",
@@ -85,7 +83,6 @@ export default function InsightArticleCard({ article }) {
           </Typography>
         </Box>
 
-        {/* Title */}
         <Typography
           className="article-title"
           sx={{
@@ -102,7 +99,6 @@ export default function InsightArticleCard({ article }) {
           {article.title}
         </Typography>
 
-        {/* Description */}
         <Typography
           sx={{
             fontSize: { xs: "13px", sm: "14px" },
@@ -115,7 +111,6 @@ export default function InsightArticleCard({ article }) {
           {article.description}
         </Typography>
 
-        {/* Author / Date Strip + LinkedIn Indicator */}
         <Box
           sx={{
             display: "flex",
@@ -124,7 +119,6 @@ export default function InsightArticleCard({ article }) {
             flexWrap: "wrap",
           }}
         >
-          {/* LinkedIn square icon */}
           <Box
             sx={{
               width: 18,
@@ -186,7 +180,6 @@ export default function InsightArticleCard({ article }) {
         </Box>
       </Box>
 
-      {/* ── Right Action Button ──────────────────── */}
       <Box
         className="card-arrow-btn"
         sx={{

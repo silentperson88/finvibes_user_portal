@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactSchema } from "@/validations/contactSchema";
 import {
   Box,
   Container,
@@ -18,6 +21,7 @@ import {
   ShieldOutlined,
   CheckCircleOutlined,
   PhoneOutlined,
+  EmailOutlined,
   LocationOnOutlined,
   BusinessOutlined,
   AccessTimeOutlined,
@@ -33,53 +37,67 @@ const CONTACT_ADVANTAGES = [
 ];
 
 export default function ContactFormView() {
-  const [fullName, setFullName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState({
+    fullName: "",
+    mobile: "",
+    email: "",
+  });
 
-  const validate = () => {
-    const newErrors = {};
-    if (!fullName.trim()) {
-      newErrors.fullName = "Please enter your full name";
-    }
-    const cleanMobile = mobile.replace(/\D/g, "");
-    if (!cleanMobile) {
-      newErrors.mobile = "Please enter your mobile number";
-    } else if (cleanMobile.length < 10) {
-      newErrors.mobile = "Please enter a valid 10-digit mobile number";
-    }
-    if (!email.trim()) {
-      newErrors.email = "Please enter your email address";
-    } else if (!email.includes("@")) {
-      newErrors.email = "Please enter a valid email address";
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const {
+    watch,
+    setValue,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(contactSchema),
+    mode: "onChange",
+    defaultValues: {
+      fullName: "",
+      mobile: "",
+      email: "",
+      message: "",
+    },
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validate()) {
-      return;
-    }
+  const fullName = watch("fullName");
+  const mobile = watch("mobile");
+  const email = watch("email");
+  const message = watch("message");
 
+  const onValidSubmit = (data) => {
     setIsSubmitting(true);
+    const cleanName = data.fullName.trim();
+    const cleanMobile = data.mobile.trim();
+    const cleanEmail = data.email.trim();
+    const cleanMessage = data.message ? data.message.trim() : "";
+
+    const subject = encodeURIComponent(`Contact Inquiry from ${cleanName}`);
+    const bodyLines = [
+      `Name: ${cleanName}`,
+      `Mobile: ${cleanMobile}`,
+      `Email: ${cleanEmail}`,
+      `Message: ${cleanMessage ? cleanMessage : "N/A"}`,
+    ].join("\n");
+    const mailtoUrl = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${encodeURIComponent(bodyLines)}`;
+
     setTimeout(() => {
+      window.location.href = mailtoUrl;
+      setSubmittedData({
+        fullName: cleanName,
+        mobile: cleanMobile,
+        email: cleanEmail,
+      });
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 800);
+    }, 500);
   };
 
   const handleReset = () => {
-    setFullName("");
-    setMobile("");
-    setEmail("");
-    setMessage("");
-    setErrors({});
+    reset();
+    setSubmittedData({ fullName: "", mobile: "", email: "" });
     setIsSubmitted(false);
   };
 
@@ -88,13 +106,12 @@ export default function ContactFormView() {
       maxWidth="lg"
       sx={{
         pt: { xs: 4, sm: 5, md: 6 },
-        pb: { xs: 8, md: 10 },
+        pb: { xs: 4, sm: 5, md: 6 },
         position: "relative",
         zIndex: 2,
       }}
     >
       <Grid container spacing={{ xs: 4, lg: 4 }} sx={{ alignItems: "stretch" }}>
-        {/* ── LEFT COLUMN: Relatable Contact Us Advisory Banner Card ── */}
         <Grid size={{ xs: 12, md: 5, lg: 4.8 }}>
           <Box
             sx={{
@@ -108,7 +125,6 @@ export default function ContactFormView() {
               flexDirection: "column",
             }}
           >
-            {/* Top Image Frame with Contact-Specific Badges */}
             <Box
               sx={{
                 position: "relative",
@@ -125,7 +141,6 @@ export default function ContactFormView() {
                 style={{ objectFit: "cover" }}
                 priority
               />
-              {/* Gradient Scrim */}
               <Box
                 sx={{
                   position: "absolute",
@@ -135,7 +150,6 @@ export default function ContactFormView() {
                 }}
               />
 
-              {/* Top-Left Floating Badge: Ahmedabad Headquarters */}
               <Box
                 sx={{
                   position: "absolute",
@@ -166,7 +180,6 @@ export default function ContactFormView() {
                 </Typography>
               </Box>
 
-              {/* Bottom-Right Floating Badge: 2-Hour Response Time */}
               <Box
                 sx={{
                   position: "absolute",
@@ -196,8 +209,6 @@ export default function ContactFormView() {
                 </Typography>
               </Box>
             </Box>
-
-            {/* Bottom Content: Concise Advisory Context */}
             <Box
               sx={{
                 p: { xs: 3, sm: 3.5 },
@@ -208,7 +219,6 @@ export default function ContactFormView() {
               }}
             >
               <Box>
-                {/* Eyebrow & Location Badge Row */}
                 <Box
                   sx={{
                     display: "flex",
@@ -243,7 +253,6 @@ export default function ContactFormView() {
                   </Typography>
                 </Box>
 
-                {/* Shorter Title & Subtitle */}
                 <Typography
                   component="h3"
                   sx={{
@@ -269,7 +278,6 @@ export default function ContactFormView() {
                   doorstep assistance with zero consultation fees.
                 </Typography>
 
-                {/* Shorter 2-point Key Advantages */}
                 <Box
                   sx={{
                     display: "flex",
@@ -312,7 +320,6 @@ export default function ContactFormView() {
                 </Box>
               </Box>
 
-              {/* Direct Office & Phone Strip */}
               <Box
                 sx={{ pt: 2, borderTop: `1px solid ${colors.border.subtle}` }}
               >
@@ -344,6 +351,40 @@ export default function ContactFormView() {
                     }}
                   >
                     {CONTACT_INFO.phones[1].display}
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    mb: 0.8,
+                  }}
+                >
+                  <EmailOutlined
+                    sx={{ fontSize: 15, color: colors.brand.primary }}
+                  />
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: typography.fontWeights.bold,
+                      color: colors.text.primary,
+                    }}
+                  >
+                    Email:
+                  </Typography>
+                  <Typography
+                    component="a"
+                    href={`mailto:${CONTACT_INFO.email}`}
+                    sx={{
+                      fontSize: "12px",
+                      color: colors.brand.primary,
+                      fontWeight: 600,
+                      textDecoration: "none",
+                      "&:hover": { textDecoration: "underline" },
+                    }}
+                  >
+                    {CONTACT_INFO.email}
                   </Typography>
                 </Box>
                 <Box
@@ -386,7 +427,6 @@ export default function ContactFormView() {
           </Box>
         </Grid>
 
-        {/* ── RIGHT COLUMN: Interactive Contact Form Card ── */}
         <Grid size={{ xs: 12, md: 7, lg: 7.2 }}>
           <Box
             sx={{
@@ -402,7 +442,6 @@ export default function ContactFormView() {
             }}
           >
             <Box>
-              {/* Title & Subtext */}
               <Typography
                 component="h2"
                 sx={{
@@ -449,13 +488,14 @@ export default function ContactFormView() {
                         mb: 0.4,
                       }}
                     >
-                      Thank You, {fullName}!
+                      Thank You, {submittedData.fullName}!
                     </Typography>
                     <Typography sx={{ fontSize: "0.85rem" }}>
                       Your inquiry has been assigned to our senior advisory
-                      team. We will call you at <strong>{mobile}</strong> and
-                      send confirmation to <strong>{email}</strong> within 2
-                      business hours.
+                      team. We will call you at{" "}
+                      <strong>{submittedData.mobile}</strong> and send
+                      confirmation to <strong>{submittedData.email}</strong>{" "}
+                      within 2 business hours.
                     </Typography>
                   </Alert>
                   <Button
@@ -475,8 +515,11 @@ export default function ContactFormView() {
                   </Button>
                 </Box>
               ) : (
-                <Box component="form" onSubmit={handleSubmit} noValidate>
-                  {/* Input Fields: Name, Mobile, and Email */}
+                <Box
+                  component="form"
+                  onSubmit={handleSubmit(onValidSubmit)}
+                  noValidate
+                >
                   <Box
                     sx={{
                       display: "flex",
@@ -497,9 +540,15 @@ export default function ContactFormView() {
                         required
                         fullWidth
                         value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        onChange={(e) =>
+                          setValue("fullName", e.target.value, {
+                            shouldValidate: true,
+                          })
+                        }
                         error={Boolean(errors.fullName)}
-                        helperText={errors.fullName ? errors.fullName : ""}
+                        helperText={
+                          errors.fullName ? errors.fullName.message : ""
+                        }
                         placeholder="e.g. Rahul Sharma"
                         slotProps={{ inputLabel: { shrink: true } }}
                         sx={{
@@ -515,9 +564,15 @@ export default function ContactFormView() {
                         required
                         fullWidth
                         value={mobile}
-                        onChange={(e) => setMobile(e.target.value)}
+                        onChange={(e) =>
+                          setValue(
+                            "mobile",
+                            e.target.value.replace(/\D/g, "").slice(0, 10),
+                            { shouldValidate: true },
+                          )
+                        }
                         error={Boolean(errors.mobile)}
-                        helperText={errors.mobile ? errors.mobile : ""}
+                        helperText={errors.mobile ? errors.mobile.message : ""}
                         placeholder="10-digit mobile number"
                         slotProps={{ inputLabel: { shrink: true } }}
                         sx={{
@@ -535,9 +590,13 @@ export default function ContactFormView() {
                       type="email"
                       fullWidth
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) =>
+                        setValue("email", e.target.value, {
+                          shouldValidate: true,
+                        })
+                      }
                       error={Boolean(errors.email)}
-                      helperText={errors.email ? errors.email : ""}
+                      helperText={errors.email ? errors.email.message : ""}
                       placeholder="e.g. rahul.sharma@example.com"
                       slotProps={{ inputLabel: { shrink: true } }}
                       sx={{
@@ -548,14 +607,17 @@ export default function ContactFormView() {
                       }}
                     />
 
-                    {/* Requirements / Query Note */}
                     <TextField
                       label="Loan Requirement / Query Details (Optional)"
                       multiline
                       rows={3}
                       fullWidth
                       value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                      onChange={(e) =>
+                        setValue("message", e.target.value, {
+                          shouldValidate: true,
+                        })
+                      }
                       placeholder="Mention preferred loan type (Home, Personal, Business, etc.), loan amount, or any specific query..."
                       slotProps={{ inputLabel: { shrink: true } }}
                       sx={{
@@ -567,7 +629,6 @@ export default function ContactFormView() {
                     />
                   </Box>
 
-                  {/* Submit Button & Confidentiality Note */}
                   <Box
                     sx={{
                       display: "flex",

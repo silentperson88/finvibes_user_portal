@@ -13,19 +13,14 @@ export const metadata = {
 export default function HomeLoanPage() {
   return (
     <main>
-      {/* Option 4 Signature Overlapping Hero Section with Visual & Top HUD Calculator */}
       <LoanProductHeroSection loanType="home" />
 
-      {/* Relatable Product Category Introduction (4 Feature Cards) */}
       <ProductCategoryIntro category="home" />
 
-      {/* Partner Banks & Home Loan Offers Section */}
       <HomeLoanBankOffers />
 
-      {/* Detailed Guide & Description Section (After Bank Comparison) */}
       <ProductCategoryGuide category="home" />
 
-      {/* Frequently Asked Questions */}
       <CommonFAQSection category="home-loan" />
     </main>
   );

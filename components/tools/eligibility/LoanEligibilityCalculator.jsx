@@ -2,7 +2,10 @@
 
 import { useState, useMemo } from "react";
 import { Container, Grid } from "@mui/material";
-import { LOAN_ELIGIBILITY_TYPES, DEFAULT_ELIGIBILITY_VALUES } from "@/constants";
+import {
+  LOAN_ELIGIBILITY_TYPES,
+  DEFAULT_ELIGIBILITY_VALUES,
+} from "@/constants";
 import LoanTypeTabs from "./LoanTypeTabs";
 import FinancialDetailsCard from "./FinancialDetailsCard";
 import EligibilityResultCard from "./EligibilityResultCard";
@@ -11,10 +14,11 @@ import LoanApplicationModal from "@/components/common/LoanApplicationModal";
 export default function LoanEligibilityCalculator() {
   const [activeTabId, setActiveTabId] = useState("home");
   const [income, setIncome] = useState(DEFAULT_ELIGIBILITY_VALUES.income);
-  const [existingEmi, setExistingEmi] = useState(DEFAULT_ELIGIBILITY_VALUES.existingEmi);
+  const [existingEmi, setExistingEmi] = useState(
+    DEFAULT_ELIGIBILITY_VALUES.existingEmi,
+  );
   const [openModal, setOpenModal] = useState(false);
 
-  // Active loan config
   const activeConfig = useMemo(() => {
     const matched = LOAN_ELIGIBILITY_TYPES.find((t) => t.id === activeTabId);
     return matched ? matched : LOAN_ELIGIBILITY_TYPES[0];
@@ -22,17 +26,24 @@ export default function LoanEligibilityCalculator() {
 
   const [rate, setRate] = useState(activeConfig.defaultRate);
   const [tenure, setTenure] = useState(activeConfig.defaultTenure);
+  const [carType, setCarType] = useState("new");
 
-  // Handle Tab Switch: updates default rate & tenure while preserving income & existing EMI
   const handleSelectTab = (tabId) => {
     setActiveTabId(tabId);
     const matched = LOAN_ELIGIBILITY_TYPES.find((t) => t.id === tabId);
     const newConfig = matched ? matched : LOAN_ELIGIBILITY_TYPES[0];
     setRate(newConfig.defaultRate);
     setTenure(newConfig.defaultTenure);
+    if (tabId === "car") {
+      setCarType("new");
+    }
   };
 
-  // Eligibility and FOIR Calculation
+  const handleCarTypeChange = (type) => {
+    setCarType(type);
+    setRate(type === "used" ? 11.5 : 8.5);
+  };
+
   const calculation = useMemo(() => {
     const numIncome = Number(income);
     const validIncome = isNaN(numIncome) ? 0 : numIncome;
@@ -45,13 +56,10 @@ export default function LoanEligibilityCalculator() {
     const foirPct = activeConfig.foirPct ? activeConfig.foirPct : 60;
     const foirRatio = foirPct / 100;
 
-    // Income Limit: Total permissible monthly EMI capacity based on FOIR
     const incomeLimit = Math.round(I * foirRatio);
 
-    // Max New EMI: Remaining EMI capacity after accounting for existing EMI
     const maxNewEmi = Math.max(0, incomeLimit - E);
 
-    // Reverse EMI calculation to find eligible principal loan amount
     const numRate = Number(rate);
     const validRate = isNaN(numRate) ? 0 : numRate;
     const R = Math.max(0, validRate) / 12 / 100;
@@ -68,7 +76,6 @@ export default function LoanEligibilityCalculator() {
       eligibility = maxNewEmi * N;
     }
 
-    // FOIR Utilisation percentage
     let foirUtilisationPct = 0;
     if (I > 0) {
       const totalObligation = Math.min(incomeLimit, E + maxNewEmi);
@@ -85,17 +92,14 @@ export default function LoanEligibilityCalculator() {
 
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 } }}>
-      {/* 4 Loan Categories Tab Bar */}
-      <LoanTypeTabs
-        activeTabId={activeTabId}
-        onSelectTab={handleSelectTab}
-      />
+      <LoanTypeTabs activeTabId={activeTabId} onSelectTab={handleSelectTab} />
 
-      {/* Calculator Body: Form on Left, Results on Right */}
       <Grid container spacing={{ xs: 3, md: 4 }}>
-        {/* Left Column: Financial Details Form */}
         <Grid size={{ xs: 12, md: 7.2 }}>
           <FinancialDetailsCard
+            loanType={activeTabId}
+            carType={carType}
+            onCarTypeChange={handleCarTypeChange}
             income={income}
             onIncomeChange={setIncome}
             existingEmi={existingEmi}
@@ -110,7 +114,6 @@ export default function LoanEligibilityCalculator() {
           />
         </Grid>
 
-        {/* Right Column: Dynamic Eligibility Results */}
         <Grid size={{ xs: 12, md: 4.8 }}>
           <EligibilityResultCard
             loanTypeLabel={activeConfig.label}
@@ -127,7 +130,6 @@ export default function LoanEligibilityCalculator() {
         </Grid>
       </Grid>
 
-      {/* Loan Application Popup Dialog Modal */}
       <LoanApplicationModal
         open={openModal}
         onClose={() => setOpenModal(false)}

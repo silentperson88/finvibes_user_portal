@@ -75,7 +75,6 @@ export default function BankWebViewModal({
         },
       }}
     >
-      {/* ── In-App Browser Header Bar (Executive Mobile Frame) ───────── */}
       <Box
         sx={{
           backgroundColor: "#0a2540",
@@ -89,7 +88,6 @@ export default function BankWebViewModal({
           borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
         }}
       >
-        {/* Left: Bank Name & Trust Badge */}
         <Box
           sx={{ display: "flex", alignItems: "center", gap: 1.2, minWidth: 0 }}
         >
@@ -138,7 +136,6 @@ export default function BankWebViewModal({
           </Box>
         </Box>
 
-        {/* Right: Controls (Refresh, External Popout, Close) */}
         <Box
           sx={{
             display: "flex",
@@ -200,7 +197,6 @@ export default function BankWebViewModal({
         </Box>
       </Box>
 
-      {/* ── In-App Web View Content (Embedded iframe in Mobile Viewport) ─ */}
       <DialogContent
         sx={{ p: 0, flex: 1, position: "relative", backgroundColor: "#f8fafc" }}
       >
@@ -239,7 +235,6 @@ export default function BankWebViewModal({
         )}
       </DialogContent>
 
-      {/* ── Bottom In-App Advisory Bar ──────────────────────────────── */}
       <Box
         sx={{
           backgroundColor: "#f8fafc",

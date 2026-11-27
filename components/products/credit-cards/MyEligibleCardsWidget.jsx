@@ -33,7 +33,7 @@ const getCategoryIcon = (iconType) => {
 export default function MyEligibleCardsWidget({
   activeCategory = "rewards",
   onSelectCategory,
-  layout = "stack", // "stack" | "grid"
+  layout = "stack",
   categoryCounts = {},
   disabled = false,
 }) {
@@ -49,7 +49,6 @@ export default function MyEligibleCardsWidget({
         transition: "opacity 0.2s ease-in-out",
       }}
     >
-      {/* ── Category Cards Grid/Stack ────────── */}
       <Box
         sx={{
           display: layout === "grid" ? "grid" : "flex",
@@ -101,7 +100,6 @@ export default function MyEligibleCardsWidget({
                   minWidth: 0,
                 }}
               >
-                {/* Colored Icon Square */}
                 <Box
                   sx={{
                     width: 46,
@@ -142,13 +140,23 @@ export default function MyEligibleCardsWidget({
                 </Box>
               </Box>
 
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexShrink: 0, ml: 1 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  flexShrink: 0,
+                  ml: 1,
+                }}
+              >
                 {categoryCounts[cat.id] ? (
                   <Chip
                     label={`${categoryCounts[cat.id]} Cards`}
                     size="small"
                     sx={{
-                      backgroundColor: isSelected ? colors.brand.primary : "#f1f5f9",
+                      backgroundColor: isSelected
+                        ? colors.brand.primary
+                        : "#f1f5f9",
                       color: isSelected ? "#ffffff" : "#475569",
                       fontWeight: 800,
                       fontSize: "11px",
@@ -169,7 +177,6 @@ export default function MyEligibleCardsWidget({
           );
         })}
 
-        {/* Trust & Zero CIBIL impact card */}
         <Box
           sx={{
             backgroundColor: "#ffffff",
@@ -182,12 +189,22 @@ export default function MyEligibleCardsWidget({
             boxShadow: "0 2px 6px rgba(0, 0, 0, 0.02)",
           }}
         >
-          <ShieldOutlined sx={{ fontSize: 22, color: colors.brand.primary, flexShrink: 0 }} />
+          <ShieldOutlined
+            sx={{ fontSize: 22, color: colors.brand.primary, flexShrink: 0 }}
+          />
           <Box>
-            <Typography sx={{ fontSize: "12px", fontWeight: 800, color: "#0a2540" }}>
+            <Typography
+              sx={{ fontSize: "12px", fontWeight: 800, color: "#0a2540" }}
+            >
               100% Zero CIBIL Impact
             </Typography>
-            <Typography sx={{ fontSize: "11px", color: colors.text.secondary, lineHeight: 1.3 }}>
+            <Typography
+              sx={{
+                fontSize: "11px",
+                color: colors.text.secondary,
+                lineHeight: 1.3,
+              }}
+            >
               Official banking tie-ups with verified paperless digital KYC.
             </Typography>
           </Box>

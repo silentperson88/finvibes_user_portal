@@ -15,6 +15,7 @@ export const theme = createTheme({
     },
     brand: colors.brand,
     navy: colors.navy,
+    banner: colors.banner,
   },
   typography: {
     fontFamily: typography.fontFamily,

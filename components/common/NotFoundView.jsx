@@ -5,11 +5,9 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { Box, Container, Typography, Button } from "@mui/material";
 import { HomeOutlined } from "@mui/icons-material";
-import logoImg from "@/assets/finvibes-logo-text.png";
 import { colors, typography } from "@/constants";
 
 export default function NotFoundView() {
-  // Hide global Header and Footer while this page is mounted
   useEffect(() => {
     document.body.classList.add("not-found-page");
     return () => {
@@ -36,7 +34,6 @@ export default function NotFoundView() {
         px: 2,
       }}
     >
-      {/* Center 404 Hero Content */}
       <Container
         maxWidth="md"
         sx={{
@@ -47,7 +44,6 @@ export default function NotFoundView() {
           py: { xs: 2, md: 3.5 },
         }}
       >
-        {/* Large 404 Visual Heading */}
         <Typography
           sx={{
             fontFamily: typography.fontFamily,
@@ -66,7 +62,6 @@ export default function NotFoundView() {
           404
         </Typography>
 
-        {/* Descriptive Headings */}
         <Typography
           component="h1"
           sx={{
@@ -97,7 +92,6 @@ export default function NotFoundView() {
           financial journey continues smoothly from our home.
         </Typography>
 
-        {/* Action Buttons: "Back to Home" is primary */}
         <Box
           sx={{
             display: "flex",
@@ -108,7 +102,6 @@ export default function NotFoundView() {
             mb: 4.5,
           }}
         >
-          {/* Primary "Back to Home" Button */}
           <Button
             component={NextLink}
             href="/"

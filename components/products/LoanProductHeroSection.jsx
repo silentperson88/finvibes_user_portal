@@ -7,7 +7,9 @@ import {
   ButtonBase,
   Container,
   Grid,
+  InputAdornment,
   Slider,
+  TextField,
   Typography,
 } from "@mui/material";
 import {
@@ -23,18 +25,20 @@ import {
   CAR_LOAN_TYPE_TABS,
 } from "@/constants";
 import CTAButton from "@/components/common/CTAButton";
+import {
+  getInterestRateRule,
+  validateInterestRate,
+} from "@/validations/loanRateSchema";
 import homeLoanHeroImg from "@/assets/home_loan_hero.jpg";
 import carLoanVisualImg from "@/assets/car_loan_visual.jpg";
 import educationLoanVisualImg from "@/assets/education_loan_visual.jpg";
 
-// Format currency in Indian numbering system
 const formatINR = (val) => {
   const num = Number(val);
   if (isNaN(num)) return "0";
   return new Intl.NumberFormat("en-IN").format(Math.round(num));
 };
 
-// Format values into Lakhs/Crore label (e.g. ₹50 lakh, ₹1.04 Cr)
 const formatLakhOrCrore = (val) => {
   const num = Number(val);
   if (isNaN(num) ? true : num <= 0) return "₹0";
@@ -49,7 +53,6 @@ const formatLakhOrCrore = (val) => {
   return `₹${lk} lakh`;
 };
 
-// Per-loan product configuration for Option 4 layout
 const LOAN_HERO_CONFIG = {
   home: {
     titlePrefix: "Home Loan Rates & ",
@@ -127,22 +130,29 @@ export default function LoanProductHeroSection({
     ? PRODUCT_CALCULATOR_CONFIG[loanType]
     : PRODUCT_CALCULATOR_CONFIG.home;
 
-  // Car loan specific sub-tab state ("new" vs "used")
   const [carType, setCarType] = useState("new");
 
-  // Calculator State
   const [amount, setAmount] = useState(calcConfig.amount);
   const [rate, setRate] = useState(calcConfig.rate);
+  const [rateInput, setRateInput] = useState(String(calcConfig.rate));
   const [years, setYears] = useState(calcConfig.years);
+
+  const rateRule = getInterestRateRule(loanType, carType);
+  const rateError = validateInterestRate(
+    rateInput,
+    loanType,
+    carType,
+    calcConfig.maxRate,
+  );
 
   const handleCarTypeChange = (type) => {
     setCarType(type);
     const matchedTab = CAR_LOAN_TYPE_TABS.find((t) => t.id === type);
     const newRate = matchedTab ? matchedTab.rate : 8.5;
     setRate(newRate);
+    setRateInput(String(newRate));
   };
 
-  // EMI Math Calculation
   const calculation = useMemo(() => {
     const P = Math.max(0, amount);
     const R = Math.max(0, rate) / 12 / 100;
@@ -181,9 +191,6 @@ export default function LoanProductHeroSection({
         pb: { xs: 5, md: 7 },
       }}
     >
-      {/* ═══════════════════════════════════════════════════════════
-          TOP EXECUTIVE HEADER STRIP (MATCHING DIGITAL BANK BANNER)
-          ═══════════════════════════════════════════════════════════ */}
       <Box
         sx={{
           background:
@@ -197,7 +204,6 @@ export default function LoanProductHeroSection({
           overflow: "hidden",
         }}
       >
-        {/* Ambient glow orbs */}
         <Box
           sx={{
             position: "absolute",
@@ -238,7 +244,7 @@ export default function LoanProductHeroSection({
                 fontWeight: 800,
                 lineHeight: { xs: 1.2, sm: 1.22 },
                 letterSpacing: "-0.5px",
-                color: "#0a2540",
+                color: colors.banner.titlePrimary,
                 mb: 1.5,
               }}
             >
@@ -246,10 +252,7 @@ export default function LoanProductHeroSection({
               <Box
                 component="span"
                 sx={{
-                  background:
-                    "linear-gradient(135deg, #0b63e5 0%, #0284c7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
+                  color: colors.banner.titleHighlight,
                   display: "inline-block",
                 }}
               >
@@ -272,9 +275,6 @@ export default function LoanProductHeroSection({
         </Container>
       </Box>
 
-      {/* ═══════════════════════════════════════════════════════════
-          OVERLAPPING CONTENT CARDS (SIDE BY SIDE)
-          ═══════════════════════════════════════════════════════════ */}
       <Container
         maxWidth="lg"
         sx={{
@@ -288,9 +288,6 @@ export default function LoanProductHeroSection({
           spacing={{ xs: 3, md: 3.5 }}
           sx={{ alignItems: "stretch" }}
         >
-          {/* ──────────────────────────────────────────────────────────
-              LEFT CARD: PRODUCT IMAGE & VALUE PROPOSITION
-              ────────────────────────────────────────────────────────── */}
           <Grid size={{ xs: 12, md: 4.8 }}>
             <Box
               sx={{
@@ -308,7 +305,6 @@ export default function LoanProductHeroSection({
                 },
               }}
             >
-              {/* Photo Area */}
               <Box
                 sx={{
                   position: "relative",
@@ -331,7 +327,6 @@ export default function LoanProductHeroSection({
                 />
               </Box>
 
-              {/* Body Content */}
               <Box
                 sx={{
                   p: { xs: 2.8, sm: 3.2 },
@@ -402,7 +397,6 @@ export default function LoanProductHeroSection({
                     {heroConfig.cardDescription}
                   </Typography>
 
-                  {/* Feature Checkpoints */}
                   <Box
                     sx={{
                       display: "flex",
@@ -437,7 +431,6 @@ export default function LoanProductHeroSection({
                   </Box>
                 </Box>
 
-                {/* Bottom Action Button */}
                 <CTAButton
                   variant="contained"
                   label="Check Pre-Approved Offer →"
@@ -463,9 +456,6 @@ export default function LoanProductHeroSection({
             </Box>
           </Grid>
 
-          {/* ──────────────────────────────────────────────────────────
-              RIGHT CARD: CALCULATOR WITH EXACT PREVIOUS SLIDERS & TOP HUD
-              ────────────────────────────────────────────────────────── */}
           <Grid size={{ xs: 12, md: 7.2 }}>
             <Box
               sx={{
@@ -481,7 +471,6 @@ export default function LoanProductHeroSection({
               }}
             >
               <Box>
-                {/* Header row */}
                 <Box
                   sx={{
                     display: "flex",
@@ -507,7 +496,6 @@ export default function LoanProductHeroSection({
                   </Box>
                 </Box>
 
-                {/* Optional Car Loan Sub-Tabs (New Car vs Used Car) */}
                 {calcConfig.hasCarTabs && (
                   <Box
                     sx={{
@@ -555,11 +543,6 @@ export default function LoanProductHeroSection({
                     })}
                   </Box>
                 )}
-
-                {/* ════════════════════════════════════════════════════
-                    TOP HUD: EMI RESULT SITS PROMINENTLY ON TOP
-                    (Matches user screenshot: Left EMI, Right Total Interest)
-                    ════════════════════════════════════════════════════ */}
                 <Box
                   sx={{
                     backgroundColor: "#f4f8fd",
@@ -629,10 +612,6 @@ export default function LoanProductHeroSection({
                   </Box>
                 </Box>
 
-                {/* ════════════════════════════════════════════════════
-                    SLIDERS CONTROLS (EXACTLY MATCHING USER SCREENSHOT)
-                    ════════════════════════════════════════════════════ */}
-                {/* 1. Loan Amount */}
                 <Box sx={{ mb: 3 }}>
                   <Box
                     sx={{
@@ -692,7 +671,6 @@ export default function LoanProductHeroSection({
                   />
                 </Box>
 
-                {/* 2. Interest Rate */}
                 <Box sx={{ mb: 3 }}>
                   <Box
                     sx={{
@@ -700,6 +678,7 @@ export default function LoanProductHeroSection({
                       justifyContent: "space-between",
                       alignItems: "center",
                       mb: 1.2,
+                      gap: 1.5,
                     }}
                   >
                     <Typography
@@ -711,23 +690,78 @@ export default function LoanProductHeroSection({
                     >
                       Interest Rate (% p.a.)
                     </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "15.5px",
-                        fontWeight: 800,
-                        color: colors.brand.primary,
+                    <TextField
+                      size="small"
+                      value={rateInput}
+                      error={Boolean(rateError)}
+                      onChange={(e) => {
+                        let val = e.target.value.replace(/[^0-9.]/g, "");
+                        const parts = val.split(".");
+                        if (parts.length > 2) {
+                          val = parts[0] + "." + parts.slice(1).join("");
+                        }
+                        if (parts.length === 2 && parts[1].length > 2) {
+                          val = parts[0] + "." + parts[1].slice(0, 2);
+                        }
+                        setRateInput(val);
+                        const num = Number(val);
+                        if (val !== "" && !Number.isNaN(num)) {
+                          setRate(num);
+                        }
                       }}
-                    >
-                      {Number(rate).toFixed(2)}%
-                    </Typography>
+                      slotProps={{
+                        input: {
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Typography
+                                sx={{
+                                  fontSize: "13px",
+                                  fontWeight: 800,
+                                  color: rateError
+                                    ? "#dc2626"
+                                    : colors.brand.primary,
+                                }}
+                              >
+                                %
+                              </Typography>
+                            </InputAdornment>
+                          ),
+                        },
+                      }}
+                      sx={{
+                        width: "105px",
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: "8px",
+                          backgroundColor: "#f8fafc",
+                          fontSize: "14px",
+                          fontWeight: 800,
+                          color: rateError ? "#dc2626" : colors.brand.primary,
+                          "& input": {
+                            py: 0.6,
+                            px: 1.1,
+                            textAlign: "right",
+                          },
+                        },
+                      }}
+                    />
                   </Box>
 
                   <Slider
-                    value={rate}
-                    min={calcConfig.minRate}
+                    value={Math.min(
+                      calcConfig.maxRate,
+                      Math.max(
+                        rateRule.minRate,
+                        Number(rate) ? Number(rate) : rateRule.minRate,
+                      ),
+                    )}
+                    min={rateRule.minRate}
                     max={calcConfig.maxRate}
                     step={0.05}
-                    onChange={(_, val) => setRate(Number(val))}
+                    onChange={(_, val) => {
+                      const nextRate = Number(val);
+                      setRate(nextRate);
+                      setRateInput(nextRate.toFixed(2));
+                    }}
                     sx={{
                       color: colors.brand.primary,
                       height: 6,
@@ -750,9 +784,21 @@ export default function LoanProductHeroSection({
                       },
                     }}
                   />
+
+                  {rateError ? (
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        fontWeight: 600,
+                        color: "#dc2626",
+                        mt: 0.5,
+                      }}
+                    >
+                      {rateError}
+                    </Typography>
+                  ) : null}
                 </Box>
 
-                {/* 3. Tenure (Years) */}
                 <Box sx={{ mb: 1.5 }}>
                   <Box
                     sx={{
@@ -820,7 +866,6 @@ export default function LoanProductHeroSection({
                 </Box>
               </Box>
 
-              {/* Bottom Quick Total Summary Strip */}
               <Box
                 sx={{
                   pt: 2.5,

@@ -10,6 +10,7 @@ import {
 } from "@mui/icons-material";
 import { colors, typography } from "@/constants";
 import CommonPageBanner from "@/components/common/CommonPageBanner";
+import lamfBannerImg from "@/assets/banner_lamf.jpg";
 
 const BENEFITS = [
   {
@@ -80,7 +81,6 @@ const STEPS = [
 export default function LoanAgainstMutualFundsView() {
   return (
     <main style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
-      {/* ── Executive Common Page Banner ──────────────────────────── */}
       <CommonPageBanner
         eyebrow="SMART LIQUIDITY & COLLATERAL FINANCING"
         title="Loan Against"
@@ -88,6 +88,8 @@ export default function LoanAgainstMutualFundsView() {
         description="Unlock immediate credit limits up to 80% of your equity and debt portfolio without liquidating fund units. Zero prepayment charges, attractive interest rates, and seamless CAMS/KFintech pledge."
         activeTabHref="/services/loan-against-mutual-funds"
         showModuleTabs={false}
+        bannerImage={lamfBannerImg}
+        bannerAlt="Loan Against Mutual Funds - Keep Growing. Borrow Instant."
         cta={{
           label: "Apply Now",
           onClick: () =>
@@ -98,10 +100,6 @@ export default function LoanAgainstMutualFundsView() {
             ),
           endIcon: <NorthEast sx={{ fontSize: 16 }} />,
         }}
-        kpis={[
-          { value: "Up to 80%", label: "Portfolio Value Limit" },
-          { value: "24 Hrs", label: "Digital Disbursal" },
-        ]}
       />
 
       <Container maxWidth="lg" sx={{ py: { xs: 5, md: 7 } }}>
@@ -110,9 +108,6 @@ export default function LoanAgainstMutualFundsView() {
           spacing={{ xs: 4, lg: 5 }}
           sx={{ alignItems: "stretch" }}
         >
-          {/* ═══════════════════════════════════════════════════════════════ */}
-          {/* LEFT COLUMN: Why Borrow Against Mutual Funds                   */}
-          {/* ═══════════════════════════════════════════════════════════════ */}
           <Grid
             size={{ xs: 12, lg: 6 }}
             sx={{ display: "flex", flexDirection: "column" }}
@@ -171,7 +166,6 @@ export default function LoanAgainstMutualFundsView() {
                 </Typography>
               </Box>
 
-              {/* 2x2 Benefits Grid - stretched to fill column */}
               <Grid
                 container
                 spacing={2}
@@ -244,9 +238,6 @@ export default function LoanAgainstMutualFundsView() {
             </Box>
           </Grid>
 
-          {/* ═══════════════════════════════════════════════════════════════ */}
-          {/* RIGHT COLUMN: 6 Simple Steps Timeline                           */}
-          {/* ═══════════════════════════════════════════════════════════════ */}
           <Grid
             size={{ xs: 12, lg: 6 }}
             sx={{ display: "flex", flexDirection: "column" }}
@@ -264,7 +255,6 @@ export default function LoanAgainstMutualFundsView() {
                 justifyContent: "space-between",
               }}
             >
-              {/* Header inside the Steps Card */}
               <Box sx={{ mb: 2 }}>
                 <Box
                   sx={{
@@ -309,7 +299,6 @@ export default function LoanAgainstMutualFundsView() {
                 </Typography>
               </Box>
 
-              {/* 6 Steps Connected Timeline */}
               <Box
                 sx={{
                   position: "relative",
@@ -321,7 +310,6 @@ export default function LoanAgainstMutualFundsView() {
                   gap: 1.1,
                 }}
               >
-                {/* Connecting Vertical Track Line */}
                 <Box
                   sx={{
                     display: { xs: "none", sm: "block" },
@@ -346,7 +334,6 @@ export default function LoanAgainstMutualFundsView() {
                       zIndex: 1,
                     }}
                   >
-                    {/* Step Number Circle / Node */}
                     <Box
                       sx={{
                         width: 32,
@@ -372,7 +359,6 @@ export default function LoanAgainstMutualFundsView() {
                       {step.number}
                     </Box>
 
-                    {/* Step Card Body */}
                     <Box
                       sx={{
                         flex: 1,

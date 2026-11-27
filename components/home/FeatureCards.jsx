@@ -6,9 +6,8 @@ import {
   CalculateOutlined,
   BalanceOutlined,
   SupportAgentOutlined,
-  AutoAwesome,
 } from "@mui/icons-material";
-import { FEATURE_CARDS, colors, typography } from "@/constants";
+import { FEATURE_CARDS, typography } from "@/constants";
 
 const CARD_ENHANCEMENTS = [
   {
@@ -57,7 +56,6 @@ export default function FeatureCards() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Section Header */}
         <Box sx={{ textAlign: "center", mb: { xs: 4, sm: 5, md: 6 } }}>
           <Typography
             component="h2"
@@ -87,7 +85,6 @@ export default function FeatureCards() {
           </Typography>
         </Box>
 
-        {/* 4 Feature Cards */}
         <Grid container spacing={{ xs: 2.5, sm: 2.5, md: 3 }}>
           {FEATURE_CARDS.map((card, index) => {
             const meta = CARD_ENHANCEMENTS[index]
@@ -121,7 +118,6 @@ export default function FeatureCards() {
                     },
                   }}
                 >
-                  {/* Top Bar: Icon + Step Badge */}
                   <Box
                     sx={{
                       display: "flex",
@@ -162,7 +158,6 @@ export default function FeatureCards() {
                     </Typography>
                   </Box>
 
-                  {/* Content: Title & Description */}
                   <Box sx={{ flexGrow: 1 }}>
                     <Typography
                       component="h3"

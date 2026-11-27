@@ -35,7 +35,6 @@ export default function LoansSection() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Top Header Row */}
         <Box
           sx={{
             display: "flex",
@@ -46,7 +45,6 @@ export default function LoansSection() {
             mb: { xs: 3.5, md: 4.5 },
           }}
         >
-          {/* Left: Eyebrow, Main Title & Description */}
           <Box sx={{ maxWidth: 640 }}>
             <Typography
               sx={{
@@ -88,41 +86,8 @@ export default function LoansSection() {
               {LOANS_EXPLORER_SECTION.description}
             </Typography>
           </Box>
-
-          {/* Right: Compare Options Link */}
-          {/* <Box
-            component={NextLink}
-            href={LOANS_EXPLORER_SECTION.compareLinkHref}
-            sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 0.8,
-              fontSize: "14.5px",
-              fontWeight: 700,
-              color: "#1e293b",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              transition: "all 0.2s ease",
-              "&:hover": {
-                color: colors.brand.primary,
-                "& .arrow-icon": {
-                  transform: "translateX(4px)",
-                },
-              },
-            }}
-          >
-            <span>{LOANS_EXPLORER_SECTION.compareLinkText}</span>
-            <East
-              className="arrow-icon"
-              sx={{
-                fontSize: 16,
-                transition: "transform 0.2s ease",
-              }}
-            />
-          </Box> */}
         </Box>
 
-        {/* 6 Loan Cards Grid */}
         <Grid container spacing={{ xs: 2, sm: 2.5, md: 3 }}>
           {LOANS_EXPLORER_SECTION.items.map((item) => (
             <Grid key={item.id} size={{ xs: 12, sm: 6, md: 4 }}>
@@ -155,7 +120,6 @@ export default function LoansSection() {
                   },
                 }}
               >
-                {/* Left: Icon Badge & Content */}
                 <Box
                   sx={{
                     display: "flex",
@@ -165,7 +129,6 @@ export default function LoansSection() {
                     mr: 1,
                   }}
                 >
-                  {/* Rounded Icon Badge */}
                   <Box
                     sx={{
                       width: 46,
@@ -181,7 +144,6 @@ export default function LoansSection() {
                     {ICON_MAP[item.iconType]}
                   </Box>
 
-                  {/* Title and Description */}
                   <Box>
                     <Typography
                       component="h3"
@@ -211,7 +173,6 @@ export default function LoansSection() {
                   </Box>
                 </Box>
 
-                {/* Right: Chevron Arrow */}
                 <ChevronRight
                   className="card-chevron"
                   sx={{

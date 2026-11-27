@@ -1,8 +1,3 @@
-/**
- * Credit Card Rules and Eligibility Engine for Finvibes.
- * Evaluates applicant profile against verified issuer criteria.
- */
-
 export const CREDIT_CARD_RULES = [
   {
     id: "yes_pop_club",
@@ -124,10 +119,27 @@ export const CREDIT_CARD_RULES = [
     selfEmployedMinItr: 1000000,
     allowedEmployment: ["salaried", "selfEmployed"],
     allowedCities: [
-      "Chennai", "Gurgaon", "Delhi NCR", "Pune", "Noida", "Hyderabad",
-      "Mumbai", "Bengaluru", "Kochi", "Coimbatore", "Jaipur", "Chandigarh",
-      "Ahmedabad", "Kolkata", "Amritsar", "Baroda", "Indore", "Lucknow",
-      "Nagpur", "Surat", "Trivandrum",
+      "Chennai",
+      "Gurgaon",
+      "Delhi NCR",
+      "Pune",
+      "Noida",
+      "Hyderabad",
+      "Mumbai",
+      "Bengaluru",
+      "Kochi",
+      "Coimbatore",
+      "Jaipur",
+      "Chandigarh",
+      "Ahmedabad",
+      "Kolkata",
+      "Amritsar",
+      "Baroda",
+      "Indore",
+      "Lucknow",
+      "Nagpur",
+      "Surat",
+      "Trivandrum",
     ],
     residentIndianOnly: true,
     notes: ["Premium cashback card available in 21 serviceable cities"],
@@ -176,7 +188,8 @@ export const CREDIT_CARD_RULES = [
     bank: "HDFC Bank",
     name: "HDFC Bank PIXEL Play Credit Card",
     applyUrl: "https://linkzip.in/itirg0",
-    benefit: "5% Customizable Choice Cashback on dining, Zomato & entertainment",
+    benefit:
+      "5% Customizable Choice Cashback on dining, Zomato & entertainment",
     badge: "5% Choice Cashback",
     category: "Digital & Youth",
     fee: "₹500 (Waived on ₹1L spend)",
@@ -194,7 +207,8 @@ export const CREDIT_CARD_RULES = [
     bank: "Axis Bank",
     name: "Axis My Zone Credit Card",
     applyUrl: "https://linkzip.in/yvqpez",
-    benefit: "Buy 1 Get 1 on Paytm Movies, SonyLIV annual sub & dining discounts",
+    benefit:
+      "Buy 1 Get 1 on Paytm Movies, SonyLIV annual sub & dining discounts",
     badge: "Movies & OTT",
     category: "Entertainment",
     fee: "₹500 (SonyLIV Premium included)",
@@ -213,9 +227,17 @@ export const CREDIT_CARD_RULES = [
 
 export function normalizeCity(city) {
   if (!city) return "";
-  const cleaned = String(city).trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+  const cleaned = String(city)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
   if (["bangalore", "bengaluru"].includes(cleaned)) return "bengaluru";
-  if (["delhi", "newdelhi", "delhincr", "ncr", "noida", "gurgaon"].includes(cleaned)) return "delhincr";
+  if (
+    ["delhi", "newdelhi", "delhincr", "ncr", "noida", "gurgaon"].includes(
+      cleaned,
+    )
+  )
+    return "delhincr";
   if (["bombay", "mumbai"].includes(cleaned)) return "mumbai";
   if (["calcutta", "kolkata"].includes(cleaned)) return "kolkata";
   if (["madras", "chennai"].includes(cleaned)) return "chennai";
@@ -225,20 +247,28 @@ export function normalizeCity(city) {
 
 export class EligibilityEngine {
   static minAgeFor(rule, emp) {
-    const specific = emp === "salaried" ? rule.minAgeSalaried : rule.minAgeSelfEmployed;
+    const specific =
+      emp === "salaried" ? rule.minAgeSalaried : rule.minAgeSelfEmployed;
     return specific !== undefined && specific !== null ? specific : rule.minAge;
   }
 
   static maxAgeFor(rule, emp) {
-    const specific = emp === "salaried" ? rule.maxAgeSalaried : rule.maxAgeSelfEmployed;
+    const specific =
+      emp === "salaried" ? rule.maxAgeSalaried : rule.maxAgeSelfEmployed;
     return specific !== undefined && specific !== null ? specific : rule.maxAge;
   }
 
   static salariedMonthlyThreshold(rule) {
-    if (rule.salariedMinMonthlyIncome !== undefined && rule.salariedMinMonthlyIncome !== null) {
+    if (
+      rule.salariedMinMonthlyIncome !== undefined &&
+      rule.salariedMinMonthlyIncome !== null
+    ) {
       return rule.salariedMinMonthlyIncome;
     }
-    if (rule.salariedMinAnnualIncome !== undefined && rule.salariedMinAnnualIncome !== null) {
+    if (
+      rule.salariedMinAnnualIncome !== undefined &&
+      rule.salariedMinAnnualIncome !== null
+    ) {
       return rule.salariedMinAnnualIncome / 12;
     }
     return undefined;
@@ -248,17 +278,14 @@ export class EligibilityEngine {
     const reasons = [];
     const emp = profile.employmentType ? profile.employmentType : "salaried";
 
-    // 1. Residency
     if (rule.residentIndianOnly && profile.residency !== "resident") {
       reasons.push("Only for resident Indians");
     }
 
-    // 2. Employment
     if (rule.allowedEmployment && !rule.allowedEmployment.includes(emp)) {
       reasons.push("Employment type not eligible");
     }
 
-    // 3. Age
     const minAge = this.minAgeFor(rule, emp);
     const maxAge = this.maxAgeFor(rule, emp);
     if (minAge !== undefined && minAge !== null && profile.age < minAge) {
@@ -268,7 +295,6 @@ export class EligibilityEngine {
       reasons.push(`Maximum age is ${maxAge} years`);
     }
 
-    // 4. Income
     if (emp === "salaried") {
       const threshold = this.salariedMonthlyThreshold(rule);
       if (threshold !== undefined && threshold !== null && threshold > 0) {
@@ -276,33 +302,35 @@ export class EligibilityEngine {
         if (typeof income !== "number" ? true : Number.isNaN(income)) {
           reasons.push("Income required");
         } else {
-          const passes = rule.incomeStrict ? income > threshold : income >= threshold;
+          const passes = rule.incomeStrict
+            ? income > threshold
+            : income >= threshold;
           if (!passes) {
             reasons.push(
-              `Minimum monthly income not met (${rule.incomeStrict ? ">" : "≥"}₹${Math.round(threshold)})`
+              `Minimum monthly income not met (${rule.incomeStrict ? ">" : "≥"}₹${Math.round(threshold)})`,
             );
           }
         }
       }
     } else {
-      // selfEmployed
       const threshold = rule.selfEmployedMinItr;
       if (threshold !== undefined && threshold !== null && threshold > 0) {
         const income = profile.annualItrIncome;
         if (typeof income !== "number" ? true : Number.isNaN(income)) {
           reasons.push("Income required");
         } else {
-          const passes = rule.incomeStrict ? income > threshold : income >= threshold;
+          const passes = rule.incomeStrict
+            ? income > threshold
+            : income >= threshold;
           if (!passes) {
             reasons.push(
-              `Minimum ITR income not met (${rule.incomeStrict ? ">" : "≥"}₹${Math.round(threshold)})`
+              `Minimum ITR income not met (${rule.incomeStrict ? ">" : "≥"}₹${Math.round(threshold)})`,
             );
           }
         }
       }
     }
 
-    // 5. City
     if (rule.allowedCities && rule.allowedCities.length > 0) {
       const normProfileCity = normalizeCity(profile.city);
       const allowedNormalized = rule.allowedCities.map((c) => normalizeCity(c));
@@ -311,7 +339,6 @@ export class EligibilityEngine {
       }
     }
 
-    // 6. Has Existing Card
     if (rule.requiresExistingCard && !profile.hasOtherCreditCard) {
       reasons.push("Needs an existing credit card from another bank");
     }

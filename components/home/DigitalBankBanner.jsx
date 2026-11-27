@@ -9,7 +9,6 @@ import {
   Bolt,
   VerifiedUserOutlined,
 } from "@mui/icons-material";
-import digitalSavingsMockupImg from "@/assets/digital_savings_mockup.jpg";
 import digitalimg from "@/assets/digitalimg.jpg";
 import { colors, typography } from "@/constants";
 
@@ -28,7 +27,6 @@ export default function DigitalBankBanner() {
         py: { xs: 5, sm: 6, md: 7 },
       }}
     >
-      {/* Background Ambient Radial Glow */}
       <Box
         sx={{
           position: "absolute",
@@ -56,9 +54,7 @@ export default function DigitalBankBanner() {
           gap: { xs: 5, md: 4 },
         }}
       >
-        {/* ── Left Column: Compelling High-Interest Copy & Action ── */}
         <Box sx={{ maxWidth: { xs: "100%", md: "580px" }, zIndex: 2 }}>
-          {/* Main Headline */}
           <Typography
             component="h2"
             sx={{
@@ -84,7 +80,6 @@ export default function DigitalBankBanner() {
             </Box>
           </Typography>
 
-          {/* Subtitle */}
           <Typography
             sx={{
               fontSize: { xs: "15px", sm: "16.5px" },
@@ -99,7 +94,6 @@ export default function DigitalBankBanner() {
             Video-KYC in under 3 minutes.
           </Typography>
 
-          {/* 3 Key Value Chips */}
           <Box
             sx={{
               display: "flex",
@@ -142,7 +136,6 @@ export default function DigitalBankBanner() {
             ))}
           </Box>
 
-          {/* CTA Button & Trust Indicator */}
           <Box
             sx={{
               display: "flex",
@@ -193,7 +186,6 @@ export default function DigitalBankBanner() {
           </Box>
         </Box>
 
-        {/* ── Right Column: High-Res 3D Isometric Neo-Bank Visual ── */}
         <Box
           sx={{
             position: "relative",
@@ -204,7 +196,6 @@ export default function DigitalBankBanner() {
             justifyContent: "center",
           }}
         >
-          {/* Ambient Background Radial Glow */}
           <Box
             sx={{
               position: "absolute",
@@ -219,7 +210,6 @@ export default function DigitalBankBanner() {
             }}
           />
 
-          {/* 3D Mockup Visual Container */}
           <Box
             sx={{
               position: "relative",
@@ -250,7 +240,6 @@ export default function DigitalBankBanner() {
             />
           </Box>
 
-          {/* Floating Verification Badge */}
           <Box
             sx={{
               position: "absolute",
