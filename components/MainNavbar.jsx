@@ -485,37 +485,6 @@ export default function MainNavbar() {
             ))}
           </List>
         </Box>
-
-        <Box sx={{ mt: 3 }}>
-          <Divider sx={{ mb: 2.5, borderColor: colors.border.light }} />
-
-          <CTAButton
-            label="Get Started"
-            href="/contact"
-            icon={<NorthEast sx={{ fontSize: "16px" }} />}
-            sx={{ width: "100%", justifyContent: "center", py: 1.2 }}
-          />
-
-          <Box sx={{ mt: 2.5, textAlign: "center" }}>
-            <Typography
-              sx={{
-                fontSize: typography.fontSizes.sm,
-                color: colors.text.secondary,
-                mb: 0.5,
-              }}
-            >
-              {CONTACT_INFO.email}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: typography.fontSizes.sm,
-                color: colors.text.secondary,
-              }}
-            >
-              {CONTACT_INFO.workingHours}
-            </Typography>
-          </Box>
-        </Box>
       </Drawer>
     </AppBar>
   );
