@@ -5,6 +5,7 @@ import {
   GridViewOutlined,
   CalculateOutlined,
   BalanceOutlined,
+  SupportAgentOutlined,
 } from "@mui/icons-material";
 import { FEATURE_CARDS, typography } from "@/constants";
 
