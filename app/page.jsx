@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import HomeHeroSwiper from "@/components/home/HomeHeroSwiper";
+import BankPartnerMarquee from "@/components/home/BankPartnerMarquee";
 import FeatureCards from "@/components/home/FeatureCards";
 import LoansSection from "@/components/home/LoansSection";
 import QuickEMICalculatorSection from "@/components/home/QuickEMICalculatorSection";
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <main>
       <HomeHeroSwiper onApply={handleApply} />
+      <BankPartnerMarquee />
       <FeatureCards />
       <LoansSection />
       <QuickEMICalculatorSection onApply={handleApply} />
